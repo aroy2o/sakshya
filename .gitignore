@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Earth Engine / GEE local auth cache (never commit credentials)
+.config/earthengine/
+*.gee-credentials.json
