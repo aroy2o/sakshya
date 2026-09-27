@@ -26,3 +26,6 @@ dist/
 # Earth Engine / GEE local auth cache (never commit credentials)
 .config/earthengine/
 *.gee-credentials.json
+
+# Claude Code harness-internal state
+.claude/scheduled_tasks.lock

@@ -1,0 +1,69 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stream_id": 1,
+        "strahler_order": 1,
+        "placeholder": true
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            92.324,
+            26.259000000000004
+          ],
+          [
+            92.345,
+            26.28
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stream_id": 2,
+        "strahler_order": 1,
+        "placeholder": true
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            92.366,
+            26.259000000000004
+          ],
+          [
+            92.345,
+            26.28
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stream_id": 3,
+        "strahler_order": 2,
+        "placeholder": true
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            92.345,
+            26.28
+          ],
+          [
+            92.345,
+            26.301
+          ]
+        ]
+      }
+    }
+  ],
+  "placeholder": true
+}

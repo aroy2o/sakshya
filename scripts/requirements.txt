@@ -1,0 +1,15 @@
+# Phase 3 — Satellite Intelligence (offline, precompute-only).
+#
+# CLAUDE.md non-negotiable: these packages are used ONLY inside /scripts,
+# run offline. /api and /web must never import earthengine-api/geemap or
+# call ee.Initialize() — results are written to files/tables and served
+# from there.
+
+earthengine-api>=0.1.400
+geemap>=0.32.0
+shapely>=2.0
+geopandas>=0.14
+rasterio>=1.3
+whitebox>=2.3
+Pillow>=10.3
+pytest>=8.0

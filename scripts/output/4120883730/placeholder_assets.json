@@ -1,0 +1,202 @@
+[
+  {
+    "record_id": 1,
+    "mws_id": "4120883730",
+    "category": "AM",
+    "activity": "Contour Bund",
+    "lat": 26.260625,
+    "lon": 92.329252,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 2,
+    "mws_id": "4120883730",
+    "category": "VM",
+    "activity": "Block Plantation",
+    "lat": 26.292369,
+    "lon": 92.361553,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 3,
+    "mws_id": "4120883730",
+    "category": "SM",
+    "activity": "Check Dam",
+    "lat": 26.247086,
+    "lon": 92.339535,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 4,
+    "mws_id": "4120883730",
+    "category": "PT",
+    "activity": "Farm Pond",
+    "lat": 26.280375,
+    "lon": 92.325305,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 5,
+    "mws_id": "4120883730",
+    "category": "NC",
+    "activity": "Nala Deepening",
+    "lat": 26.283146,
+    "lon": 92.355492,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 6,
+    "mws_id": "4120883730",
+    "category": "BN",
+    "activity": "Field Bund",
+    "lat": 26.286249,
+    "lon": 92.325431,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 7,
+    "mws_id": "4120883730",
+    "category": "LS",
+    "activity": "Cattle Shelter",
+    "lat": 26.29387,
+    "lon": 92.366407,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 8,
+    "mws_id": "4120883730",
+    "category": "LH",
+    "activity": "Horticulture",
+    "lat": 26.255884,
+    "lon": 92.333818,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 9,
+    "mws_id": "4120883730",
+    "category": "OM",
+    "activity": "Jungle Clearance",
+    "lat": 26.268562,
+    "lon": 92.377005,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 10,
+    "mws_id": "4120883730",
+    "category": "AM",
+    "activity": "Contour Bund",
+    "lat": 26.287261,
+    "lon": 92.369325,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 11,
+    "mws_id": "4120883730",
+    "category": "VM",
+    "activity": "Block Plantation",
+    "lat": 26.296081,
+    "lon": 92.366499,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 12,
+    "mws_id": "4120883730",
+    "category": "SM",
+    "activity": "Check Dam",
+    "lat": 26.313118,
+    "lon": 92.347536,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 13,
+    "mws_id": "4120883730",
+    "category": "PT",
+    "activity": "Farm Pond",
+    "lat": 26.283643,
+    "lon": 92.336497,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 14,
+    "mws_id": "4120883730",
+    "category": "NC",
+    "activity": "Nala Deepening",
+    "lat": 26.288296,
+    "lon": 92.368058,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 15,
+    "mws_id": "4120883730",
+    "category": "BN",
+    "activity": "Field Bund",
+    "lat": 26.285415,
+    "lon": 92.370319,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 16,
+    "mws_id": "4120883730",
+    "category": "LS",
+    "activity": "Cattle Shelter",
+    "lat": 26.265257,
+    "lon": 92.325953,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 17,
+    "mws_id": "4120883730",
+    "category": "LH",
+    "activity": "Horticulture",
+    "lat": 26.264458,
+    "lon": 92.31707,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 18,
+    "mws_id": "4120883730",
+    "category": "OM",
+    "activity": "Jungle Clearance",
+    "lat": 26.270538,
+    "lon": 92.354498,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 19,
+    "mws_id": "4120883730",
+    "category": "AM",
+    "activity": "Contour Bund",
+    "lat": 26.259665,
+    "lon": 92.335913,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  },
+  {
+    "record_id": 20,
+    "mws_id": "4120883730",
+    "category": "VM",
+    "activity": "Block Plantation",
+    "lat": 26.287639,
+    "lon": 92.355362,
+    "is_synthetic": true,
+    "photo_source": "unknown"
+  }
+]

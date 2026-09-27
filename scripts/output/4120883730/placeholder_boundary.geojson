@@ -1,0 +1,49 @@
+{
+  "mws_id": "4120883730",
+  "name": "Marigaon",
+  "is_synthetic_boundary": true,
+  "note": "Generated placeholder polygon, not the official HydroBASINS L12 boundary \u2014 GEE credentials were unavailable this session. Swap for the real boundary at zero code cost once fetchable via gee_client.fetch_hydrobasin_boundary().",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          92.38,
+          26.2905
+        ],
+        [
+          92.3695,
+          26.311500000000002
+        ],
+        [
+          92.3485,
+          26.315
+        ],
+        [
+          92.324,
+          26.308
+        ],
+        [
+          92.31,
+          26.287000000000003
+        ],
+        [
+          92.317,
+          26.2555
+        ],
+        [
+          92.3415,
+          26.245
+        ],
+        [
+          92.3765,
+          26.259
+        ],
+        [
+          92.38,
+          26.2905
+        ]
+      ]
+    ]
+  }
+}

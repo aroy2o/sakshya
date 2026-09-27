@@ -1,0 +1,82 @@
+{
+  "mws_id": "4120883730",
+  "generated_at": "2026-09-27T20:12:03.707629+00:00",
+  "placeholder": true,
+  "source": "synthetic_no_gee_credentials",
+  "layers": {
+    "lulc": {
+      "type": "raster_png",
+      "path": "lulc.png",
+      "bounds": [
+        92.31,
+        26.245,
+        92.38,
+        26.315
+      ],
+      "placeholder": true
+    },
+    "ndvi_before": {
+      "type": "raster_png",
+      "path": "ndvi_before.png",
+      "bounds": [
+        92.31,
+        26.245,
+        92.38,
+        26.315
+      ],
+      "placeholder": true
+    },
+    "ndvi_after": {
+      "type": "raster_png",
+      "path": "ndvi_after.png",
+      "bounds": [
+        92.31,
+        26.245,
+        92.38,
+        26.315
+      ],
+      "placeholder": true
+    },
+    "ndvi_change": {
+      "type": "raster_png",
+      "path": "ndvi_change.png",
+      "bounds": [
+        92.31,
+        26.245,
+        92.38,
+        26.315
+      ],
+      "placeholder": true
+    },
+    "water": {
+      "type": "raster_png",
+      "path": "water_latest.png",
+      "bounds": [
+        92.31,
+        26.245,
+        92.38,
+        26.315
+      ],
+      "placeholder": true
+    },
+    "drainage": {
+      "type": "geojson",
+      "path": "drainage.geojson",
+      "placeholder": true
+    }
+  },
+  "supporting_artifacts": {
+    "slope": {
+      "type": "raster_png",
+      "path": "slope.png",
+      "bounds": [
+        92.31,
+        26.245,
+        92.38,
+        26.315
+      ],
+      "note": "Not exposed via GET /mws/{id}/thematic/{layer} \u2014 PRD \u00a79's enum is frozen at 6 keys (coordinator ruling); kept for the Phase 6 watershed report card.",
+      "placeholder": true
+    }
+  }
+}

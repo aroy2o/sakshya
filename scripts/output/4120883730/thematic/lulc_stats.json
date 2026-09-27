@@ -1,0 +1,12 @@
+{
+  "placeholder": true,
+  "source": "synthetic_no_gee_credentials",
+  "classes_pct": {
+    "cropland": null,
+    "tree_cover": null,
+    "built_up": null,
+    "grassland": null,
+    "water": null
+  },
+  "note": "Not computed \u2014 real values need ESA WorldCover v200 via GEE."
+}

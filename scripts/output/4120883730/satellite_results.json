@@ -1,0 +1,1469 @@
+[
+  {
+    "record_id": 1,
+    "mws_id": "4120883730",
+    "category": "AM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0002,
+      "MNDWI": 0.0358,
+      "NDMI": 0.0963,
+      "water_fraction": -0.0171
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI",
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730717+00:00"
+  },
+  {
+    "record_id": 2,
+    "mws_id": "4120883730",
+    "category": "VM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": -0.0353,
+      "MNDWI": 0.0108,
+      "NDMI": 0.0615,
+      "water_fraction": 0.0016
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI",
+    "did_classification": "negative",
+    "satellite_score": 0,
+    "notes": [
+      "Negative DiD relative to control \u2014 flagged for review. This can also mean 'too early post-work' rather than failure; not a definitive verdict (PRD \u00a712.3).",
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730746+00:00"
+  },
+  {
+    "record_id": 3,
+    "mws_id": "4120883730",
+    "category": "SM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": -0.007,
+      "MNDWI": 0.0323,
+      "NDMI": 0.0452,
+      "water_fraction": -0.046
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "water_fraction",
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730766+00:00"
+  },
+  {
+    "record_id": 4,
+    "mws_id": "4120883730",
+    "category": "PT",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": -0.0489,
+      "MNDWI": 0.0039,
+      "NDMI": 0.0127,
+      "water_fraction": 0.1145
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "water_fraction",
+    "did_classification": "weakly_positive",
+    "satellite_score": 18,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730783+00:00"
+  },
+  {
+    "record_id": 5,
+    "mws_id": "4120883730",
+    "category": "NC",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0133,
+      "MNDWI": 0.0277,
+      "NDMI": 0.0531,
+      "water_fraction": 0.0495
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "water_fraction",
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730798+00:00"
+  },
+  {
+    "record_id": 6,
+    "mws_id": "4120883730",
+    "category": "BN",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": -0.0292,
+      "MNDWI": 0.0044,
+      "NDMI": 0.0907,
+      "water_fraction": 0.1038
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI_NDMI_MEAN",
+    "did_classification": "weakly_positive",
+    "satellite_score": 18,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730813+00:00"
+  },
+  {
+    "record_id": 7,
+    "mws_id": "4120883730",
+    "category": "LS",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0321,
+      "MNDWI": 0.0395,
+      "NDMI": 0.0072,
+      "water_fraction": 0.0064
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": null,
+    "did_classification": "not_applicable",
+    "satellite_score": 15,
+    "notes": [
+      "Category LS: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data.",
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730829+00:00"
+  },
+  {
+    "record_id": 8,
+    "mws_id": "4120883730",
+    "category": "LH",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0939,
+      "MNDWI": 0.0097,
+      "NDMI": 0.0152,
+      "water_fraction": 0.0834
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": null,
+    "did_classification": "not_applicable",
+    "satellite_score": 15,
+    "notes": [
+      "Category LH: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data.",
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730844+00:00"
+  },
+  {
+    "record_id": 9,
+    "mws_id": "4120883730",
+    "category": "OM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0511,
+      "MNDWI": -0.0123,
+      "NDMI": -0.0375,
+      "water_fraction": 0.0471
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": null,
+    "did_classification": "not_applicable",
+    "satellite_score": 15,
+    "notes": [
+      "Category OM: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data.",
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730858+00:00"
+  },
+  {
+    "record_id": 10,
+    "mws_id": "4120883730",
+    "category": "AM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.1183,
+      "MNDWI": 0.0219,
+      "NDMI": -0.0155,
+      "water_fraction": 0.2169
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI",
+    "did_classification": "strongly_positive",
+    "satellite_score": 30,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730925+00:00"
+  },
+  {
+    "record_id": 11,
+    "mws_id": "4120883730",
+    "category": "VM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0857,
+      "MNDWI": 0.0407,
+      "NDMI": 0.012,
+      "water_fraction": 0.0373
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI",
+    "did_classification": "strongly_positive",
+    "satellite_score": 30,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730942+00:00"
+  },
+  {
+    "record_id": 12,
+    "mws_id": "4120883730",
+    "category": "SM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": -0.0187,
+      "MNDWI": 0.0323,
+      "NDMI": 0.0305,
+      "water_fraction": 0.1131
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "water_fraction",
+    "did_classification": "weakly_positive",
+    "satellite_score": 18,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730958+00:00"
+  },
+  {
+    "record_id": 13,
+    "mws_id": "4120883730",
+    "category": "PT",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0807,
+      "MNDWI": 0.0485,
+      "NDMI": 0.0896,
+      "water_fraction": 0.1537
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "water_fraction",
+    "did_classification": "strongly_positive",
+    "satellite_score": 30,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730973+00:00"
+  },
+  {
+    "record_id": 14,
+    "mws_id": "4120883730",
+    "category": "NC",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0624,
+      "MNDWI": 0.0123,
+      "NDMI": 0.0343,
+      "water_fraction": 0.0312
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "water_fraction",
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.730987+00:00"
+  },
+  {
+    "record_id": 15,
+    "mws_id": "4120883730",
+    "category": "BN",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": -0.0019,
+      "MNDWI": 0.0177,
+      "NDMI": -0.005,
+      "water_fraction": -0.0472
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI_NDMI_MEAN",
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.731003+00:00"
+  },
+  {
+    "record_id": 16,
+    "mws_id": "4120883730",
+    "category": "LS",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": -0.0453,
+      "MNDWI": 0.0156,
+      "NDMI": -0.036,
+      "water_fraction": 0.1566
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": null,
+    "did_classification": "not_applicable",
+    "satellite_score": 15,
+    "notes": [
+      "Category LS: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data.",
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.731018+00:00"
+  },
+  {
+    "record_id": 17,
+    "mws_id": "4120883730",
+    "category": "LH",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.03,
+      "MNDWI": -0.0277,
+      "NDMI": -0.0477,
+      "water_fraction": 0.1219
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": null,
+    "did_classification": "not_applicable",
+    "satellite_score": 15,
+    "notes": [
+      "Category LH: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data.",
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.731032+00:00"
+  },
+  {
+    "record_id": 18,
+    "mws_id": "4120883730",
+    "category": "OM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0759,
+      "MNDWI": 0.0152,
+      "NDMI": 0.0181,
+      "water_fraction": -0.0036
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": null,
+    "did_classification": "not_applicable",
+    "satellite_score": 15,
+    "notes": [
+      "Category OM: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data.",
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.731047+00:00"
+  },
+  {
+    "record_id": 19,
+    "mws_id": "4120883730",
+    "category": "AM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.0406,
+      "MNDWI": 0.0458,
+      "NDMI": 0.0768,
+      "water_fraction": 0.0758
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI",
+    "did_classification": "weakly_positive",
+    "satellite_score": 18,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.731061+00:00"
+  },
+  {
+    "record_id": 20,
+    "mws_id": "4120883730",
+    "category": "VM",
+    "baseline_window": [
+      "2019-11-01",
+      "2020-02-29"
+    ],
+    "latest_window": [
+      "2025-11-01",
+      "2026-02-28"
+    ],
+    "treated_buffer_m": 200,
+    "control_ring_m": [
+      350,
+      1000
+    ],
+    "indices": {
+      "treated_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "treated_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_before": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      },
+      "control_after": {
+        "NDVI": 0.0,
+        "MNDWI": 0.0,
+        "NDMI": 0.0,
+        "water_fraction": 0.0
+      }
+    },
+    "did": {
+      "NDVI": 0.1177,
+      "MNDWI": 0.0451,
+      "NDMI": 0.0378,
+      "water_fraction": 0.0552
+    },
+    "rainfall": {
+      "baseline_mm": null,
+      "latest_mm": null,
+      "pct_change": null
+    },
+    "data_source": {
+      "optical": null,
+      "sar_fallback_used": false
+    },
+    "valid_pixel_fraction": {
+      "treated": null,
+      "control": null
+    },
+    "low_confidence": false,
+    "placeholder": true,
+    "source": "synthetic_no_gee_credentials",
+    "primary_index_for_category": "NDVI",
+    "did_classification": "strongly_positive",
+    "satellite_score": 30,
+    "notes": [
+      "Boundary/assets are self-generated placeholders, not backend-engineer's real seed data (Round 1 hadn't landed as of this run)."
+    ],
+    "computed_at": "2026-09-27T20:11:59.731075+00:00"
+  }
+]
