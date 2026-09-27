@@ -55,6 +55,18 @@ Dispatched `backend-engineer` (Phase 1), `geospatial-engineer` (Phase 3), `visio
 
 **Round 1 implementation now in progress** (all four agents given go-ahead). Will commit each agent's slice separately as it lands.
 
+### Round 1 — geospatial-engineer (Phase 3) — landed and committed
+
+Commit `9b47e60`. Verified independently (re-ran the test suite and read `satellite_scoring.py` myself, not just the agent's report): **48/48 pytest passing**, category→primary-index routing and score bands match PRD §12.3 exactly, `ee.Initialize()` isolated to a single file never called automatically, every placeholder output flagged `placeholder: true`/`source: synthetic_no_gee_credentials` at both record and manifest level. Ran `precompute_gee.py` and `watershed_characterization.py` end-to-end in placeholder mode — output at `scripts/output/4120883730/`.
+
+Minor polish note (not blocking, not fixed this round): in the placeholder-mode sample output, per-zone `indices` values (`treated_before/after`, `control_before/after`) are all `0.0` while `did` carries independently-generated non-zero numbers — internally inconsistent if someone eyeballs the raw JSON, though harmless since it's clearly placeholder data nobody should be reading as real. Worth tightening if placeholder mode is still in use close to demo day; not worth blocking on now.
+
+Real-GEE code paths (`gee_client.py`'s live functions, `watershed_characterization.py::_generate_real`) are written but explicitly untested — need validation against a live `ee.Initialize()` the first time real credentials exist, per FR3.2's characterization pipeline being design-only (raises `NotImplementedError` on the real path) rather than shipped unvalidated.
+
+DiD threshold constants (`satellite_scoring.THRESHOLDS`) are provisional hackathon-stage values — no PRD/PLAYBOOK source gives numeric cutoffs — flagged inline for calibration, same treatment PRD §12.5 gives its own weights.
+
+Note: `git add scripts/` for this commit also picked up vision-ai-engineer's in-progress Phase 2 files (`batch_classify.py`, `generate_synthetic_photos.py`, `generated_photos/`) since both agents share the `/scripts` directory and vision-ai-engineer hadn't reported done yet. Not harmful — real work, not broken — but means Phase 2's commit won't be a clean first-appearance of those files; noting for commit-history clarity.
+
 ## Needs your attention
 
 - **No GEE service-account key / `GEE_PROJECT_ID`** in this environment — confirmed by geospatial-engineer (no env vars, no `~/.config/earthengine`, `earthengine-api`/`geemap` not even installed yet). Blocks *running* any live Earth Engine call. Script design, methodology, and placeholder-flagged output (`"placeholder": true, "source": "synthetic_no_gee_credentials"`) proceed without it, but real satellite numbers can't be produced until you supply credentials.
