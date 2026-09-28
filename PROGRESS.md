@@ -149,11 +149,30 @@ Same record-id reconciliation needed again as after Round 1 (Mongo's fresh count
 
 Local MongoDB (`docker-compose`, port 27018) replaces the Postgres setup — still fully free/local, no cloud DB account needed.
 
+### Interactive check-in with the human — two real bugs found and fixed, `GET /districts/geotag-coverage` built with real data
+
+The human ran both apps locally and hit two things:
+1. Blank/erroring map. Two real bugs, not network issues (commit — web config fix): `web/.env`'s `VITE_DEMO_MWS_ID=` set that var to an empty string, and `config.ts`'s `?? data[0]?.id` fallback only triggers on null/undefined, not `""` — so the app never fell back to the real watershed `GET /mws` was correctly returning (confirmed via API access logs). Fixed with `|| undefined`. Also fixed a MapLibre GL web-worker loading failure under Vite's dev bundler (`optimizeDeps.exclude: ['maplibre-gl']`, maplibre's own documented fix) that would have blocked the map even after bug 1.
+2. `GET /districts/geotag-coverage` 404 (already a known gap). Dispatched backend-engineer, who found and used **real** WDC-PMKSY MIS data (fetched live from the government portal, not placeholder) — 51 districts across Assam/Meghalaya/Tripura including Morigaon (309 total, 267 geotagged, 86.4%). Verified independently (hand-checked state-level sums against the module's own claims). Committed.
+
+### Reality Pass — kicked off (2026-09-28, ~13:xx IST)
+
+The human supplied `docs/REAL_DATA_PLAN.md` (committed) — a researched plan for replacing placeholder/synthetic data with real, sourced data: real SLUSI/LGD watershed and district boundaries, real Earth Engine satellite analysis with matched controls, real WDC-PMKSY work-code registry and moderation backlog, a real-photo classifier accuracy benchmark, and a redesigned demo dashboard (R0–R7, R7 being an optional human-curated step). Hard rules baked into the plan: never attach synthetic coordinates/photos to a real government work code, every dataset gets provenance (source, licence, retrieved_at) in `docs/DATA_SOURCES.md` + `GET /provenance`, no bulk scraping of photo archives, respect `data.gov.in`'s robots.txt (human downloads manually there), rate-limit government fetches to ≤1 req/s.
+
+**R0 (orchestrator, GEE smoke test) — FAIL, same cause as before, logged not worked around:**
+```
+googleapiclient.errors.HttpError: 403 ... Caller does not have required permission to use
+project green-dukan. Grant the caller the roles/serviceusage.serviceUsageConsumer role...
+```
+Identical to the earlier test — the human hasn't yet granted the IAM role in GCP Console (plan §9.1). Per the plan's own instruction ("on failure, log the exact error and continue with other slices"), proceeding with R1/R3/R4/R5 (none need live GEE) and R2 partially (methodology/scripting can proceed, live numbers can't).
+
+Dispatching R1+R2 → geospatial-engineer, R3+R4 → backend-engineer, R5 → vision-ai-engineer, all in parallel (3 agents, matching the plan's own "max three at once" cap to avoid repeating the earlier rate-limit incident).
+
 ## Needs your attention
 
-**Current as of the MongoDB/Ollama pivot — superseding earlier entries above:**
-- **GEE: credential provided but not yet usable** — see the dedicated section above. Needs your action in GCP Console (grant `serviceusage.serviceUsageConsumer` on the `green-dukan` project, or confirm Earth Engine API is enabled there), or a different project/credential. Real satellite numbers stay placeholder-flagged until resolved.
-- **Vision API key: no longer needed.** Switched to a free local Ollama model (`moondream`) — vision-ai-engineer has it running and producing real (non-mocked) classifications; full report on model choice/quality still pending from that agent.
-- **Database: no longer needs Supabase — done.** Fully migrated to MongoDB, running locally/free via Docker. No cloud DB credentials needed for the demo.
-- **Final demo watershed boundary is still a placeholder polygon**, not the real Marigaon MWS boundary (PRD §14 marks this "pending: visual coherence check + MIS list confirmation"). Swapping in the real one later is a config/file change only, per how every agent built against it — but the visual layers, buffer zones, etc. in this run are all against a synthetic stand-in shape.
-- **`GET /districts/geotag-coverage` (FR5.5, backend-owned per PRD §9) isn't implemented yet** — frontend-engineer's Coverage tab correctly shows a real error state rather than fake numbers, but this endpoint still needs building. Will fold into backend-engineer's next round of work.
+**Current:**
+- **GEE: still not usable — needs your action, unchanged since last report.** Grant `roles/serviceusage.serviceUsageConsumer` (and per REAL_DATA_PLAN.md §9.1, ideally `roles/earthengine.viewer` or `.writer` too) on the `green-dukan` project, or provide a different project already registered for Earth Engine. R2's real satellite analysis is blocked on this specifically; everything else in the Reality Pass proceeds without it.
+- **Vision API key: no longer needed.** Local Ollama (`moondream`) is running and producing real (non-mocked) classifications.
+- **Database: no longer needs Supabase.** Fully migrated to MongoDB, running locally/free via Docker.
+- **Final demo watershed boundary is still a placeholder polygon** — R1 (in progress) replaces this with a real SLUSI micro-watershed boundary.
+- **REAL_DATA_PLAN.md §9**: three more things only you can do — (1) the GEE IAM grant above, (2) find `MARIGAON-WDC - 1 /2021-22`'s actual villages/blocks/micro-watershed codes on the Srishti or Tejas Bharat map (10 min, needed for R1's `config/treated_mws.txt`) and send them or a screenshot, (3) optionally curate 10-25 real Tier-2 assets by hand for R7 if you want any real (not just aggregate) asset-level evidence in the demo. None of these block the rest of the Reality Pass — R1 falls back to ranking candidate micro-watersheds automatically if `config/treated_mws.txt` isn't provided.
