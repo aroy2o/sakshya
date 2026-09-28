@@ -67,6 +67,27 @@ DiD threshold constants (`satellite_scoring.THRESHOLDS`) are provisional hackath
 
 Note: `git add scripts/` for this commit also picked up vision-ai-engineer's in-progress Phase 2 files (`batch_classify.py`, `generate_synthetic_photos.py`, `generated_photos/`) since both agents share the `/scripts` directory and vision-ai-engineer hadn't reported done yet. Not harmful — real work, not broken — but means Phase 2's commit won't be a clean first-appearance of those files; noting for commit-history clarity.
 
+### Account-level rate limit hit mid-Round-1 (2026-09-28, ~03:xx IST)
+
+All three of backend-engineer, vision-ai-engineer, and frontend-engineer hit "session limit · resets 3:40am (Asia/Kolkata)" (HTTP 429) at roughly the same time, mid-implementation. This is an infrastructure/quota constraint, not a task failure:
+
+- **backend-engineer** had already finished and handed back its full Phase 1 report *before* the limit hit (the failure notification came from a trailing cleanup call after the real work was done) — its report was complete and independently verifiable, so it was reviewed and committed normally.
+- **frontend-engineer** was cut off mid-fix, one message away from finishing: it had already diagnosed that `maplibre-gl` v6 ships no default export and was about to fix 7 files' import statements. Verified this myself (`tsc -b` failed with exactly that error on exactly those 7 files), applied the same mechanical fix directly (`import maplibregl from` → `import * as maplibregl from`, and the `import type` equivalent), then verified `tsc -b --noEmit` clean, `npm run build` succeeds, `oxlint` reports only 2 cosmetic warnings. Committed.
+- **vision-ai-engineer** was cut off mid quality-check on generated photos (had approved sm_01/vm_01/nc_01, flagged am_01 as still generic, hadn't checked the remaining categories or generated the deliberately-mismatched test set at all). Its classifier service (FR2.1-2.3) was already complete and independently verified (34/34 pytest passing standalone) — committed separately. Resumed the same agent (rate limit had reset by the time this was noticed, ~07:52 IST) to finish FR2.0's photo set and FR2.4's batch-classify verification.
+
+**Lesson for future rounds:** if a background agent notification shows `status: failed` with a rate-limit message, check whether it had already delivered a real SubagentHandback report first (it may have finished before the failure) before assuming the work is lost — and check the actual files on disk, since useful partial progress often survives the interruption.
+
+### Round 1 — all four slices landed and committed
+
+| Agent | Phase | Commit | Verification |
+|---|---|---|---|
+| backend-engineer | 1 (Foundation) | `fbfbaaa` | 78 pytest passing (44 backend's own), re-run independently; live-verified endpoints against a real Postgres+PostGIS; 4 planted bad rows each fail only their intended rule |
+| geospatial-engineer | 3 (Satellite) | `9b47e60` | 48/48 pytest, re-run independently; scoring logic read line-by-line against PRD §12.3; placeholder outputs correctly flagged |
+| vision-ai-engineer | 2 (partial: classifier only) | `233b0df` | 34/34 pytest, re-run independently; read implementation against PRD §12.2/FR2.2; photo generation (FR2.0/FR2.4) still in progress, resumed after rate-limit reset |
+| frontend-engineer | 5 (Map Dashboard) | `85cd3f1` | `tsc -b` clean, `npm run build` succeeds, `oxlint` near-clean, after coordinator fixed 7 files' maplibre-gl import statements (agent's own diagnosed fix, completed directly) |
+
+Backend and frontend independently invented slightly different names for the same undocumented shapes (mws stats fields, geo_flags fields/slugs) — caught and reconciled before either wrote code, see the Round 1 planning section above.
+
 ## Needs your attention
 
 - **No GEE service-account key / `GEE_PROJECT_ID`** in this environment — confirmed by geospatial-engineer (no env vars, no `~/.config/earthengine`, `earthengine-api`/`geemap` not even installed yet). Blocks *running* any live Earth Engine call. Script design, methodology, and placeholder-flagged output (`"placeholder": true, "source": "synthetic_no_gee_credentials"`) proceed without it, but real satellite numbers can't be produced until you supply credentials.
