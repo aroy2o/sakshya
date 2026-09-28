@@ -125,6 +125,22 @@ Also flagged to the human: the pasted "GEE credentials" were not Earth Engine cr
 
 Dispatched frontend-engineer to fix both schemas, adjust the chart/badge rendering, then flip `VITE_API_MODE` to `live` and verify against the real 17-asset dataset.
 
+### A real GEE service account key was provided (2026-09-28, ~08:27 IST) — but it doesn't work yet, needs your action
+
+You opened `green-dukan-d6072e615e85.json` in the IDE and confirmed it as "the cred." It was sitting unprotected in the repo root — moved immediately to `secrets/gee-service-account.json` (chmod 600, `secrets/` added to `.gitignore`) before anything else, since a leaked service-account key is a real credential leak risk. **Never commit this file or paste its contents anywhere.**
+
+This key's `client_email` is `gee-production-access@green-dukan.iam.gserviceaccount.com` — despite living in the "green-dukan" GCP project (your other project), the name strongly suggests it actually was provisioned for Earth Engine, unlike the earlier Firebase Admin key. Tested it directly with a live `ee.Initialize()` call: **the credential itself is valid and authenticates, but Google rejects the actual Earth Engine API call** with:
+
+> Caller does not have required permission to use project green-dukan. Grant the caller the roles/serviceusage.serviceUsageConsumer role... by visiting https://console.developers.google.com/iam-admin/iam?project=green-dukan
+
+This means either the Earth Engine API isn't enabled on the `green-dukan` GCP project, or this service account lacks the Service Usage Consumer role there. **I can't fix this myself** — it needs GCP Console access with owner/editor rights on that project, which I don't have and won't attempt to route around. Two options once you're back:
+1. Grant the service account the `roles/serviceusage.serviceUsageConsumer` role on the `green-dukan` project (link above), and confirm the Earth Engine API is enabled for it, then re-test — geospatial-engineer's `precompute_gee.py` will pick it up automatically (`GEE_PROJECT_ID=green-dukan` + `GOOGLE_APPLICATION_CREDENTIALS=secrets/gee-service-account.json` in `.env`) and produce real satellite numbers instead of the current placeholder-flagged ones.
+2. Provide a different service account/project that already has Earth Engine properly registered and enabled.
+
+**Also found while testing this:** `.env.example` documents `GEE_SERVICE_ACCOUNT_KEY_PATH`, but `scripts/gee_client.py` actually reads the standard `GOOGLE_APPLICATION_CREDENTIALS` env var — a naming mismatch from Phase 1 planning (before Phase 3 was implemented) vs. what Phase 3 actually built. Needs a one-line fix to `.env.example` (rename the var) — noted here, will fix when I next touch that file.
+
+Not blocking anything else — continuing with Ollama/MongoDB/Sync Point 1 work in the meantime, per the standing instruction not to stall the whole session over one credential.
+
 ## Needs your attention
 
 - **No GEE service-account key / `GEE_PROJECT_ID`** in this environment — confirmed by geospatial-engineer (no env vars, no `~/.config/earthengine`, `earthengine-api`/`geemap` not even installed yet). Blocks *running* any live Earth Engine call. Script design, methodology, and placeholder-flagged output (`"placeholder": true, "source": "synthetic_no_gee_credentials"`) proceed without it, but real satellite numbers can't be produced until you supply credentials.
