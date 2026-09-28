@@ -31,8 +31,24 @@ dist/
 # fixed RANDOM_SEED - not committed as build output)
 scripts/seed/output/
 
+# Raw HTML cache from scripts/fetch_gt2.py (R3) - reproducible by re-running
+# the script (it re-fetches only what's missing here); kept out of the repo
+# purely for size (one cached page is ~5MB), not as a secret.
+scripts/cache/
+
+# Raw parquet-derived candidate cache from scripts/fetch_real_boundaries.py
+# (R1) - reproducible by re-running the script against the bharatlas.com
+# mirrors (it re-fetches only if this is missing); kept out of the repo
+# purely for size (~32MB), not as a secret. data/real/*.geojson (the actual
+# boundary/ranking OUTPUTS, not this raw cache) ARE meant to be committed.
+data/real/raw_cache/
+
 # Claude Code harness-internal state
 .claude/scheduled_tasks.lock
 
 # Real credential files - never commit
 secrets/
+
+# Human's manual Mongo backup before the R1 boundary-reseed deletion -
+# a one-off local safety copy, not a repo artifact.
+backup_*.jsonl
