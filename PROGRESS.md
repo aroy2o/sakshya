@@ -88,6 +88,16 @@ All three of backend-engineer, vision-ai-engineer, and frontend-engineer hit "se
 
 Backend and frontend independently invented slightly different names for the same undocumented shapes (mws stats fields, geo_flags fields/slugs) — caught and reconciled before either wrote code, see the Round 1 planning section above.
 
+---
+
+## Sync Point 1 — in progress (2026-09-28)
+
+Coordinator-performed reconciliation before handing off the wiring work: geospatial-engineer's `precompute_gee.py` ran in Round 1 against self-generated placeholder record_ids (its own role brief explicitly allows this when backend's seed data isn't ready yet). Backend's real seed pipeline has since run (17 real records, ids 18-34). Exported the live `GET /mws/{id}/assets` + `GET /mws/{id}` API responses into `api/seed/field_records.json` + `api/seed/mws_boundary.geojson` (the exact conventional path `precompute_gee.py` already looks for) and re-ran it — `satellite_results.json` now carries real database ids. Commit `9dadd0f`.
+
+Dispatched backend-engineer to wire the three cross-agent endpoints: `POST /assets/{id}/classify` (vision-ai-engineer's `VisionClassifierService`/`MockVisionProvider`, with `ai_result.needs_review` required to cap `band` at `review` in the future Phase 4 scoring step — not optional, this is FR2.2's literal text), `GET /mws/{id}/thematic/{layer}` (geospatial-engineer's manifest, 6-key enum only, `slope` excluded per the earlier ruling), `POST /assets/{id}/satellite` (geospatial-engineer's per-record results, now id-matched). Frontend's mock→live swap follows once this lands.
+
+vision-ai-engineer resumed after the rate-limit reset to finish FR2.0 (photo quality pass, mismatch-test set) and verify FR2.4's batch-classify script.
+
 ## Needs your attention
 
 - **No GEE service-account key / `GEE_PROJECT_ID`** in this environment — confirmed by geospatial-engineer (no env vars, no `~/.config/earthengine`, `earthengine-api`/`geemap` not even installed yet). Blocks *running* any live Earth Engine call. Script design, methodology, and placeholder-flagged output (`"placeholder": true, "source": "synthetic_no_gee_credentials"`) proceed without it, but real satellite numbers can't be produced until you supply credentials.
