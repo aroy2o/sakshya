@@ -1,0 +1,67 @@
+{
+  "mws_id": "4120883730",
+  "generated_at": "2026-09-28T10:48:55.794963+00:00",
+  "placeholder": true,
+  "source": "synthetic_no_gee_credentials",
+  "method_params": {
+    "project_start_year": 2021,
+    "n_bootstrap": 2000,
+    "ci": 0.95,
+    "bootstrap_unit": "control polygons (resampled with replacement), per REAL_DATA_PLAN.md \u00a74.2",
+    "n_control_polygons": 53
+  },
+  "NDVI": {
+    "effect": 0.028032452830188716,
+    "ci_low": 0.025212452830188734,
+    "ci_high": 0.03086566037735855,
+    "n_bootstrap": 2000,
+    "ci": 0.95,
+    "n_control_polygons": 53,
+    "pre_mean_gap": 0.03776075471698113,
+    "post_mean_gap": 0.06579320754716984,
+    "pre_years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020
+    ],
+    "post_years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "MNDWI": {
+    "effect": 0.004063018867924527,
+    "ci_low": 0.0026550943396226405,
+    "ci_high": 0.005482264150943394,
+    "n_bootstrap": 2000,
+    "ci": 0.95,
+    "n_control_polygons": 53,
+    "pre_mean_gap": -0.012128679245283018,
+    "post_mean_gap": -0.00806566037735849,
+    "pre_years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020
+    ],
+    "post_years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "caveats": [
+    "Watershed-level DiD only \u2014 no asset coordinates used (REAL_DATA_PLAN.md \u00a74.1's explicit design goal, sidesteps public work-code pages carrying no coordinates).",
+    "Marigaon is Brahmaputra floodplain \u2014 floods/erosion/sandbar shifts can swamp water signals (REAL_DATA_PLAN.md \u00a74.3). Water metrics (MNDWI) are secondary to NDVI here.",
+    "Control matching used crop-share + slope only \u2014 NDVI matching pending live GEE.",
+    "placeholder=true: every NDVI/MNDWI value above is synthetic (no GEE credentials this run) \u2014 do not present as a real effect size."
+  ]
+}

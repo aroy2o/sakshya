@@ -33,6 +33,11 @@ class MWSSummary(BaseModel):
     latest_start: dt.date | None
     latest_end: dt.date | None
     is_synthetic_boundary: bool
+    # Citation for the boundary geometry (source URL, licence, pick method) —
+    # set by geospatial-engineer's Reality Pass R1 when is_synthetic_boundary
+    # is real; absent on the original placeholder polygon. Optional so
+    # existing/synthetic mws documents without this field still validate.
+    boundary_source: str | None = None
     created_at: dt.datetime
 
     model_config = ConfigDict(from_attributes=True)

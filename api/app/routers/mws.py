@@ -63,6 +63,7 @@ def _to_detail(doc: dict, db: Database) -> MWSDetail:
         latest_start=doc.get("latest_start"),
         latest_end=doc.get("latest_end"),
         is_synthetic_boundary=doc.get("is_synthetic_boundary", False),
+        boundary_source=doc.get("boundary_source"),
         created_at=doc["created_at"],
         boundary=doc["geom"],  # already the exact GeoJSON dict stored at insert time
         stats=_stats_for(doc["_id"], db),
@@ -76,6 +77,7 @@ def _to_summary(doc: dict) -> MWSSummary:
         project_id=doc.get("project_id"),
         state=doc.get("state"),
         district=doc.get("district"),
+        boundary_source=doc.get("boundary_source"),
         baseline_start=doc.get("baseline_start"),
         baseline_end=doc.get("baseline_end"),
         latest_start=doc.get("latest_start"),
