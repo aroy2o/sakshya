@@ -1,9 +1,8 @@
 """Integration tests for GET /health, POST /mws, GET /mws, GET /mws/{id}.
 
-Requires the docker-compose Postgres+PostGIS test DB (see conftest.py's
-`client` fixture) - these tests are skipped implicitly if that DB is
-unreachable (the `_migrated_db` fixture's alembic subprocess will raise,
-failing the test with a clear connection error rather than silently passing).
+Requires the docker-compose MongoDB test database (see conftest.py's
+`client` fixture) - these tests fail loudly with a connection error rather
+than silently passing if that database is unreachable.
 """
 
 from __future__ import annotations

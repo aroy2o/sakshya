@@ -7,12 +7,12 @@ calls Earth Engine live (precompute-first non-negotiable, CLAUDE.md).
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException
-from geoalchemy2.shape import to_shape
-from sqlalchemy.orm import Session
+from pymongo.database import Database
+from shapely.geometry import shape
 
 from app.config import get_settings
 from app.db import get_db
-from app.models.mws import MWS
+from app.models.mws import COLLECTION as MWS_COLLECTION
 from app.schemas.thematic import LegendEntry, ThematicLayerOut
 from app.services import geospatial_output
 from app.services.geospatial_output import THEMATIC_LAYERS
@@ -54,12 +54,12 @@ _LEGENDS: dict[str, list[LegendEntry]] = {
 
 
 @router.get("/mws/{mws_id}/thematic/{layer}", response_model=ThematicLayerOut)
-def get_thematic_layer(mws_id: str, layer: str, db: Session = Depends(get_db)) -> ThematicLayerOut:
+def get_thematic_layer(mws_id: str, layer: str, db: Database = Depends(get_db)) -> ThematicLayerOut:
     if layer not in THEMATIC_LAYERS:
         raise HTTPException(404, f"unknown layer {layer!r} - must be one of {THEMATIC_LAYERS}")
 
-    mws = db.get(MWS, mws_id)
-    if mws is None:
+    mws_doc = db[MWS_COLLECTION].find_one({"_id": mws_id}, {"geom": 1})
+    if mws_doc is None:
         raise HTTPException(404, f"mws {mws_id!r} not found")
 
     try:
@@ -81,7 +81,7 @@ def get_thematic_layer(mws_id: str, layer: str, db: Session = Depends(get_db)) -
     if "bounds" in entry:
         bounds = tuple(entry["bounds"])
     else:
-        bounds = tuple(to_shape(mws.geom).bounds)
+        bounds = tuple(shape(mws_doc["geom"]).bounds)
 
     legend = _LEGENDS.get(layer, [])
 

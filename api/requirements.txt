@@ -1,9 +1,6 @@
 fastapi>=0.115,<0.116
 uvicorn[standard]>=0.30,<0.31
-sqlalchemy>=2.0,<2.1
-geoalchemy2>=0.15,<0.16
-psycopg2-binary>=2.9,<3.0
-alembic>=1.13,<1.14
+pymongo>=4.8,<5.0
 pydantic>=2.9,<3.0
 pydantic-settings>=2.5,<3.0
 shapely>=2.0,<3.0

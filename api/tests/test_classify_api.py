@@ -1,13 +1,34 @@
-"""Integration tests for POST /assets/{id}/classify (FR2.2 wiring)."""
+"""Integration tests for POST /assets/{id}/classify (FR2.2 wiring).
+
+These tests force MockVisionProvider via a FastAPI dependency override,
+regardless of whatever get_vision_classifier_service() defaults to for the
+live app (Ollama as of this sync - a real, non-deterministic, network-
+dependent local service that would make this suite slow/flaky if it ran
+through the actual configured provider instead)."""
 
 from __future__ import annotations
 
 import datetime as dt
 import json
 
+import pytest
+
+from app.main import app
+from app.services.vision import get_vision_classifier_service
+from services.vision_classifier import VisionClassifierService
+from services.vision_providers.mock import MockVisionProvider
 from tests.factories import make_jpeg_bytes
 
 MWS_LAT, MWS_LON = 26.00, 92.00
+
+
+@pytest.fixture(autouse=True)
+def _force_mock_vision_provider():
+    app.dependency_overrides[get_vision_classifier_service] = lambda: VisionClassifierService(
+        MockVisionProvider()
+    )
+    yield
+    app.dependency_overrides.pop(get_vision_classifier_service, None)
 
 
 def _create_mws(client, mws_id: str) -> str:

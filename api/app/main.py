@@ -7,11 +7,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from app.config import get_settings
+from app.db import ensure_indexes
 from app.routers import assets, health, mws, records, thematic
 
 
 def create_app() -> FastAPI:
     settings = get_settings()
+    # Mongo has no migration tool - indexes are declared in code and created
+    # idempotently on every boot instead (replaces Alembic's job for the
+    # 2dsphere/mws_id/band indexes; there's no schema to migrate otherwise,
+    # Mongo is schemaless).
+    ensure_indexes()
+
     app = FastAPI(
         title="SAKSHYA API",
         description=(

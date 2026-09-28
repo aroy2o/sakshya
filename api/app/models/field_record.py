@@ -1,46 +1,45 @@
-"""DRISHTI-style field record model — PRD.md §8.
+"""field_record collection — PRD.md §8 (Mongo variant).
 
-`is_synthetic` and `photo_source` are non-negotiable per CLAUDE.md: every
+`is_synthetic`/`photo_source` are non-negotiable per CLAUDE.md: every
 non-real record MUST have is_synthetic=true, and whenever it does,
-photo_source MUST also be set.
+photo_source MUST also be set (enforced in app/schemas/field_record.py's
+Pydantic validator, unchanged by this storage swap).
+
+`_id` is an app-assigned auto-incrementing int (see
+app/services/sequences.py's `next_sequence()`), replacing Postgres's
+`SERIAL PRIMARY KEY` — Mongo's ObjectId was deliberately not used here so the
+API's `id: int` contract (GeoJSON feature properties, `/assets/{id}` path
+params, frontend's zod schemas) stays byte-for-byte identical.
+
+Document shape::
+
+    {
+        "_id": int,
+        "work_code": str | None,
+        "mws_id": str,
+        "category": str,
+        "activity": str,
+        "status": str | None,
+        "lat": float,
+        "lon": float,
+        "gps_accuracy_m": float | None,
+        "orientation": float | None,
+        "captured_at": datetime | None,
+        "photo1_url": str | None,
+        "photo2_url": str | None,
+        "photo1_phash": str | None,
+        "photo2_phash": str | None,
+        "remarks": str | None,
+        "observer_id": str | None,
+        "observer_name": str | None,
+        "organisation": str | None,
+        "geom": dict,                # GeoJSON Point (2dsphere-indexed)
+        "is_synthetic": bool,
+        "photo_source": str | None,
+        "created_at": datetime,
+    }
 """
 
 from __future__ import annotations
 
-import datetime as dt
-
-from geoalchemy2 import Geometry
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, func
-from sqlalchemy.orm import Mapped, mapped_column
-
-from app.db import Base
-
-
-class FieldRecord(Base):
-    __tablename__ = "field_record"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    work_code: Mapped[str | None] = mapped_column(String, nullable=True)
-    mws_id: Mapped[str] = mapped_column(String, ForeignKey("mws.id"), nullable=False)
-    category: Mapped[str] = mapped_column(String, nullable=False)
-    activity: Mapped[str] = mapped_column(String, nullable=False)
-    status: Mapped[str | None] = mapped_column(String, nullable=True)
-    lat: Mapped[float] = mapped_column(Float, nullable=False)
-    lon: Mapped[float] = mapped_column(Float, nullable=False)
-    gps_accuracy_m: Mapped[float | None] = mapped_column(Float, nullable=True)
-    orientation: Mapped[float | None] = mapped_column(Float, nullable=True)
-    captured_at: Mapped[dt.datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    photo1_url: Mapped[str | None] = mapped_column(String, nullable=True)
-    photo2_url: Mapped[str | None] = mapped_column(String, nullable=True)
-    photo1_phash: Mapped[str | None] = mapped_column(String, nullable=True)
-    photo2_phash: Mapped[str | None] = mapped_column(String, nullable=True)
-    remarks: Mapped[str | None] = mapped_column(String, nullable=True)
-    observer_id: Mapped[str | None] = mapped_column(String, nullable=True)
-    observer_name: Mapped[str | None] = mapped_column(String, nullable=True)
-    organisation: Mapped[str | None] = mapped_column(String, nullable=True)
-    geom: Mapped[str] = mapped_column(
-        Geometry(geometry_type="POINT", srid=4326, spatial_index=False), nullable=False
-    )
-    is_synthetic: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False, server_default="false")
-    photo_source: Mapped[str | None] = mapped_column(String, nullable=True)
-    created_at: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+COLLECTION = "field_record"

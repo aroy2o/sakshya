@@ -1,35 +1,30 @@
-# Local dev + test Postgres/PostGIS — this repo has no Supabase credentials
-# available in the autonomous-run environment, so this substitutes for
-# Supabase during local development and the pytest integration suite.
-# DATABASE_URL / DATABASE_URL_TEST in .env should point at these services.
-# Swap for the real Supabase DATABASE_URL at deploy time (Phase 7) - no code
-# changes needed either way, it's all just a connection string.
+# Local dev + test MongoDB — this repo has no Atlas/cloud Mongo credentials
+# available in the autonomous-run environment. A single mongod hosts two
+# logical databases (sakshya / sakshya_test) rather than two containers —
+# databases are natively isolated namespaces in Mongo, so this gets the same
+# separation the old Postgres setup got from two containers, with less to run.
+# MONGO_URI / MONGO_URI_TEST in .env differ only in the db-name path segment.
+#
+# No auth configured (Mongo's default, simplest local mode) — this is a
+# localhost-only dev substitute, same trust boundary the old sakshya/sakshya
+# Postgres credentials had. Swap in a real connection string (with
+# username:password@...&authSource=admin) for a shared/production/Atlas
+# instance at deploy time - zero code changes, it's just MONGO_URI.
 services:
-  db:
-    image: postgis/postgis:16-3.4
+  mongo:
+    image: mongo:7
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: sakshya
-      POSTGRES_PASSWORD: sakshya
-      POSTGRES_DB: sakshya
     ports:
-      # Host port 5434, not 5432: this environment already has a system
-      # Postgres bound to 5432. Container-internal port is still 5432.
-      - "5434:5432"
+      # Host port 27018, not 27017: this environment already has a system
+      # mongod bound to 27017.
+      - "27018:27017"
     volumes:
-      - sakshya_pgdata:/var/lib/postgresql/data
-
-  db_test:
-    image: postgis/postgis:16-3.4
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: sakshya
-      POSTGRES_PASSWORD: sakshya
-      POSTGRES_DB: sakshya_test
-    ports:
-      - "5433:5432"
-    tmpfs:
-      - /var/lib/postgresql/data
+      - sakshya_mongodata:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
-  sakshya_pgdata:
+  sakshya_mongodata:

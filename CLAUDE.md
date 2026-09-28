@@ -23,8 +23,8 @@ At the start of every session: state which phase you're working on and which FR 
 
 ## Tech stack (locked — don't swap without asking first)
 
-- **Backend:** FastAPI (Python 3.11+), SQLAlchemy + GeoAlchemy2, Pydantic models for every request/response
-- **DB:** PostgreSQL + PostGIS (Supabase)
+- **Backend:** FastAPI (Python 3.11+), PyMongo, Pydantic models for every request/response
+- **DB:** MongoDB (switched from PostgreSQL+PostGIS per explicit human decision, 2026-09-28 — see PRD.md §8's proposed rewrite). Geometries stored as GeoJSON with `2dsphere` indexes; `services/geo_integrity.py`'s boundary check stays in-process Shapely, unaffected by this swap.
 - **Satellite processing:** Google Earth Engine Python API + `geemap`, run **offline** via `scripts/`, results written to Postgres/static files. The live API and frontend must never make a live GEE call — see Non-negotiables below.
 - **Frontend:** React + Vite + TypeScript + Tailwind, MapLibre GL JS, Recharts
 - **Photo processing:** Pillow/exifread (EXIF), `imagehash` (pHash), `opencv-python` (blur check)
@@ -74,36 +74,35 @@ At the start of every session: state which phase you're working on and which FR 
 
 ## Environment
 
-`.env.example` is created in Phase 1 and must stay current. At minimum expect: `DATABASE_URL` (Phase 1), a GEE service-account key path + project ID (Phase 3), a vision-API key (Phase 2).
+`.env.example` is created in Phase 1 and must stay current. At minimum expect: `MONGO_URI` (Phase 1, switched from `DATABASE_URL` — see "DB:" above), a GEE service-account key path + project ID (Phase 3), a vision-API key (Phase 2).
 
 ## How to run
 
 ### Backend (API)
 
 ```bash
-# 1. Local Postgres+PostGIS (no Supabase credentials in this environment yet —
-#    swap DATABASE_URL for the real Supabase string at deploy time, no code change)
+# 1. Local MongoDB (no Atlas/cloud credentials in this environment yet —
+#    swap MONGO_URI for a real connection string at deploy time, no code change)
 cd api
-docker compose up -d          # db on localhost:5434, db_test on localhost:5433
+docker compose up -d          # mongod on localhost:27018, dbs: sakshya / sakshya_test
 
 # 2. Python env
 uv venv .venv --python 3.12
 uv pip install --python .venv/bin/python -r requirements-dev.txt
 cp ../.env.example .env       # then edit if your ports/paths differ
 
-# 3. Schema
-.venv/bin/python -m alembic upgrade head
-
-# 4. Run the API
+# 3. Run the API (indexes are created idempotently at startup — no separate
+#    migration step, Mongo is schemaless)
 .venv/bin/python -m uvicorn app.main:app --reload --port 8000
 # -> http://localhost:8000/docs (Swagger), http://localhost:8000/health
 
-# 5. Tests (pure geo_integrity unit tests need no DB; API integration tests
-#    need db_test up, per step 1 — DATABASE_URL_TEST in .env points at it)
+# 4. Tests (pure geo_integrity unit tests need no DB; API integration tests
+#    need the mongo container up, per step 1 — MONGO_URI_TEST in .env points
+#    at its sakshya_test database)
 .venv/bin/python -m pytest -v
 
-# 6. Seed the demo watershed + synthetic field records through the real API
-#    (server from step 4 must be running)
+# 5. Seed the demo watershed + synthetic field records through the real API
+#    (server from step 3 must be running)
 python scripts/seed_data.py --regenerate --base-url http://localhost:8000
 ```
 

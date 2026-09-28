@@ -13,11 +13,15 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    # Phase 1 — required
-    database_url: str
+    # Phase 1 — required. MongoDB connection string (includes the db name as
+    # the URI path, e.g. mongodb://localhost:27018/sakshya) - switched from
+    # Postgres+PostGIS per explicit human decision (see CLAUDE.md "DB:" line
+    # and PRD.md §8's proposed rewrite). No Atlas/cloud credentials exist in
+    # this environment; api/docker-compose.yml runs a local mongod instead.
+    mongo_uri: str
 
-    # Phase 1 — used only by the pytest integration suite, never by the app itself
-    database_url_test: str | None = None
+    # Used only by the pytest integration suite, never by the app itself.
+    mongo_uri_test: str | None = None
 
     # App
     api_host: str = "0.0.0.0"

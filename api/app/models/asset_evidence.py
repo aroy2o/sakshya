@@ -1,36 +1,33 @@
-"""Per-record analysis output model — PRD.md §8.
+"""asset_evidence collection — PRD.md §8 (Mongo variant).
 
-Phase 1 only ever populates geo_flags/geo_score. ai_result/visual_score
+`_id` is the same int value as the owning field_record's `_id` (mirrors
+Postgres's `record_id INT PRIMARY KEY REFERENCES field_record(id)` — a true
+1:1 relationship keyed by the same value), so `db.asset_evidence.find_one({"_id": asset_id})`
+is a direct O(1) lookup, no join needed for the single-asset case.
+
+Phase 1 only ever populates geo_flags/geo_score; ai_result/visual_score
 (Phase 2), sat_result/satellite_score (Phase 3), and evidence_score/band
 (Phase 4) stay null until those phases wire in — never faked here.
+
+Document shape::
+
+    {
+        "_id": int,                  # == owning field_record._id
+        "geo_flags": list[dict] | None,
+        "geo_score": int | None,
+        "ai_result": dict | None,
+        "visual_score": int | None,
+        "sat_result": dict | None,
+        "satellite_score": int | None,
+        "temporal_score": int | None,
+        "evidence_score": int | None,
+        "band": str | None,
+        "reviewer_decision": str | None,
+        "reviewed_at": datetime | None,
+        "scored_at": datetime | None,
+    }
 """
 
 from __future__ import annotations
 
-import datetime as dt
-
-from sqlalchemy import DateTime, ForeignKey, Integer, String
-from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.orm import Mapped, mapped_column
-
-from app.db import Base
-
-
-class AssetEvidence(Base):
-    __tablename__ = "asset_evidence"
-
-    record_id: Mapped[int] = mapped_column(
-        Integer, ForeignKey("field_record.id", ondelete="CASCADE"), primary_key=True
-    )
-    geo_flags: Mapped[list | None] = mapped_column(JSONB, nullable=True)
-    geo_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    ai_result: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
-    visual_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    sat_result: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
-    satellite_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    temporal_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    evidence_score: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    band: Mapped[str | None] = mapped_column(String, nullable=True)
-    reviewer_decision: Mapped[str | None] = mapped_column(String, nullable=True)
-    reviewed_at: Mapped[dt.datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    scored_at: Mapped[dt.datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+COLLECTION = "asset_evidence"

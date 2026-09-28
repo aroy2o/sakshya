@@ -102,70 +102,85 @@ Full module descriptions, code snippets and rationale: `PLAYBOOK.md` §4.
 
 ## 8. Data model (authoritative — do not deviate without updating this section first)
 
-```sql
--- micro-watersheds (demo uses HydroBASINS L12 as a stand-in for official MWS polygons)
-CREATE TABLE mws (
-  id              TEXT PRIMARY KEY,          -- e.g. HYBAS_ID or official MWS code
-  name            TEXT,
-  project_id      TEXT,
-  state           TEXT,
-  district        TEXT,
-  geom            GEOMETRY(MultiPolygon, 4326) NOT NULL,
-  baseline_start  DATE,                      -- start of "before" season window
-  baseline_end    DATE,
-  latest_start    DATE,                      -- start of "after" season window
-  latest_end      DATE,
-  is_synthetic_boundary BOOLEAN DEFAULT FALSE, -- true while using HydroBASINS proxy, not official MWS
-  created_at      TIMESTAMPTZ DEFAULT now()
-);
+*(Switched from PostgreSQL+PostGIS to MongoDB, 2026-09-28 — explicit human decision, mid-build. This is a persistence-layer swap only: every field's name, meaning, and constraint below is identical in intent to the prior SQL version; only the storage mechanics changed. The API contract in §9 is unaffected — verified byte-for-byte identical against live requests before and after the swap.)*
 
--- DRISHTI-style field records
-CREATE TABLE field_record (
-  id              SERIAL PRIMARY KEY,
-  work_code       TEXT,
-  mws_id          TEXT REFERENCES mws(id) NOT NULL,
-  category        TEXT NOT NULL,   -- AM, VM, SM, PT, NC, BN, LS, LH, OM (see §15 Appendix)
-  activity        TEXT NOT NULL,   -- e.g. 'Check Dam', 'Farm Pond', 'Contour Bund'
-  status          TEXT,            -- planned / ongoing / completed / damaged
-  lat             DOUBLE PRECISION NOT NULL,
-  lon             DOUBLE PRECISION NOT NULL,
-  gps_accuracy_m  REAL,
-  orientation     REAL,
-  captured_at     TIMESTAMPTZ,
-  photo1_url      TEXT,
-  photo2_url      TEXT,
-  photo1_phash    TEXT,            -- computed on ingest
-  photo2_phash    TEXT,
-  remarks         TEXT,
-  observer_id     TEXT,
-  observer_name   TEXT,
-  organisation    TEXT,
-  geom            GEOMETRY(Point, 4326) NOT NULL,  -- generated from lat/lon on insert
-  is_synthetic    BOOLEAN DEFAULT FALSE NOT NULL,  -- MUST be true for any non-real record. No exceptions.
-  photo_source    TEXT,             -- 'field' | 'ai_generated' | 'stock_cc' | 'unknown' — required whenever is_synthetic = true
-  created_at      TIMESTAMPTZ DEFAULT now()
-);
-CREATE INDEX idx_field_record_geom ON field_record USING GIST (geom);
+Three collections in one MongoDB database, plus one internal `counters` collection supporting the auto-increment id scheme described below.
 
--- analysis outputs, one row per field_record
-CREATE TABLE asset_evidence (
-  record_id         INT PRIMARY KEY REFERENCES field_record(id) ON DELETE CASCADE,
-  geo_flags         JSONB,     -- list of {rule, passed, detail}
-  geo_score         INT,       -- 0-30, see §12
-  ai_result         JSONB,     -- raw classifier JSON, see §12
-  visual_score      INT,       -- 0-30
-  sat_result        JSONB,     -- ndvi/mndwi pre/post, DiD, rainfall context, see §12
-  satellite_score   INT,       -- 0-30
-  temporal_score    INT,       -- 0-10
-  evidence_score    INT,       -- 0-100, sum of above
-  band              TEXT,      -- 'verified' | 'review' | 'flag'
-  reviewer_decision TEXT,      -- 'confirmed' | 'rejected' | NULL
-  reviewed_at       TIMESTAMPTZ,
-  scored_at         TIMESTAMPTZ
-);
+```
+// mws — micro-watersheds (demo uses HydroBASINS L12 as a stand-in for
+// official MWS polygons)
+{
+  _id:                    string,   // e.g. HYBAS_ID or official MWS code — natural key, not auto-generated
+  name:                   string | null,
+  project_id:             string | null,
+  state:                  string | null,
+  district:               string | null,
+  geom:                   GeoJSON MultiPolygon,   // 2dsphere-indexed
+  baseline_start:         string | null,  // ISO date "YYYY-MM-DD" — start of "before" season window
+  baseline_end:           string | null,
+  latest_start:           string | null,  // start of "after" season window
+  latest_end:             string | null,
+  is_synthetic_boundary:  bool,     // default false — true while using HydroBASINS proxy, not official MWS
+  created_at:             datetime (UTC),
+}
+// Indexes: 2dsphere on geom.
+
+// field_record — DRISHTI-style field records
+{
+  _id:              int,      // app-assigned auto-increment (see counters collection) — replaces SERIAL
+  work_code:        string | null,
+  mws_id:           string,   // references mws._id (no enforced FK — Mongo has none; app-level integrity only)
+  category:         string,   // AM, VM, SM, PT, NC, BN, LS, LH, OM (see §15 Appendix)
+  activity:         string,   // e.g. 'Check Dam', 'Farm Pond', 'Contour Bund'
+  status:           string | null,  // planned / ongoing / completed / damaged
+  lat:              float,
+  lon:              float,
+  gps_accuracy_m:   float | null,
+  orientation:      float | null,
+  captured_at:      datetime (UTC) | null,
+  photo1_url:       string | null,
+  photo2_url:       string | null,
+  photo1_phash:     string | null,   // computed on ingest
+  photo2_phash:     string | null,
+  remarks:          string | null,
+  observer_id:      string | null,
+  observer_name:    string | null,
+  organisation:     string | null,
+  geom:             GeoJSON Point,   // 2dsphere-indexed; generated from lat/lon on insert
+  is_synthetic:     bool,    // MUST be true for any non-real record. No exceptions.
+  photo_source:     string | null,  // 'field' | 'ai_generated' | 'stock_cc' | 'unknown' — required whenever is_synthetic = true
+  created_at:       datetime (UTC),
+}
+// Indexes: 2dsphere on geom; ascending on mws_id.
+
+// asset_evidence — analysis outputs, one document per field_record
+{
+  _id:                int,      // == the owning field_record._id (1:1, app-enforced — replaces
+                                 // `record_id INT PRIMARY KEY REFERENCES field_record(id) ON DELETE CASCADE`;
+                                 // Mongo has no native FK/cascade, deletes must be handled in application code)
+  geo_flags:          array<{rule, passed, points, max, detail}> | null,  // see §12.1
+  geo_score:          int | null,     // 0-30, see §12
+  ai_result:          object | null,  // raw classifier JSON, see §12
+  visual_score:       int | null,     // 0-30
+  sat_result:         object | null,  // ndvi/mndwi pre/post, DiD, rainfall context, see §12
+  satellite_score:    int | null,     // 0-30
+  temporal_score:     int | null,     // 0-10
+  evidence_score:     int | null,     // 0-100, sum of above
+  band:               string | null,  // 'verified' | 'review' | 'flag'
+  reviewer_decision:  string | null,  // 'confirmed' | 'rejected' | null
+  reviewed_at:        datetime (UTC) | null,
+  scored_at:          datetime (UTC) | null,
+}
+// Indexes: ascending on band.
+
+// counters — internal, not part of the domain model. Backs field_record's
+// auto-increment id (Mongo has no SERIAL equivalent).
+{ _id: "field_record_id", seq: int }
 ```
 
-Any column added later must be added here first, then implemented — this file is the schema of record.
+Any field added later must be added here first, then implemented — this section is the schema of record.
+
+MongoDB geospatial semantics worth knowing (differ from PostGIS, don't change any of the above): no server-side JOINs (routers do two queries + an in-Python merge where SQL used to JOIN — fine at this scale); no cross-collection FK/cascade enforcement (moot today, no delete endpoint exists yet); `2dsphere` supports `$geoWithin`/`$near`/`$geoIntersects` natively if a future endpoint needs ad-hoc spatial queries — unused today since `services/geo_integrity.py`'s boundary check stays in-process Shapely, unaffected by this swap; BSON has no date-only type, so the `DATE`-shaped fields above are stored as plain ISO strings and parsed at the API boundary.
 
 ---
 
