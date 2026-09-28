@@ -98,6 +98,17 @@ Dispatched backend-engineer to wire the three cross-agent endpoints: `POST /asse
 
 vision-ai-engineer resumed after the rate-limit reset to finish FR2.0 (photo quality pass, mismatch-test set) and verify FR2.4's batch-classify script.
 
+### Sync Point 1 backend half — landed and committed (`8e51873`)
+
+Verified independently: 92/92 pytest, and live-curled `GET /assets/18` myself against the real running API — confirmed exactly the shapes backend reported, including the two real cross-agent contract gaps below.
+
+**Two genuine schema mismatches found** (this is Sync Point 1 doing exactly what it's for — catching independently-built guesses before they ship):
+1. frontend-engineer's `zSatResult` zod schema was built from a speculative mock (`zone_radius_m`, flat `treated_before`, a `time_series` array, `before_image_url`/`after_image_url`) that doesn't match geospatial-engineer's real output (`indices.{treated,control}_{before,after}` each `{NDVI, MNDWI, NDMI, water_fraction}`, `did`, `did_classification`, `record_id`, `baseline_window`/`latest_window`, no time series — only one baseline/latest pair per zone). Dispatched frontend-engineer to rewrite it against the real shape (pasted verbatim from a live response) and adapt `NdviTimeSeriesChart` to a 2-point baseline/latest comparison instead of a continuous series.
+2. frontend-engineer's `zAiResult` was a strict subset missing `needs_review`, `flags`, `provider`, `model`, `classified_at` — zod was silently stripping these rather than erroring, so **`needs_review` (the FR2.2 gate) was being silently dropped** even though backend persists and returns it correctly. Told frontend-engineer to add the 5 fields and make `AiClassifierCard` visibly surface `needs_review`.
+3. Smaller: `GET /mws/{id}/thematic/{layer}`'s raster response is a single bounds-anchored static PNG (all geospatial-engineer's precompute produces), not an XYZ tile pyramid, despite the field being named `tile_url`. Told frontend-engineer to render it as a MapLibre `ImageSource` positioned by the response's `bounds`, not a `RasterSource` with a tile template.
+
+Dispatched frontend-engineer to fix both schemas, adjust the chart/badge rendering, then flip `VITE_API_MODE` to `live` and verify against the real 17-asset dataset.
+
 ## Needs your attention
 
 - **No GEE service-account key / `GEE_PROJECT_ID`** in this environment — confirmed by geospatial-engineer (no env vars, no `~/.config/earthengine`, `earthengine-api`/`geemap` not even installed yet). Blocks *running* any live Earth Engine call. Script design, methodology, and placeholder-flagged output (`"placeholder": true, "source": "synthetic_no_gee_credentials"`) proceed without it, but real satellite numbers can't be produced until you supply credentials.
