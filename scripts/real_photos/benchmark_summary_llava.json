@@ -1,0 +1,56 @@
+{
+  "model": "llava",
+  "provider": "ollama",
+  "n_photos": 9,
+  "n_correct": 1,
+  "n_errors": 0,
+  "n_schema_invalid_responses": 6,
+  "accuracy": 0.1111,
+  "is_full_dataset": false,
+  "max_per_category": 1,
+  "axis_labels": [
+    "AM",
+    "VM",
+    "SM",
+    "PT",
+    "NC",
+    "BN",
+    "LS",
+    "LH",
+    "OM",
+    "UNKNOWN"
+  ],
+  "confusion_matrix": {
+    "SM": {
+      "UNKNOWN": 1
+    },
+    "PT": {
+      "UNKNOWN": 1
+    },
+    "BN": {
+      "UNKNOWN": 1
+    },
+    "AM": {
+      "UNKNOWN": 1
+    },
+    "VM": {
+      "UNKNOWN": 1
+    },
+    "LS": {
+      "UNKNOWN": 1
+    },
+    "LH": {
+      "UNKNOWN": 1
+    },
+    "NC": {
+      "UNKNOWN": 1
+    },
+    "UNKNOWN": {
+      "UNKNOWN": 1
+    }
+  },
+  "neutral_declared_category": "UNKNOWN",
+  "neutral_declared_activity": "a general rural or agricultural scene",
+  "generated_at": "2026-09-28T13:54:02.963279+00:00",
+  "note": "Measured on REAL Wikimedia Commons photos (scripts/real_photos/manifest.json), NOT the AI-generated synthetic set from generate_synthetic_photos.py/batch_classify.py. Do not present this figure interchangeably with synthetic-set accuracy. 6/9 responses failed structured-output validation and were degraded to an honest UNKNOWN/0.0-confidence result rather than a guessed category (services/vision_classifier.py's designed fallback) -- these are NOT the same as the model confidently looking and reporting it doesn't know."
+}

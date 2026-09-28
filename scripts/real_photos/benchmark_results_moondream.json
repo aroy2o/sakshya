@@ -1,0 +1,1217 @@
+[
+  {
+    "id": "real_001",
+    "commons_title": "File:Cement check dam at Kokale.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 30.1,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:22:04.218795Z"
+    }
+  },
+  {
+    "id": "real_002",
+    "commons_title": "File:Cement dam on kokale odha1.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 33.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:22:37.373284Z"
+    }
+  },
+  {
+    "id": "real_003",
+    "commons_title": "File:Check dam @ shevaroy foot hills.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 31.1,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\nvegetation_cover\n  Field required [type=missing, input_value={'predicted_category': 'U...e': 0.0, 'evidence': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://er",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:23:08.498177Z"
+    }
+  },
+  {
+    "id": "real_004",
+    "commons_title": "File:Check Dam On Ooka Chettu Vaagu at Peddamungalachedu Village.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 30.8,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\nvegetation_cover\n  Field required [type=missing, input_value={'predicted_category': 'U...e': 0.0, 'evidence': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://er",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:23:39.252421Z"
+    }
+  },
+  {
+    "id": "real_005",
+    "commons_title": "File:Checkdam across Bharathapuzha.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 29.6,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:24:08.871756Z"
+    }
+  },
+  {
+    "id": "real_006",
+    "commons_title": "File:IMG-20180131-WA0004.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 30.6,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:24:39.475020Z"
+    }
+  },
+  {
+    "id": "real_007",
+    "commons_title": "File:Kelkuchh.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 29.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:25:08.698653Z"
+    }
+  },
+  {
+    "id": "real_008",
+    "commons_title": "File:Pond check dam overflow during raining season.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 35.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:25:44.111590Z"
+    }
+  },
+  {
+    "id": "real_009",
+    "commons_title": "File:Vagamon chek dam.JPG",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 35.1,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:26:19.260842Z"
+    }
+  },
+  {
+    "id": "real_010",
+    "commons_title": "File:Mungeshpur Drain, Delhi.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 32.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:26:51.712510Z"
+    }
+  },
+  {
+    "id": "real_011",
+    "commons_title": "File:A pond in a village (India, 2013).jpg",
+    "ground_truth_category": "PT",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 31.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:27:23.061804Z"
+    }
+  },
+  {
+    "id": "real_012",
+    "commons_title": "File:Beautiful pond built for Water storage.jpg",
+    "ground_truth_category": "PT",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 30.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:27:53.242018Z"
+    }
+  },
+  {
+    "id": "real_013",
+    "commons_title": "File:Bongal Pukhuri.JPG",
+    "ground_truth_category": "PT",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 35.8,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:28:29.056083Z"
+    }
+  },
+  {
+    "id": "real_014",
+    "commons_title": "File:Draught pond.jpg",
+    "ground_truth_category": "PT",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 34.0,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further informati",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:29:03.080784Z"
+    }
+  },
+  {
+    "id": "real_015",
+    "commons_title": "File:Pond in Udaipur town of Gomati District of Tripura.jpg",
+    "ground_truth_category": "PT",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 240.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='moondream', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull moondream` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:33:03.305437Z"
+    }
+  },
+  {
+    "id": "real_016",
+    "commons_title": "File:Senchowa Pukhuri, historical pond near Khowang, Dibrugarh 03.jpg",
+    "ground_truth_category": "PT",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 40.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:33:43.728321Z"
+    }
+  },
+  {
+    "id": "real_017",
+    "commons_title": "File:Baitarani Bandha Restoration work underway - panoramio (1).jpg",
+    "ground_truth_category": "BN",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 32.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'U...e': 0.0, 'evidence': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nwater_visible\n  Field required [type=missing, input_value={'predicted_category': 'U...e': 0.0, 'evidence': ''}, input_type=dict]\n    For further info",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:34:16.100100Z"
+    }
+  },
+  {
+    "id": "real_018",
+    "commons_title": "File:Big amount of Restoration work - panoramio.jpg",
+    "ground_truth_category": "BN",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 35.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:34:51.308854Z"
+    }
+  },
+  {
+    "id": "real_019",
+    "commons_title": "File:Faudari Matha area - panoramio.jpg",
+    "ground_truth_category": "BN",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 35.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:35:26.659942Z"
+    }
+  },
+  {
+    "id": "real_020",
+    "commons_title": "File:Jajpur, Odisha, India - panoramio (2).jpg",
+    "ground_truth_category": "BN",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 90.8,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further informati",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:36:57.419085Z"
+    }
+  },
+  {
+    "id": "real_021",
+    "commons_title": "File:These Guys restorinbg the broken Baitrani Embarkment near Patapur-Banapur line - panoramio.jpg",
+    "ground_truth_category": "BN",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 106.0,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\nvegetation_cover\n  Field required [type=missing, input_value={'predicted_category': 'U...e': 0.0, 'evidence': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://er",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:38:43.398470Z"
+    }
+  },
+  {
+    "id": "real_022",
+    "commons_title": "File:Attapady-hills.jpg",
+    "ground_truth_category": "AM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 96.9,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:40:20.305733Z"
+    }
+  },
+  {
+    "id": "real_023",
+    "commons_title": "File:Attappadi.jpg",
+    "ground_truth_category": "AM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 92.1,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:41:52.436425Z"
+    }
+  },
+  {
+    "id": "real_024",
+    "commons_title": "File:Chooralmala Road (8).jpg",
+    "ground_truth_category": "AM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 86.6,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 3 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nvegetation_cover\n  Field required [type=missing, input_value={'predicted_category': 'u...e': 0.0, 'evidence': ''}, input_type=dict]\n",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:43:19.029736Z"
+    }
+  },
+  {
+    "id": "real_025",
+    "commons_title": "File:Kanthalloor landscape 02.JPG",
+    "ground_truth_category": "AM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 122.5,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:45:21.524097Z"
+    }
+  },
+  {
+    "id": "real_026",
+    "commons_title": "File:Terrace farming-scene from KALIKAVU, WANDOOR (2094228200).jpg",
+    "ground_truth_category": "AM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 91.5,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:46:52.993363Z"
+    }
+  },
+  {
+    "id": "real_027",
+    "commons_title": "File:Acacia sadhana.JPG",
+    "ground_truth_category": "VM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 87.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:48:20.288764Z"
+    }
+  },
+  {
+    "id": "real_028",
+    "commons_title": "File:Children planting in Chalakudy River bank.JPG",
+    "ground_truth_category": "VM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 96.9,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 3 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:49:57.154678Z"
+    }
+  },
+  {
+    "id": "real_029",
+    "commons_title": "File:Tree Plantation Drive by Maharashtra Forest Department.jpg",
+    "ground_truth_category": "VM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 86.7,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 4 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:51:23.848611Z"
+    }
+  },
+  {
+    "id": "real_030",
+    "commons_title": "File:A goat shed in a village of Assam.jpg",
+    "ground_truth_category": "LS",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 91.8,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 3 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:52:55.699710Z"
+    }
+  },
+  {
+    "id": "real_031",
+    "commons_title": "File:A goat shed in a village of Assam-2.jpg",
+    "ground_truth_category": "LS",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 90.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 3 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:54:25.891326Z"
+    }
+  },
+  {
+    "id": "real_032",
+    "commons_title": "File:Cattle rearing near Kedarnath.jpg",
+    "ground_truth_category": "LS",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 91.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 4 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:55:57.277119Z"
+    }
+  },
+  {
+    "id": "real_033",
+    "commons_title": "File:Cleaning silkworms.jpg",
+    "ground_truth_category": "LH",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 78.1,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 3 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:57:15.393177Z"
+    }
+  },
+  {
+    "id": "real_034",
+    "commons_title": "File:Handloom Weaving.jpg",
+    "ground_truth_category": "LH",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 88.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further informati",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T12:58:43.740870Z"
+    }
+  },
+  {
+    "id": "real_035",
+    "commons_title": "File:Fish farm 1.JPG",
+    "ground_truth_category": "LH",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 91.9,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\nvegetation_cover\n  Field required [type=missing, input_value={'predicted_category': 'U...e': 0.0, 'evidence': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://er",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:00:15.686740Z"
+    }
+  },
+  {
+    "id": "real_036",
+    "commons_title": "File:Fish farm 2.JPG",
+    "ground_truth_category": "LH",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 115.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 3 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:02:10.957657Z"
+    }
+  },
+  {
+    "id": "real_037",
+    "commons_title": "File:ചെമ്മീൻ കെട്ട്.jpg",
+    "ground_truth_category": "LH",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 240.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='moondream', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull moondream` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:06:11.166063Z"
+    }
+  },
+  {
+    "id": "real_038",
+    "commons_title": "File:Canaldoddaghatta.jpg",
+    "ground_truth_category": "NC",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 97.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:07:48.340082Z"
+    }
+  },
+  {
+    "id": "real_039",
+    "commons_title": "File:Dhamanagar, Odisha 756117, India - panoramio (1).jpg",
+    "ground_truth_category": "NC",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 89.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Field required [type=missing, input_value={'predicted_category': 'u...he image supports this'}, input_type=dict",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:09:17.716158Z"
+    }
+  },
+  {
+    "id": "real_040",
+    "commons_title": "File:Water pathway in farm.jpg",
+    "ground_truth_category": "NC",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 88.9,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:10:46.666962Z"
+    }
+  },
+  {
+    "id": "real_041",
+    "commons_title": "File:Mudachikkadu11.JPG",
+    "ground_truth_category": "NC",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 91.4,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:12:18.029685Z"
+    }
+  },
+  {
+    "id": "real_042",
+    "commons_title": "File:Udaipur (distrito) 2002 19.jpg",
+    "ground_truth_category": "NC",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 91.0,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 1 validation error for ClassifierResult\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/string_too_short",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:13:48.996249Z"
+    }
+  },
+  {
+    "id": "real_043",
+    "commons_title": "File:Dried Apricots for Sale in a Market, Leh, Ladakh 01.jpg",
+    "ground_truth_category": "NONE",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": true,
+    "elapsed_s": 89.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 2 validation errors for ClassifierResult\nvegetation_cover\n  Field required [type=missing, input_value={'predicted_category': 'U...e': 0.0, 'evidence': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nevidence\n  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]\n    For further information visit https://er",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:15:18.229390Z"
+    }
+  },
+  {
+    "id": "real_044",
+    "commons_title": "File:Bus in Assam Guwahati IMG 3859.jpg",
+    "ground_truth_category": "NONE",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": true,
+    "elapsed_s": 92.1,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 5 validation errors for ClassifierResult\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_value='UNKNOWN', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nwater_visible\n  Input should be 'yes', 'no' or 'unclear' [type=enum, input_value='UNKNOWN', input_type=str]\n    For further i",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:16:50.334150Z"
+    }
+  },
+  {
+    "id": "real_045",
+    "commons_title": "File:ISBT Guwahati.jpg",
+    "ground_truth_category": "NONE",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": true,
+    "elapsed_s": 85.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): 4 validation errors for ClassifierResult\npredicted_category\n  Input should be 'AM', 'VM', 'SM', 'PT', 'NC', 'BN', 'LS', 'LH', 'OM' or 'UNKNOWN' [type=enum, input_value='unclear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.9/v/enum\nconstruction_stage\n  Input should be 'not_started', 'under_construction', 'completed', 'damaged' or 'unclear' [type=enum, input_valu",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "moondream",
+      "classified_at": "2026-09-28T13:18:15.629400Z"
+    }
+  }
+]

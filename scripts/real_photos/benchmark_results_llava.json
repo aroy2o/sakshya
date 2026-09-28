@@ -1,0 +1,245 @@
+[
+  {
+    "id": "real_001",
+    "commons_title": "File:Cement check dam at Kokale.jpg",
+    "ground_truth_category": "SM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.2,
+    "correct": false,
+    "elapsed_s": 107.9,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "general rural or agricultural scene",
+      "construction_stage": "unclear",
+      "water_visible": "yes",
+      "vegetation_cover": "low",
+      "matches_declared": "uncertain",
+      "confidence": 0.2,
+      "evidence": "The image shows a muddy area with water, which could be a part of a watershed field. However, the image is not clear enough to confidently determine the specific activity or construction stage, and the vegetation cover appears to be low. The presence of water and the muddy conditions suggest that this could be a rural or agricultural scene, but without more context or a clearer image, it is difficult to provide a definitive answer.",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:24:18.921463Z"
+    }
+  },
+  {
+    "id": "real_011",
+    "commons_title": "File:A pond in a village (India, 2013).jpg",
+    "ground_truth_category": "PT",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.5,
+    "correct": false,
+    "elapsed_s": 225.5,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "general rural or agricultural scene",
+      "construction_stage": "unclear",
+      "water_visible": "yes",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.5,
+      "evidence": "The image shows a body of water with a reflection, surrounded by a natural environment. However, the image is not clear enough to confidently determine the specific category or activity, nor the construction stage or vegetation cover.",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:28:04.372790Z"
+    }
+  },
+  {
+    "id": "real_017",
+    "commons_title": "File:Baitarani Bandha Restoration work underway - panoramio (1).jpg",
+    "ground_truth_category": "BN",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.2,
+    "correct": false,
+    "elapsed_s": 117.0,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "general rural or agricultural scene",
+      "construction_stage": "unclear",
+      "water_visible": "no",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.2,
+      "evidence": "The image is blurry and lacks clear details that would allow for a confident categorization. The field appears to be a rural or agricultural area, but the image quality does not allow for a precise assessment of the construction stage or vegetation cover.",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:30:01.400147Z"
+    }
+  },
+  {
+    "id": "real_022",
+    "commons_title": "File:Attapady-hills.jpg",
+    "ground_truth_category": "AM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 240.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='llava', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull llava` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:34:01.597606Z"
+    }
+  },
+  {
+    "id": "real_027",
+    "commons_title": "File:Acacia sadhana.JPG",
+    "ground_truth_category": "VM",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 240.2,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='llava', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull llava` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:38:01.831116Z"
+    }
+  },
+  {
+    "id": "real_030",
+    "commons_title": "File:A goat shed in a village of Assam.jpg",
+    "ground_truth_category": "LS",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 240.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='llava', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull llava` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:42:02.099869Z"
+    }
+  },
+  {
+    "id": "real_033",
+    "commons_title": "File:Cleaning silkworms.jpg",
+    "ground_truth_category": "LH",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 240.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='llava', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull llava` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:46:02.399733Z"
+    }
+  },
+  {
+    "id": "real_038",
+    "commons_title": "File:Canaldoddaghatta.jpg",
+    "ground_truth_category": "NC",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": false,
+    "elapsed_s": 240.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='llava', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull llava` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:50:02.682200Z"
+    }
+  },
+  {
+    "id": "real_043",
+    "commons_title": "File:Dried Apricots for Sale in a Market, Leh, Ladakh 01.jpg",
+    "ground_truth_category": "NONE",
+    "predicted_category": "UNKNOWN",
+    "confidence": 0.0,
+    "correct": true,
+    "elapsed_s": 240.3,
+    "error": null,
+    "ai_result": {
+      "predicted_category": "UNKNOWN",
+      "predicted_activity": "unclassified (invalid classifier response)",
+      "construction_stage": "unclear",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "uncertain",
+      "confidence": 0.0,
+      "evidence": "Classifier response invalid after 2 attempt(s): Ollama request failed (model='llava', url='http://localhost:11434'): HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120). Is `ollama serve` running, and has `ollama pull llava` been run?",
+      "needs_review": true,
+      "flags": [
+        "uncertain_match_review"
+      ],
+      "provider": "ollama",
+      "model": "llava",
+      "classified_at": "2026-09-28T13:54:02.958195Z"
+    }
+  }
+]
