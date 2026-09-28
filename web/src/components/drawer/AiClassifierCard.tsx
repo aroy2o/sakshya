@@ -25,12 +25,24 @@ export function AiClassifierCard({ result, visualScore }: { result: AiResult | n
         <p className="text-sm text-slate-400">Not yet classified.</p>
       ) : (
         <div className="space-y-1 text-sm text-slate-700">
+          {result.needs_review && (
+            <p className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">
+              ⚠️ Needs human review
+            </p>
+          )}
           <p className="font-medium">{MATCH_LABELS[result.matches_declared]}</p>
           <p className="text-slate-500">
             Predicted: {result.predicted_activity} ({result.predicted_category}) — stage:{' '}
             {result.construction_stage.replace(/_/g, ' ')}, confidence {Math.round(result.confidence * 100)}%
           </p>
+          {result.flags.length > 0 && (
+            <p className="text-xs text-amber-700">Flags: {result.flags.join(', ')}</p>
+          )}
           <p className="text-xs text-slate-400">{result.evidence}</p>
+          <p className="text-[11px] text-slate-300">
+            {result.provider}
+            {result.model ? ` / ${result.model}` : ''} · classified {new Date(result.classified_at).toLocaleString()}
+          </p>
         </div>
       )}
     </section>

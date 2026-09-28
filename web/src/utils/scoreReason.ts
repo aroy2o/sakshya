@@ -10,8 +10,7 @@
  * the declared activity" (visual) and "did the intervention work"
  * (satellite) must never blend together, including in UI copy.
  */
-import { NO_SATELLITE_SIGNAL_CATEGORIES } from '@/schemas/domain'
-import type { AssetDetail } from '@/types/domain'
+import type { AssetDetail, SatInterpretation } from '@/types/domain'
 
 function describeGeo(asset: AssetDetail): string | null {
   if (asset.geo_score === null || asset.geo_flags === null) return null
@@ -35,24 +34,27 @@ function describeVisual(asset: AssetDetail): string | null {
   return `The AI photo check found the image does not match the declared "${asset.activity}" activity.`
 }
 
+// Keyed off `sat_result.did_classification` (PRD §12.3's DiD bands) — trust
+// the server's own classification rather than re-deriving it client-side
+// from `category`; `neutral_no_signal` already covers the LS/LH/OM case.
+const SATELLITE_INTERPRETATION_TEXT: Record<SatInterpretation, (score: number, activity: string) => string> = {
+  strongly_positive: (score, activity) =>
+    `Satellite imagery shows a strong positive change matching what "${activity}" should produce on the ground (${score}/30).`,
+  weakly_positive: (score) => `Satellite imagery shows a weak positive change (${score}/30).`,
+  inconclusive: (score) => `Satellite change is close to zero / inconclusive (${score}/30).`,
+  negative: (score) => `Satellite imagery shows a decline relative to the control area (${score}/30).`,
+  neutral_no_signal: (score) => `No reliable satellite signal is expected for this category, so the satellite score is a neutral ${score}/30.`,
+}
+
 function describeSatellite(asset: AssetDetail): string | null {
   if (asset.satellite_score === null || asset.sat_result === null) return null
-  if (NO_SATELLITE_SIGNAL_CATEGORIES.includes(asset.category as (typeof NO_SATELLITE_SIGNAL_CATEGORIES)[number])) {
-    return `This activity category has no reliable satellite signal, so the satellite score is a neutral ${asset.satellite_score}/30 rather than a real verdict.`
+  const { did_classification, notes, placeholder } = asset.sat_result
+  const parts = [SATELLITE_INTERPRETATION_TEXT[did_classification](asset.satellite_score, asset.activity)]
+  if (placeholder) {
+    parts.push('This reading is placeholder data (no real satellite imagery processed yet), not a real verdict.')
   }
-  const { interpretation } = asset.sat_result
-  switch (interpretation) {
-    case 'strongly_positive':
-      return `Satellite imagery shows a strong positive change matching what "${asset.activity}" should produce on the ground (${asset.satellite_score}/30).`
-    case 'weakly_positive':
-      return `Satellite imagery shows a weak positive change (${asset.satellite_score}/30).`
-    case 'inconclusive':
-      return `Satellite change is close to zero / inconclusive (${asset.satellite_score}/30).`
-    case 'negative':
-      return `Satellite imagery shows a decline relative to the control area (${asset.satellite_score}/30) — this can also mean the work is too recent to show up yet, not necessarily failure.`
-    case 'neutral_no_signal':
-      return `No reliable satellite signal is expected for this category, so the satellite score is a neutral ${asset.satellite_score}/30.`
-  }
+  parts.push(...notes) // server-authored caveats (e.g. PRD §12.3's "too early post-work" note) — rendered verbatim
+  return parts.join(' ')
 }
 
 function describeTemporal(asset: AssetDetail): string | null {

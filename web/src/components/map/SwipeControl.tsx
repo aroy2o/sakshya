@@ -5,7 +5,7 @@ import { LoadingState } from '@/components/layout/LoadingState'
 import { useThematicLayer } from '@/hooks/useThematicLayer'
 import { useMapUi } from '@/state/mapUiStore'
 import { basemapStyle } from './basemapStyle'
-import { boundsArrayToLngLatBounds } from '@/utils/geo'
+import { boundsArrayToLngLatBounds, boundsToImageCoordinates } from '@/utils/geo'
 
 /**
  * FR5.4 — before/after satellite swipe control. Two MapLibre instances
@@ -77,11 +77,11 @@ export function SwipeControl({ mwsId }: { mwsId: string }) {
     if (!map || !beforeLayer || beforeLayer.kind !== 'raster') return
     const add = () => {
       if (map.getSource('swipe-before')) return
+      // Single bounds-anchored static image, not an XYZ tile pyramid — see ThematicLayerRenderer.tsx.
       map.addSource('swipe-before', {
-        type: 'raster',
-        tiles: [beforeLayer.tile_url],
-        tileSize: 256,
-        bounds: beforeLayer.bounds,
+        type: 'image',
+        url: beforeLayer.tile_url,
+        coordinates: boundsToImageCoordinates(beforeLayer.bounds),
       })
       map.addLayer({ id: 'swipe-before-layer', type: 'raster', source: 'swipe-before' })
       map.fitBounds(boundsArrayToLngLatBounds(beforeLayer.bounds), { padding: 20, duration: 0 })
@@ -98,10 +98,9 @@ export function SwipeControl({ mwsId }: { mwsId: string }) {
     const add = () => {
       if (map.getSource('swipe-after')) return
       map.addSource('swipe-after', {
-        type: 'raster',
-        tiles: [afterLayer.tile_url],
-        tileSize: 256,
-        bounds: afterLayer.bounds,
+        type: 'image',
+        url: afterLayer.tile_url,
+        coordinates: boundsToImageCoordinates(afterLayer.bounds),
       })
       map.addLayer({ id: 'swipe-after-layer', type: 'raster', source: 'swipe-after' })
     }

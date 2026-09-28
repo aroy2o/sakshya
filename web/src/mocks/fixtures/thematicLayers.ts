@@ -1,22 +1,24 @@
 /**
- * Mocks for `GET /mws/{id}/thematic/{layer}`. PRD §9 only says this
- * endpoint returns "Tile URL or GeoJSON" — the `kind: 'raster' | 'vector'`
- * envelope here is this app's own design (flagged as an open assumption,
- * see src/schemas/domain.ts's header comment), built to be confirmed
- * against geospatial-engineer's actual precompute output at Sync Point 1.
+ * Mocks for `GET /mws/{id}/thematic/{layer}`. Envelope confirmed against
+ * live `ndvi_before` (raster) and `drainage` (vector) responses at Sync
+ * Point 1 (2026-09-28) — see src/schemas/domain.ts's header comment.
  *
- * Raster `tile_url`s below point at public OpenStreetMap tiles as a DEV-ONLY
- * placeholder texture, purely so ThematicLayerControl/SwipeControl have
- * something real to render while wired up against mocks — this is NOT real
- * NDVI/LULC/water data and must never be mistaken for it. Every fixture's
- * `legend` labels this plainly, and none of this ships past mock mode
- * (VITE_API_MODE=mock only).
+ * Raster `tile_url`s below point at placehold.co static images as a
+ * DEV-ONLY placeholder texture (each labelled with its own layer name so
+ * it's self-evidently not real data), matching the real shape: ONE
+ * bounds-anchored static image per layer, not an XYZ tile pyramid — see
+ * ThematicLayerRenderer.tsx / SwipeControl.tsx, which render these as
+ * MapLibre ImageSources accordingly. None of this ships past mock mode
+ * (VITE_API_MODE=mock only), and `placeholder: true` on every fixture
+ * matches the real backend's current state (no GEE credentials wired up).
  */
 import type { ThematicLayer, ThematicLayerResponse } from '@/types/domain'
 
 const MWS_BOUNDS: [number, number, number, number] = [92.05, 26.02, 92.55, 26.38]
 
-const PLACEHOLDER_TILE_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+function placeholderImage(label: string, color: string): string {
+  return `https://placehold.co/1024x768/${color}/ffffff/png?text=${encodeURIComponent(label)}`
+}
 
 const ndviLegend = [
   { color: '#a50026', label: 'Low NDVI (mock placeholder)' },
@@ -48,6 +50,7 @@ export const thematicLayerFixtures: Record<ThematicLayer, ThematicLayerResponse>
     kind: 'vector',
     bounds: MWS_BOUNDS,
     legend: [{ color: '#0ea5e9', label: 'Drainage line (Strahler order, mock placeholder)' }],
+    placeholder: true,
     geojson: {
       type: 'FeatureCollection',
       features: [
@@ -72,34 +75,39 @@ export const thematicLayerFixtures: Record<ThematicLayer, ThematicLayerResponse>
     kind: 'raster',
     bounds: MWS_BOUNDS,
     legend: lulcLegend,
-    tile_url: PLACEHOLDER_TILE_URL,
+    placeholder: true,
+    tile_url: placeholderImage('LULC (MOCK)', 'a6611a'),
   },
   ndvi_before: {
     layer: 'ndvi_before',
     kind: 'raster',
     bounds: MWS_BOUNDS,
     legend: ndviLegend,
-    tile_url: PLACEHOLDER_TILE_URL,
+    placeholder: true,
+    tile_url: placeholderImage('NDVI BEFORE (MOCK)', '1a9850'),
   },
   ndvi_after: {
     layer: 'ndvi_after',
     kind: 'raster',
     bounds: MWS_BOUNDS,
     legend: ndviLegend,
-    tile_url: PLACEHOLDER_TILE_URL,
+    placeholder: true,
+    tile_url: placeholderImage('NDVI AFTER (MOCK)', '1a9850'),
   },
   ndvi_change: {
     layer: 'ndvi_change',
     kind: 'raster',
     bounds: MWS_BOUNDS,
     legend: ndviChangeLegend,
-    tile_url: PLACEHOLDER_TILE_URL,
+    placeholder: true,
+    tile_url: placeholderImage('NDVI CHANGE (MOCK)', 'd73027'),
   },
   water: {
     layer: 'water',
     kind: 'raster',
     bounds: MWS_BOUNDS,
     legend: waterLegend,
-    tile_url: PLACEHOLDER_TILE_URL,
+    placeholder: true,
+    tile_url: placeholderImage('WATER (MOCK)', '2166ac'),
   },
 }

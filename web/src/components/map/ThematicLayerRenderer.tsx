@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import type * as maplibregl from 'maplibre-gl'
 import { useThematicLayer } from '@/hooks/useThematicLayer'
+import { boundsToImageCoordinates } from '@/utils/geo'
 import type { ThematicLayer } from '@/types/domain'
 
 /**
@@ -26,11 +27,13 @@ export function ThematicLayerRenderer({
     const layerId = `${sourceId}-layer`
 
     if (data.kind === 'raster') {
+      // One bounds-anchored static composite image per layer (confirmed
+      // live at Sync Point 1), not an XYZ tile pyramid — an ImageSource,
+      // not a tiled RasterSource.
       map.addSource(sourceId, {
-        type: 'raster',
-        tiles: [data.tile_url],
-        tileSize: 256,
-        bounds: data.bounds,
+        type: 'image',
+        url: data.tile_url,
+        coordinates: boundsToImageCoordinates(data.bounds),
       })
       map.addLayer({
         id: layerId,

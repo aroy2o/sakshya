@@ -17,7 +17,7 @@ export function MwsBoundaryLayer({ map, mws }: { map: maplibregl.Map; mws: Mws }
   useEffect(() => {
     map.addSource(SOURCE_ID, {
       type: 'geojson',
-      data: { type: 'Feature', properties: {}, geometry: mws.geom },
+      data: { type: 'Feature', properties: {}, geometry: mws.boundary },
     })
     map.addLayer({
       id: FILL_LAYER_ID,

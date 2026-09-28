@@ -19,13 +19,16 @@ import type {
   zGeoFlagRule,
   zLegendEntry,
   zMws,
+  zMwsBoundary,
   zMwsListItem,
   zMwsStats,
   zPhotoSource,
+  zSatIndex,
+  zSatInterpretation,
   zSatResult,
-  zSatTimePoint,
   zThematicLayer,
   zThematicLayerResponse,
+  zZoneIndices,
 } from '@/schemas/domain'
 
 export type CategoryCode = z.infer<typeof zCategoryCode>
@@ -34,12 +37,15 @@ export type PhotoSource = z.infer<typeof zPhotoSource>
 export type GeoFlagRule = z.infer<typeof zGeoFlagRule>
 export type GeoFlag = z.infer<typeof zGeoFlag>
 export type AiResult = z.infer<typeof zAiResult>
+export type SatIndex = z.infer<typeof zSatIndex>
+export type ZoneIndices = z.infer<typeof zZoneIndices>
+export type SatInterpretation = z.infer<typeof zSatInterpretation>
 export type SatResult = z.infer<typeof zSatResult>
-export type SatTimePoint = z.infer<typeof zSatTimePoint>
 export type AssetPinProperties = z.infer<typeof zAssetPinProperties>
 export type AssetPinFeature = z.infer<typeof zAssetPinFeature>
 export type AssetPinFeatureCollection = z.infer<typeof zAssetPinFeatureCollection>
 export type AssetDetail = z.infer<typeof zAssetDetail>
+export type MwsBoundary = z.infer<typeof zMwsBoundary>
 export type Mws = z.infer<typeof zMws>
 export type MwsListItem = z.infer<typeof zMwsListItem>
 export type MwsStats = z.infer<typeof zMwsStats>

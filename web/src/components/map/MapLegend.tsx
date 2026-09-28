@@ -15,7 +15,10 @@ function ActiveLayerLegend({ mwsId, layer }: { mwsId: string; layer: ThematicLay
   if (!data) return null
   return (
     <div className="mt-2">
-      <p className="text-xs font-medium capitalize text-slate-600">{layer.replace(/_/g, ' ')}</p>
+      <p className="text-xs font-medium capitalize text-slate-600">
+        {layer.replace(/_/g, ' ')}
+        {data.placeholder && <span className="ml-1 font-normal text-amber-600">(placeholder imagery)</span>}
+      </p>
       {data.legend.map((entry) => (
         <div key={entry.label} className="flex items-center gap-1.5 text-xs text-slate-500">
           <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: entry.color }} />

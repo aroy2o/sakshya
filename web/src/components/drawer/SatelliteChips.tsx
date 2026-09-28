@@ -1,7 +1,5 @@
-import { useState } from 'react'
-import { CompareSlider } from '@/components/shared/CompareSlider'
 import { NO_SATELLITE_SIGNAL_CATEGORIES } from '@/schemas/domain'
-import { NdviTimeSeriesChart } from './NdviTimeSeriesChart'
+import { SatelliteIndexChart } from './SatelliteIndexChart'
 import type { AssetDetail } from '@/types/domain'
 
 const INTERPRETATION_LABELS: Record<string, string> = {
@@ -13,13 +11,20 @@ const INTERPRETATION_LABELS: Record<string, string> = {
 }
 
 /**
- * FR5.3 — satellite before/after chips + NDVI/MNDWI time series. PRD
- * §12.3: this card answers *"did the landscape change"* — kept separate
- * from AiClassifierCard's "is this evidence of the declared work" per
- * §12.2's explicit instruction not to blend the two questions.
+ * FR5.3 — satellite response. PRD §12.3: this card answers *"did the
+ * landscape change"* — kept separate from AiClassifierCard's "is this
+ * evidence of the declared work" per §12.2's explicit instruction not to
+ * blend the two questions.
+ *
+ * No per-asset before/after image swipe here (an earlier version had one):
+ * confirmed live at Sync Point 1 (2026-09-28) that `sat_result` carries no
+ * image URLs at all — geospatial-engineer's precompute produces one
+ * watershed-level composite per thematic layer, not a per-asset image pair.
+ * What's real per-asset is the treated-vs-control index comparison below,
+ * plus `placeholder`/`low_confidence`/`notes`, all rendered as the backend
+ * actually sends them rather than backfilled with invented imagery.
  */
 export function SatelliteChips({ asset }: { asset: AssetDetail }) {
-  const [swipePos, setSwipePos] = useState(50)
   const { sat_result: sat, satellite_score: satelliteScore, category } = asset
   const isNoSignalCategory = NO_SATELLITE_SIGNAL_CATEGORIES.includes(
     category as (typeof NO_SATELLITE_SIGNAL_CATEGORIES)[number],
@@ -38,43 +43,51 @@ export function SatelliteChips({ asset }: { asset: AssetDetail }) {
         <p className="text-sm text-slate-400">Satellite response not yet attached.</p>
       ) : (
         <div className="space-y-2">
+          {sat.placeholder && (
+            <p className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600">
+              Placeholder satellite data ({sat.source}) — not yet a real GEE-derived reading. Treat the numbers
+              below as demo scaffolding, not evidence.
+            </p>
+          )}
           {isNoSignalCategory && (
             <p className="rounded bg-slate-50 px-2 py-1 text-xs text-slate-500">
               This activity category has no reliable satellite signal — the score above is a neutral default,
               not a real satellite verdict.
             </p>
           )}
-          {sat.interpretation === 'negative' && (
+          {sat.low_confidence && (
             <p className="rounded bg-amber-50 px-2 py-1 text-xs text-amber-700">
-              A negative reading here can also mean the work is too recent to show up in satellite imagery yet —
-              it isn&apos;t automatically proof the work failed.
+              Low-confidence read (thin cloud cover / limited valid pixels) — treat this result cautiously.
             </p>
           )}
+          {sat.notes.map((note) => (
+            <p key={note} className="rounded bg-amber-50 px-2 py-1 text-xs text-amber-700">
+              {note}
+            </p>
+          ))}
 
-          <p className="text-sm text-slate-600">{INTERPRETATION_LABELS[sat.interpretation]}</p>
-
-          <CompareSlider
-            className="aspect-video w-full rounded-md border border-slate-200"
-            position={swipePos}
-            onPositionChange={setSwipePos}
-            beforeLabel="Before"
-            afterLabel="After"
-            before={<img src={sat.before_image_url} alt="Satellite view before" className="h-full w-full object-cover" />}
-            after={<img src={sat.after_image_url} alt="Satellite view after" className="h-full w-full object-cover" />}
-          />
+          <p className="text-sm text-slate-600">{INTERPRETATION_LABELS[sat.did_classification]}</p>
 
           <dl className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs text-slate-500">
-            <dt>NDVI DiD</dt>
-            <dd className="text-right font-mono">{sat.did.NDVI.toFixed(3)}</dd>
-            <dt>MNDWI DiD</dt>
-            <dd className="text-right font-mono">{sat.did.MNDWI.toFixed(3)}</dd>
-            <dt>Rainfall (baseline → latest)</dt>
+            <dt>Primary index for this category</dt>
+            <dd className="text-right font-mono">{sat.primary_index_for_category}</dd>
+            <dt>DiD ({sat.primary_index_for_category})</dt>
+            <dd className="text-right font-mono">{sat.did[sat.primary_index_for_category].toFixed(4)}</dd>
+            <dt>Baseline window</dt>
             <dd className="text-right font-mono">
-              {sat.rainfall_baseline_mm} → {sat.rainfall_latest_mm} mm
+              {sat.baseline_window[0]} → {sat.baseline_window[1]}
+            </dd>
+            <dt>Latest window</dt>
+            <dd className="text-right font-mono">
+              {sat.latest_window[0]} → {sat.latest_window[1]}
+            </dd>
+            <dt>Rainfall change</dt>
+            <dd className="text-right font-mono">
+              {sat.rainfall.pct_change === null ? 'n/a' : `${sat.rainfall.pct_change > 0 ? '+' : ''}${sat.rainfall.pct_change.toFixed(1)}%`}
             </dd>
           </dl>
 
-          <NdviTimeSeriesChart timeSeries={sat.time_series} />
+          <SatelliteIndexChart indices={sat.indices} rainfall={sat.rainfall} defaultIndex={sat.primary_index_for_category} />
         </div>
       )}
     </section>

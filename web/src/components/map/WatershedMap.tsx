@@ -4,6 +4,7 @@ import { AssetPinsLayer } from './AssetPinsLayer'
 import { basemapStyle } from './basemapStyle'
 import { MapLegend } from './MapLegend'
 import { MwsBoundaryLayer } from './MwsBoundaryLayer'
+import { MwsStatsBar } from './MwsStatsBar'
 import { SwipeControl } from './SwipeControl'
 import { ThematicLayerControl } from './ThematicLayerControl'
 import { ThematicLayers } from './ThematicLayers'
@@ -49,7 +50,7 @@ export function WatershedMap({ mwsId }: { mwsId: string }) {
 
   useEffect(() => {
     if (map && mwsQuery.data) {
-      map.fitBounds(multiPolygonBounds(mwsQuery.data.geom.coordinates), { padding: 40, duration: 0 })
+      map.fitBounds(multiPolygonBounds(mwsQuery.data.boundary.coordinates), { padding: 40, duration: 0 })
     }
   }, [map, mwsQuery.data])
 
@@ -72,6 +73,7 @@ export function WatershedMap({ mwsId }: { mwsId: string }) {
       )}
       {swipeActive && <SwipeControl mwsId={mwsId} />}
 
+      {mwsQuery.data && assetsQuery.data && <MwsStatsBar mws={mwsQuery.data} assets={assetsQuery.data} />}
       <ThematicLayerControl />
       <MapLegend mwsId={mwsId} />
 
