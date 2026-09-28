@@ -1,6 +1,6 @@
 [
   {
-    "record_id": 18,
+    "record_id": 1,
     "mws_id": "4120883730",
     "category": "AM",
     "baseline_window": [
@@ -43,10 +43,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0759,
-      "MNDWI": 0.0152,
-      "NDMI": 0.0181,
-      "water_fraction": -0.0036
+      "NDVI": 0.0002,
+      "MNDWI": 0.0358,
+      "NDMI": 0.0963,
+      "water_fraction": -0.0171
     },
     "rainfall": {
       "baseline_mm": null,
@@ -65,13 +65,13 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "NDVI",
-    "did_classification": "weakly_positive",
-    "satellite_score": 18,
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.284806+00:00"
+    "computed_at": "2026-09-28T03:17:18.195610+00:00"
   },
   {
-    "record_id": 19,
+    "record_id": 2,
     "mws_id": "4120883730",
     "category": "VM",
     "baseline_window": [
@@ -114,10 +114,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0406,
-      "MNDWI": 0.0458,
-      "NDMI": 0.0768,
-      "water_fraction": 0.0758
+      "NDVI": -0.0353,
+      "MNDWI": 0.0108,
+      "NDMI": 0.0615,
+      "water_fraction": 0.0016
     },
     "rainfall": {
       "baseline_mm": null,
@@ -136,13 +136,15 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "NDVI",
-    "did_classification": "weakly_positive",
-    "satellite_score": 18,
-    "notes": [],
-    "computed_at": "2026-09-28T02:25:00.284836+00:00"
+    "did_classification": "negative",
+    "satellite_score": 0,
+    "notes": [
+      "Negative DiD relative to control \u2014 flagged for review. This can also mean 'too early post-work' rather than failure; not a definitive verdict (PRD \u00a712.3)."
+    ],
+    "computed_at": "2026-09-28T03:17:18.195667+00:00"
   },
   {
-    "record_id": 20,
+    "record_id": 3,
     "mws_id": "4120883730",
     "category": "SM",
     "baseline_window": [
@@ -185,10 +187,10 @@
       }
     },
     "did": {
-      "NDVI": 0.1177,
-      "MNDWI": 0.0451,
-      "NDMI": 0.0378,
-      "water_fraction": 0.0552
+      "NDVI": -0.007,
+      "MNDWI": 0.0323,
+      "NDMI": 0.0452,
+      "water_fraction": -0.046
     },
     "rainfall": {
       "baseline_mm": null,
@@ -207,13 +209,13 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "water_fraction",
-    "did_classification": "weakly_positive",
-    "satellite_score": 18,
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.284856+00:00"
+    "computed_at": "2026-09-28T03:17:18.195705+00:00"
   },
   {
-    "record_id": 21,
+    "record_id": 4,
     "mws_id": "4120883730",
     "category": "PT",
     "baseline_window": [
@@ -256,10 +258,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0676,
-      "MNDWI": 0.0279,
-      "NDMI": 0.0582,
-      "water_fraction": 0.0405
+      "NDVI": -0.0489,
+      "MNDWI": 0.0039,
+      "NDMI": 0.0127,
+      "water_fraction": 0.1145
     },
     "rainfall": {
       "baseline_mm": null,
@@ -278,13 +280,13 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "water_fraction",
-    "did_classification": "inconclusive",
-    "satellite_score": 10,
+    "did_classification": "weakly_positive",
+    "satellite_score": 18,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.284878+00:00"
+    "computed_at": "2026-09-28T03:17:18.195740+00:00"
   },
   {
-    "record_id": 22,
+    "record_id": 5,
     "mws_id": "4120883730",
     "category": "NC",
     "baseline_window": [
@@ -327,10 +329,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0035,
-      "MNDWI": 0.0126,
-      "NDMI": 0.012,
-      "water_fraction": -0.0451
+      "NDVI": 0.0133,
+      "MNDWI": 0.0277,
+      "NDMI": 0.0531,
+      "water_fraction": 0.0495
     },
     "rainfall": {
       "baseline_mm": null,
@@ -352,10 +354,10 @@
     "did_classification": "inconclusive",
     "satellite_score": 10,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.284894+00:00"
+    "computed_at": "2026-09-28T03:17:18.195771+00:00"
   },
   {
-    "record_id": 23,
+    "record_id": 6,
     "mws_id": "4120883730",
     "category": "BN",
     "baseline_window": [
@@ -398,10 +400,10 @@
       }
     },
     "did": {
-      "NDVI": -0.0441,
-      "MNDWI": 0.0155,
-      "NDMI": 0.0127,
-      "water_fraction": 0.195
+      "NDVI": -0.0292,
+      "MNDWI": 0.0044,
+      "NDMI": 0.0907,
+      "water_fraction": 0.1038
     },
     "rainfall": {
       "baseline_mm": null,
@@ -420,13 +422,13 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "NDVI_NDMI_MEAN",
-    "did_classification": "inconclusive",
-    "satellite_score": 10,
+    "did_classification": "weakly_positive",
+    "satellite_score": 18,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.284912+00:00"
+    "computed_at": "2026-09-28T03:17:18.195803+00:00"
   },
   {
-    "record_id": 24,
+    "record_id": 7,
     "mws_id": "4120883730",
     "category": "LS",
     "baseline_window": [
@@ -469,10 +471,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0985,
-      "MNDWI": -0.0079,
-      "NDMI": 0.0197,
-      "water_fraction": 0.2176
+      "NDVI": 0.0321,
+      "MNDWI": 0.0395,
+      "NDMI": 0.0072,
+      "water_fraction": 0.0064
     },
     "rainfall": {
       "baseline_mm": null,
@@ -496,10 +498,10 @@
     "notes": [
       "Category LS: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data."
     ],
-    "computed_at": "2026-09-28T02:25:00.284927+00:00"
+    "computed_at": "2026-09-28T03:17:18.195832+00:00"
   },
   {
-    "record_id": 25,
+    "record_id": 8,
     "mws_id": "4120883730",
     "category": "LH",
     "baseline_window": [
@@ -542,10 +544,10 @@
       }
     },
     "did": {
-      "NDVI": 0.1128,
-      "MNDWI": 0.0583,
-      "NDMI": -0.0051,
-      "water_fraction": -0.0149
+      "NDVI": 0.0939,
+      "MNDWI": 0.0097,
+      "NDMI": 0.0152,
+      "water_fraction": 0.0834
     },
     "rainfall": {
       "baseline_mm": null,
@@ -569,10 +571,10 @@
     "notes": [
       "Category LH: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data."
     ],
-    "computed_at": "2026-09-28T02:25:00.284941+00:00"
+    "computed_at": "2026-09-28T03:17:18.195859+00:00"
   },
   {
-    "record_id": 26,
+    "record_id": 9,
     "mws_id": "4120883730",
     "category": "OM",
     "baseline_window": [
@@ -615,10 +617,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0261,
-      "MNDWI": -0.0266,
-      "NDMI": -0.0144,
-      "water_fraction": 0.0266
+      "NDVI": 0.0511,
+      "MNDWI": -0.0123,
+      "NDMI": -0.0375,
+      "water_fraction": 0.0471
     },
     "rainfall": {
       "baseline_mm": null,
@@ -642,10 +644,10 @@
     "notes": [
       "Category OM: satellite evidence is not meaningful for this activity type (PRD \u00a712.3) \u2014 neutral score applied, not computed from data."
     ],
-    "computed_at": "2026-09-28T02:25:00.284956+00:00"
+    "computed_at": "2026-09-28T03:17:18.195902+00:00"
   },
   {
-    "record_id": 27,
+    "record_id": 10,
     "mws_id": "4120883730",
     "category": "AM",
     "baseline_window": [
@@ -688,10 +690,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0855,
-      "MNDWI": 0.0188,
-      "NDMI": 0.0011,
-      "water_fraction": 0.2249
+      "NDVI": 0.1183,
+      "MNDWI": 0.0219,
+      "NDMI": -0.0155,
+      "water_fraction": 0.2169
     },
     "rainfall": {
       "baseline_mm": null,
@@ -713,10 +715,10 @@
     "did_classification": "strongly_positive",
     "satellite_score": 30,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.284972+00:00"
+    "computed_at": "2026-09-28T03:17:18.195932+00:00"
   },
   {
-    "record_id": 28,
+    "record_id": 11,
     "mws_id": "4120883730",
     "category": "VM",
     "baseline_window": [
@@ -759,10 +761,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0124,
-      "MNDWI": 0.0667,
-      "NDMI": 0.0756,
-      "water_fraction": 0.1541
+      "NDVI": 0.0857,
+      "MNDWI": 0.0407,
+      "NDMI": 0.012,
+      "water_fraction": 0.0373
     },
     "rainfall": {
       "baseline_mm": null,
@@ -781,13 +783,13 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "NDVI",
-    "did_classification": "inconclusive",
-    "satellite_score": 10,
+    "did_classification": "strongly_positive",
+    "satellite_score": 30,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.285037+00:00"
+    "computed_at": "2026-09-28T03:17:18.196062+00:00"
   },
   {
-    "record_id": 29,
+    "record_id": 12,
     "mws_id": "4120883730",
     "category": "SM",
     "baseline_window": [
@@ -830,10 +832,10 @@
       }
     },
     "did": {
-      "NDVI": -0.0117,
-      "MNDWI": 0.0054,
-      "NDMI": -0.0277,
-      "water_fraction": 0.1167
+      "NDVI": -0.0187,
+      "MNDWI": 0.0323,
+      "NDMI": 0.0305,
+      "water_fraction": 0.1131
     },
     "rainfall": {
       "baseline_mm": null,
@@ -855,10 +857,10 @@
     "did_classification": "weakly_positive",
     "satellite_score": 18,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.285053+00:00"
+    "computed_at": "2026-09-28T03:17:18.196091+00:00"
   },
   {
-    "record_id": 30,
+    "record_id": 13,
     "mws_id": "4120883730",
     "category": "PT",
     "baseline_window": [
@@ -901,10 +903,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0827,
-      "MNDWI": 0.0267,
-      "NDMI": 0.0117,
-      "water_fraction": 0.2497
+      "NDVI": 0.0807,
+      "MNDWI": 0.0485,
+      "NDMI": 0.0896,
+      "water_fraction": 0.1537
     },
     "rainfall": {
       "baseline_mm": null,
@@ -926,10 +928,10 @@
     "did_classification": "strongly_positive",
     "satellite_score": 30,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.285067+00:00"
+    "computed_at": "2026-09-28T03:17:18.196118+00:00"
   },
   {
-    "record_id": 31,
+    "record_id": 14,
     "mws_id": "4120883730",
     "category": "PT",
     "baseline_window": [
@@ -972,10 +974,10 @@
       }
     },
     "did": {
-      "NDVI": -0.0422,
-      "MNDWI": 0.0149,
-      "NDMI": 0.0443,
-      "water_fraction": -0.0064
+      "NDVI": 0.0624,
+      "MNDWI": 0.0123,
+      "NDMI": 0.0343,
+      "water_fraction": 0.0312
     },
     "rainfall": {
       "baseline_mm": null,
@@ -997,10 +999,10 @@
     "did_classification": "inconclusive",
     "satellite_score": 10,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.285081+00:00"
+    "computed_at": "2026-09-28T03:17:18.196152+00:00"
   },
   {
-    "record_id": 32,
+    "record_id": 15,
     "mws_id": "4120883730",
     "category": "SM",
     "baseline_window": [
@@ -1043,10 +1045,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0138,
-      "MNDWI": 0.054,
-      "NDMI": 0.012,
-      "water_fraction": 0.1651
+      "NDVI": -0.0019,
+      "MNDWI": 0.0177,
+      "NDMI": -0.005,
+      "water_fraction": -0.0472
     },
     "rainfall": {
       "baseline_mm": null,
@@ -1065,13 +1067,13 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "water_fraction",
-    "did_classification": "strongly_positive",
-    "satellite_score": 30,
+    "did_classification": "inconclusive",
+    "satellite_score": 10,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.285096+00:00"
+    "computed_at": "2026-09-28T03:17:18.196180+00:00"
   },
   {
-    "record_id": 33,
+    "record_id": 16,
     "mws_id": "4120883730",
     "category": "BN",
     "baseline_window": [
@@ -1114,10 +1116,10 @@
       }
     },
     "did": {
-      "NDVI": 0.0609,
-      "MNDWI": 0.0478,
-      "NDMI": -0.0359,
-      "water_fraction": -0.007
+      "NDVI": -0.0453,
+      "MNDWI": 0.0156,
+      "NDMI": -0.036,
+      "water_fraction": 0.1566
     },
     "rainfall": {
       "baseline_mm": null,
@@ -1136,13 +1138,15 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "NDVI_NDMI_MEAN",
-    "did_classification": "inconclusive",
-    "satellite_score": 10,
-    "notes": [],
-    "computed_at": "2026-09-28T02:25:00.285112+00:00"
+    "did_classification": "negative",
+    "satellite_score": 0,
+    "notes": [
+      "Negative DiD relative to control \u2014 flagged for review. This can also mean 'too early post-work' rather than failure; not a definitive verdict (PRD \u00a712.3)."
+    ],
+    "computed_at": "2026-09-28T03:17:18.196210+00:00"
   },
   {
-    "record_id": 34,
+    "record_id": 17,
     "mws_id": "4120883730",
     "category": "VM",
     "baseline_window": [
@@ -1185,10 +1189,10 @@
       }
     },
     "did": {
-      "NDVI": -0.0004,
-      "MNDWI": 0.0243,
-      "NDMI": -0.0469,
-      "water_fraction": 0.096
+      "NDVI": 0.03,
+      "MNDWI": -0.0277,
+      "NDMI": -0.0477,
+      "water_fraction": 0.1219
     },
     "rainfall": {
       "baseline_mm": null,
@@ -1207,9 +1211,9 @@
     "placeholder": true,
     "source": "synthetic_no_gee_credentials",
     "primary_index_for_category": "NDVI",
-    "did_classification": "inconclusive",
-    "satellite_score": 10,
+    "did_classification": "weakly_positive",
+    "satellite_score": 18,
     "notes": [],
-    "computed_at": "2026-09-28T02:25:00.285125+00:00"
+    "computed_at": "2026-09-28T03:17:18.196240+00:00"
   }
 ]
