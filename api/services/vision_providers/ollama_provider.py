@@ -145,9 +145,25 @@ class OllamaVisionProvider(VisionProvider):
             raise VisionProviderError(f"Ollama returned an empty 'response' field: {body!r}")
 
         try:
-            return extract_json_object(raw_text)
+            parsed = extract_json_object(raw_text)
         except json.JSONDecodeError as exc:
             raise VisionProviderError(
                 f"could not extract a JSON object from Ollama's response text ({exc}). "
                 f"Raw text (truncated): {raw_text[:300]!r}"
             ) from exc
+
+        # moondream (and likely other small local models) reliably gets the
+        # structured fields right but sometimes leaves "evidence" as "" -
+        # ClassifierResult requires min_length=1 there. Discarding an
+        # otherwise-valid, well-formed classification over one empty
+        # supplementary field throws away real signal (predicted_category/
+        # confidence/matches_declared) for no benefit - observed empirically:
+        # this exact failure degraded 16/16 live classifications to a
+        # fabricated-looking "uncertain, confidence=0.0" during the Reality
+        # Pass reseed, when the model was very likely actually answering.
+        # Coerce here (provider-specific quirk), not by loosening
+        # ClassifierResult's schema for every provider.
+        if isinstance(parsed.get("evidence"), str) and not parsed["evidence"].strip():
+            parsed["evidence"] = "(model did not provide a text justification for this classification)"
+
+        return parsed
