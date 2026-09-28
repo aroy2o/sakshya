@@ -1,0 +1,25 @@
+# Demo watershed config — PRD §14 / CLAUDE.md "Watershed choice is config,
+# not code". The seed script (scripts/seed_data.py) reads this file; its own
+# path is itself overridable via the SEED_WATERSHED_CONFIG env var, so
+# switching watersheds is a one-file swap with zero code changes.
+#
+# Current: Marigaon, HYBAS_ID 4120883730 — PRD §14's leading candidate, used
+# per the autonomous-run instruction to proceed without waiting for the
+# pending visual-coherence/MIS-list confirmation.
+
+id: "4120883730"
+name: "Marigaon"
+project_id: "SAKSHYA-DEMO"
+state: "Assam"
+district: "Morigaon"
+
+# PLACEHOLDER boundary — NOT the real Marigaon MWS polygon. PRD §10 FR1.5
+# explicitly allows a placeholder here to unblock Phase 1; swap
+# scripts/data/marigaon_placeholder.geojson for the real boundary later.
+boundary_path: "scripts/data/marigaon_placeholder.geojson"
+is_synthetic_boundary: true
+
+baseline_start: "2023-01-01"
+baseline_end: "2023-03-31"
+latest_start: "2025-01-01"
+latest_end: "2025-03-31"

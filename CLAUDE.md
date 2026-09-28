@@ -78,7 +78,36 @@ At the start of every session: state which phase you're working on and which FR 
 
 ## How to run
 
-To be filled in during Phase 1 once the scaffold exists (dev server commands, migration commands, test commands). Keep this section current — a stale "how to run" is worse than none.
+### Backend (API)
+
+```bash
+# 1. Local Postgres+PostGIS (no Supabase credentials in this environment yet —
+#    swap DATABASE_URL for the real Supabase string at deploy time, no code change)
+cd api
+docker compose up -d          # db on localhost:5434, db_test on localhost:5433
+
+# 2. Python env
+uv venv .venv --python 3.12
+uv pip install --python .venv/bin/python -r requirements-dev.txt
+cp ../.env.example .env       # then edit if your ports/paths differ
+
+# 3. Schema
+.venv/bin/python -m alembic upgrade head
+
+# 4. Run the API
+.venv/bin/python -m uvicorn app.main:app --reload --port 8000
+# -> http://localhost:8000/docs (Swagger), http://localhost:8000/health
+
+# 5. Tests (pure geo_integrity unit tests need no DB; API integration tests
+#    need db_test up, per step 1 — DATABASE_URL_TEST in .env points at it)
+.venv/bin/python -m pytest -v
+
+# 6. Seed the demo watershed + synthetic field records through the real API
+#    (server from step 4 must be running)
+python scripts/seed_data.py --regenerate --base-url http://localhost:8000
+```
+
+Lint/format: `.venv/bin/python -m black app tests && .venv/bin/python -m ruff check app tests`.
 
 ## Reference material in this repo
 

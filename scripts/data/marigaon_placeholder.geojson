@@ -1,0 +1,18 @@
+{
+  "type": "Polygon",
+  "_comment": "PLACEHOLDER boundary polygon for the Marigaon (HYBAS_ID 4120883730) demo watershed. This is NOT the real MWS/HydroBASINS boundary - it is a hand-drawn irregular polygon in roughly the right part of Morigaon district, Assam, sized like a plausible micro-watershed (~5-8km across). It exists only to unblock Phase 1 per PRD.md §10 FR1.5, which explicitly allows this. Swap this file for the real boundary GeoJSON whenever it's available - scripts/config/watershed.yaml's boundary_path is the only thing that needs to change, no code changes required.",
+  "coordinates": [
+    [
+      [92.280, 26.180],
+      [92.305, 26.165],
+      [92.335, 26.175],
+      [92.345, 26.200],
+      [92.330, 26.225],
+      [92.300, 26.235],
+      [92.275, 26.225],
+      [92.260, 26.205],
+      [92.265, 26.185],
+      [92.280, 26.180]
+    ]
+  ]
+}

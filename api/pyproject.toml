@@ -1,0 +1,19 @@
+[tool.black]
+line-length = 110
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# A003: GeoFlag.max/points deliberately shadow builtins to match the
+#   {rule, passed, points, max, detail} API contract exactly.
+# B008: Depends()/File()/Form() in argument defaults is FastAPI's own
+#   idiomatic dependency-injection pattern, not a real bug.
+ignore = ["A003", "B008"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

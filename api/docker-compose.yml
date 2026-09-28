@@ -1,0 +1,35 @@
+# Local dev + test Postgres/PostGIS — this repo has no Supabase credentials
+# available in the autonomous-run environment, so this substitutes for
+# Supabase during local development and the pytest integration suite.
+# DATABASE_URL / DATABASE_URL_TEST in .env should point at these services.
+# Swap for the real Supabase DATABASE_URL at deploy time (Phase 7) - no code
+# changes needed either way, it's all just a connection string.
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sakshya
+      POSTGRES_PASSWORD: sakshya
+      POSTGRES_DB: sakshya
+    ports:
+      # Host port 5434, not 5432: this environment already has a system
+      # Postgres bound to 5432. Container-internal port is still 5432.
+      - "5434:5432"
+    volumes:
+      - sakshya_pgdata:/var/lib/postgresql/data
+
+  db_test:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sakshya
+      POSTGRES_PASSWORD: sakshya
+      POSTGRES_DB: sakshya_test
+    ports:
+      - "5433:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+
+volumes:
+  sakshya_pgdata:
