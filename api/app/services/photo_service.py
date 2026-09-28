@@ -65,6 +65,17 @@ def extract_exif(image_bytes: bytes) -> ExifData:
     return ExifData(gps=_extract_gps(tags), captured_at=_extract_datetime(tags))
 
 
+def resolve_local_path(photo_url: str) -> Path:
+    """Maps a stored photo1_url/photo2_url (an http(s) URL under
+    PHOTO_PUBLIC_BASE_URL) back to the local file save_photo() wrote it to.
+    Safe because save_photo() always names the file with a bare uuid+suffix
+    and serves it directly from PHOTO_STORAGE_DIR with that same name - the
+    URL's last path segment IS the on-disk filename."""
+    settings = get_settings()
+    filename = Path(photo_url).name
+    return Path(settings.photo_storage_dir) / filename
+
+
 def save_photo(image_bytes: bytes, suffix: str = ".jpg") -> tuple[str, str]:
     """Persist an uploaded photo to disk. Returns (filename, public_url)."""
     settings = get_settings()

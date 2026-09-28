@@ -33,6 +33,14 @@ class Settings(BaseSettings):
     # Demo watershed config path — never hardcoded, per PRD §14 / CLAUDE.md
     seed_watershed_config: str = "scripts/config/watershed.yaml"
 
+    # Phase 3 — geospatial-engineer's precompute output root (thematic layer
+    # manifests/rasters/geojson + per-record satellite_results.json). Read-only
+    # from the API's perspective — never written to, never computed live here
+    # (precompute-first non-negotiable). Resolved relative to the process's cwd,
+    # same convention as photo_storage_dir (run the API from /api).
+    geospatial_output_dir: str = "../scripts/output"
+    thematic_public_base_url: str = "http://localhost:8000/static/geospatial"
+
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     @property
