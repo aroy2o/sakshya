@@ -168,6 +168,22 @@ Identical to the earlier test — the human hasn't yet granted the IAM role in G
 
 Dispatching R1+R2 → geospatial-engineer, R3+R4 → backend-engineer, R5 → vision-ai-engineer, all in parallel (3 agents, matching the plan's own "max three at once" cap to avoid repeating the earlier rate-limit incident).
 
+### R3+R4 — landed and committed (`91693f4`)
+
+Verified independently: 127 API + 118 scripts pytest, live-curled `GET /programme/marigaon` and `GET /provenance`, hand-checked the moderation backlog math (51.2% = 123/240) and category breakdown (sums to 240 exactly) against the raw output. Real Marigaon WDC-1 project data: 263 work codes, 240 geotagged, backlog computed exactly not estimated. `GET /districts/geotag-coverage`'s existing Morigaon numbers cross-checked exactly against R3's independent fetch — no discrepancy. `docs/DATA_SOURCES.md` and per-slice-owner `GET /provenance` structure built for safe concurrent editing (3 agents were writing to shared files at once) — confirmed no conflicts.
+
+### R1+R2 — landed and committed (`ac3921f`)
+
+Verified independently: 118/118 scripts pytest, live-curled `GET /mws/4120883730` confirming the real boundary swap. Found and fixed a real bug myself: `boundary_source` was written to MongoDB correctly but silently dropped from the API response — the Pydantic schema didn't have the field, same failure class as the earlier `needs_review` bug. Fixed both `MWSSummary`/`MWSDetail` schemas and the router.
+
+**Real, significant finding verified independently (not just trusting the agent's report):** geometrically checked (Shapely, against live API data) that all 17 existing synthetic seed assets now fall **outside** the new real boundary — 0/17 inside. Dispatched backend-engineer to reseed inside the real boundary, exactly the scenario FR1.5's "stays valid regardless of which watershed we finalize" design was built for.
+
+R2's real satellite analysis (matched-control bootstrap DiD) is fully built and tested but still produces placeholder numbers — re-confirmed live that GEE is still blocked (same permission error), so no live Earth Engine call was possible. Ready to run for real the moment credentials work.
+
+### R5 — in progress, resumed after a second rate-limit hit
+
+Hit "session limit, resets 5:40pm (Asia/Kolkata)" mid-benchmark-run (only 5 of 45 curated real photos had been classified). Dataset curation itself is excellent and complete: 45 real CC-licensed photos from Wikimedia Commons across 8/9 PRD §15.1 categories (OM has no real photos found — disclosed as a known gap, not worked around) plus 3 deliberate off-topic distractors, per-file licence recorded (6 different licence types found, never assumed uniform). Resumed (rate limit had reset by the time this was noticed) to finish the classification run, build the confusion matrix, and wire `GET /classifier/benchmark`.
+
 ## Needs your attention
 
 **Current:**
