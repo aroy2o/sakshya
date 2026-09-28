@@ -107,6 +107,22 @@ Verified independently: 92/92 pytest, and live-curled `GET /assets/18` myself ag
 2. frontend-engineer's `zAiResult` was a strict subset missing `needs_review`, `flags`, `provider`, `model`, `classified_at` — zod was silently stripping these rather than erroring, so **`needs_review` (the FR2.2 gate) was being silently dropped** even though backend persists and returns it correctly. Told frontend-engineer to add the 5 fields and make `AiClassifierCard` visibly surface `needs_review`.
 3. Smaller: `GET /mws/{id}/thematic/{layer}`'s raster response is a single bounds-anchored static PNG (all geospatial-engineer's precompute produces), not an XYZ tile pyramid, despite the field being named `tile_url`. Told frontend-engineer to render it as a MapLibre `ImageSource` positioned by the response's `bounds`, not a `RasterSource` with a tile template.
 
+Frontend-engineer is now applying these fixes and swapping mocks for live calls — in progress as of this writing.
+
+### vision-ai-engineer — Phase 2 photo generation complete, committed (`0e15d96`)
+
+Resumed after the rate-limit reset, finished FR2.0/FR2.4: full 22-photo set (18 good across all 9 categories + 4 deliberately-mismatched), fixed 3 categories (AM/BN/OM) that were rendering as generic aerial shots with no visible structure (adding "a person actively at/inspecting the structure" to the prompt reliably fixed ground-level framing — documented as the softest 3 of 9, still usable), fixed two real bugs (one network failure used to discard an entire batch; `declared_activity` was accidentally a full prompt sentence instead of a short DRISHTI-style label). `batch_classify.py` run end-to-end: 18/18 good records correctly score `matches=yes`, all 4 mismatch records correctly score `matches=no`/`flags=[activity_mismatch]`. 93/93 pytest, re-verified independently.
+
+**Commit-hygiene note:** commit `0e15d96`'s message undersells its own diff — I intended a small config-only "chore" commit (`.env.example`/`.gitignore`) but the vision-ai photo files were already staged from a prior step and got swept into the same commit when I ran `git commit` without re-checking what was staged. The content itself is correct and independently verified either way; noting this so the history reads honestly rather than leaving the mismatch between message and diff unexplained.
+
+### New instructions from the human (2026-09-28, ~08:15 IST) — mid-session, live
+
+The human returned briefly and gave two new instructions, both now in progress:
+1. **Vision provider: switch to a free, local model via Ollama** instead of relying on a hosted API. Ollama is installed in this environment but no vision model was pulled yet; recommended `moondream` (~1.7GB) given tight RAM (~5.9GB available). Dispatched to vision-ai-engineer.
+2. **Database: switch from PostgreSQL+PostGIS to MongoDB.** This updates CLAUDE.md's locked tech-stack choice — flagged the cost to the human first (Postgres was already free/local via Docker, no Supabase account needed, and PostGIS's native spatial support fits this project's core geo-queries well; switching means rewriting Phase 1's schema/models/migrations and re-verifying everything already built). Human explicitly confirmed they want the switch anyway, informed of the cost. Dispatched to backend-engineer as a persistence-layer migration — **API contract must stay identical** (frontend is live-verifying against it right now), only the storage engine changes. PRD.md §8 (currently PostGIS DDL, described as "the schema of record") will need updating once backend-engineer proposes the new collection shapes.
+
+Also flagged to the human: the pasted "GEE credentials" were not Earth Engine credentials — a Firebase Admin SDK service account from an unrelated project ("green-dukan"), and only Key IDs (not an actual private key) were shared. Not used for anything. Real GEE credentials, when available, should be supplied as a file path (`GEE_SERVICE_ACCOUNT_KEY_PATH`), never pasted inline.
+
 Dispatched frontend-engineer to fix both schemas, adjust the chart/badge rendering, then flip `VITE_API_MODE` to `live` and verify against the real 17-asset dataset.
 
 ## Needs your attention
