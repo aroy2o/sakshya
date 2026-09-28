@@ -1,0 +1,10 @@
+# Scoped dependency list for vision-ai-engineer's Phase 2 slice (FR2.0-FR2.4).
+# Deliberately namespaced separately from api/requirements.txt, which is
+# backend-engineer's Phase 1 deliverable and doesn't exist in this repo yet —
+# merge these into the main requirements file at Sync Point 1 rather than
+# treating this as the final dependency manifest for /api.
+pydantic>=2.9,<3
+pillow>=10.3,<11
+piexif>=1.1,<2
+requests>=2.32,<3
+pytest>=8,<10
