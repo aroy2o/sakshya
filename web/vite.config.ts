@@ -11,4 +11,11 @@ export default defineConfig({
       '@': path.resolve(import.meta.dirname, './src'),
     },
   },
+  // maplibre-gl ships its own web worker as a separate file; Vite's dep
+  // pre-bundler doesn't follow that dynamic worker import correctly and
+  // breaks it ("Worker failed to load... maplibre-gl-worker.mjs" in dev).
+  // Excluding it from pre-bundling is maplibre-gl's own documented fix.
+  optimizeDeps: {
+    exclude: ['maplibre-gl'],
+  },
 })
