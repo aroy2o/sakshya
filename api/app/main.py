@@ -8,7 +8,17 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import get_settings
 from app.db import ensure_indexes
-from app.routers import assets, districts, health, mws, records, thematic
+from app.routers import (
+    assets,
+    classifier_benchmark,
+    districts,
+    health,
+    mws,
+    programme,
+    provenance,
+    records,
+    thematic,
+)
 
 
 def create_app() -> FastAPI:
@@ -42,6 +52,9 @@ def create_app() -> FastAPI:
     app.include_router(assets.router)
     app.include_router(thematic.router)
     app.include_router(districts.router)
+    app.include_router(programme.router)
+    app.include_router(provenance.router)
+    app.include_router(classifier_benchmark.router)
 
     photo_dir = Path(settings.photo_storage_dir)
     photo_dir.mkdir(parents=True, exist_ok=True)
@@ -55,6 +68,19 @@ def create_app() -> FastAPI:
     geospatial_dir = Path(settings.geospatial_output_dir)
     app.mount(
         "/static/geospatial", StaticFiles(directory=str(geospatial_dir), check_dir=False), name="geospatial"
+    )
+
+    # R5's downloaded real-photo benchmark set (scripts/real_photos/) — same
+    # check_dir=False reasoning as geospatial_dir: a fresh checkout that
+    # hasn't run scripts/fetch_real_benchmark_photos.py yet must not crash
+    # startup, it should just 404 until the photos exist. Lets the frontend
+    # show the actual benchmark photo next to its ground truth/prediction if
+    # it chooses to, without re-fetching from Commons.
+    real_photos_dir = Path(settings.real_photos_output_dir)
+    app.mount(
+        "/static/real_photos",
+        StaticFiles(directory=str(real_photos_dir), check_dir=False),
+        name="real_photos",
     )
 
     return app

@@ -69,3 +69,71 @@ THEMATIC_MANIFEST_PATH = THEMATIC_DIR / "manifest.json"
 # differs.
 BACKEND_SEED_ASSETS_PATH = SCRIPTS_DIR.parent / "api" / "seed" / "field_records.json"
 BACKEND_SEED_BOUNDARY_PATH = SCRIPTS_DIR.parent / "api" / "seed" / "mws_boundary.geojson"
+
+# --- Reality Pass R1/R2 (docs/REAL_DATA_PLAN.md) ---------------------------
+# Real-data source identity. Overridable via env so "watershed choice is
+# config, not code" (CLAUDE.md non-negotiable) still holds for the Reality
+# Pass sourcing scripts, not just the original seed pipeline.
+REAL_DATA_DIR = SCRIPTS_DIR.parent / "data" / "real"
+REAL_DATA_RAW_CACHE_DIR = REAL_DATA_DIR / "raw_cache"
+
+TREATED_DISTRICT_NAME = os.environ.get("SAKSHYA_TREATED_DISTRICT", "Marigaon")  # LGD dtname spelling
+TREATED_STATE_NAME = os.environ.get("SAKSHYA_TREATED_STATE", "ASSAM")
+
+# bharatlas.com CC0-1.0 mirrors (REAL_DATA_PLAN.md §2, items 1 and 3).
+BHARATLAS_LGD_DISTRICTS_URL = os.environ.get(
+    "SAKSHYA_LGD_DISTRICTS_URL",
+    "https://bharatlas.com/api/dl/admin/districts/LGD_Districts.parquet",
+)
+BHARATLAS_SLUSI_MWS_URL = os.environ.get(
+    "SAKSHYA_SLUSI_MWS_URL",
+    "https://pub-0429b8e3b5a946e69ea007df844a6f1c.r2.dev/environment/slusi-micro-watersheds/SLUSI_MicroWatersheds.parquet",
+)
+
+# ESA WorldCover v200 (2021), 10 m, public AWS Open Data bucket, no auth.
+# Cloud-Optimized GeoTIFF, 3x3 degree tiles named by SW corner
+# (verified this session: prefix listing returned exactly one match).
+ESA_WORLDCOVER_S3_TEMPLATE = os.environ.get(
+    "SAKSHYA_ESA_WORLDCOVER_S3_TEMPLATE",
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/"
+    "ESA_WorldCover_10m_2021_v200_{tile}_Map.tif",
+)
+# WorldCover class codes (ESA WorldCover v200 product legend).
+WORLDCOVER_CROP_CLASS = 40
+WORLDCOVER_BUILTUP_CLASS = 50
+WORLDCOVER_WATER_CLASS = 80
+WORLDCOVER_WETLAND_CLASS = 90
+WORLDCOVER_TREE_CLASS = 10
+
+# Copernicus DEM GLO-30, 30 m, public AWS Open Data bucket, no auth.
+# Cloud-Optimized GeoTIFF, 1x1 degree tiles (verified this session). `tile`
+# must already be in the bucket's own "N26_00_E092_00" form (see
+# _dem_tiles_for_bbox in fetch_real_boundaries.py) — NOT plain "N26E092".
+COPERNICUS_DEM_S3_TEMPLATE = os.environ.get(
+    "SAKSHYA_COPERNICUS_DEM_S3_TEMPLATE",
+    "https://copernicus-dem-30m.s3.amazonaws.com/"
+    "Copernicus_DSM_COG_10_{tile}_DEM/Copernicus_DSM_COG_10_{tile}_DEM.tif",
+)
+
+# UTM zone for Assam — used for area-accurate (not degree-squared) polygon
+# area computation. EPSG:32646 = WGS84 / UTM zone 46N, correct for
+# Marigaon/Assam's ~92E longitude.
+LOCAL_PROJECTED_CRS = os.environ.get("SAKSHYA_LOCAL_CRS", "EPSG:32646")
+
+# How many top-ranked, non-excluded candidate micro-watersheds become the
+# demo's "treated" boundary when no human-supplied config/treated_mws.txt
+# exists (REAL_DATA_PLAN.md §9 item 2 is still an open human step as of
+# this run). See candidate_ranking.py for the scoring/exclusion logic.
+TOP_K_TREATED = int(os.environ.get("SAKSHYA_TOP_K_TREATED", "5"))
+
+# --- R2 watershed-level time series (REAL_DATA_PLAN.md §4.2) ---------------
+# Annual dry-season (Nov-Feb) windows, 2016 -> most recent COMPLETE dry
+# season before today (2026-09-28 at the time this was set — dry season
+# "2025" runs Nov 2025 -> Feb 2026, already finished). Real WDC-1 project
+# start = 2021-22 per REAL_DATA_PLAN.md §1's `MARIGAON-WDC - 1 /2021-22`.
+TIMESERIES_START_YEAR = int(os.environ.get("SAKSHYA_TIMESERIES_START_YEAR", "2016"))
+TIMESERIES_END_YEAR = int(os.environ.get("SAKSHYA_TIMESERIES_END_YEAR", "2025"))
+PROJECT_START_YEAR = int(os.environ.get("SAKSHYA_PROJECT_START_YEAR", "2021"))
+
+WATERSHED_TIMESERIES_PATH = OUTPUT_DIR / "watershed_timeseries.json"
+WATERSHED_DID_SUMMARY_PATH = OUTPUT_DIR / "watershed_did_summary.json"

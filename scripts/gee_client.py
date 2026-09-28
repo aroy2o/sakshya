@@ -175,6 +175,20 @@ def seasonal_rainfall(geom, start: str, end: str) -> float:
     return result.get("precipitation", 0.0)
 
 
+def geometry_from_geojson(geojson_geometry: dict):
+    """
+    Build an ee.Geometry from an arbitrary GeoJSON Polygon/MultiPolygon —
+    used by R2's watershed-level analysis (real treated/control MWS
+    polygons, not asset point-buffers). `build_zones()` above stays
+    point-buffer-only for asset-level scoring (FR3.1); this is the
+    polygon-native counterpart for watershed-level DiD
+    (REAL_DATA_PLAN.md §4.1).
+    """
+    initialize()
+    ee = _ee
+    return ee.Geometry(geojson_geometry)
+
+
 def fetch_hydrobasin_boundary(hybas_id: int) -> dict:
     """Fetch a HydroBASINS L12 polygon by HYBAS_ID as GeoJSON (fallback MWS
     boundary source per PLAYBOOK §5.3/§5.5, used only when no official MWS

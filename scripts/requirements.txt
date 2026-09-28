@@ -13,3 +13,16 @@ rasterio>=1.3
 whitebox>=2.3
 Pillow>=10.3
 pytest>=8.0
+
+# Reality Pass R1/R2 (docs/REAL_DATA_PLAN.md) — sourcing real boundaries
+# and land-cover/DEM data without a live GEE call. Still offline/scripts-
+# only, same precompute-first rule as everything else in this file.
+duckdb>=1.5        # bbox-pushdown reads of the bharatlas.com SLUSI/LGD parquet mirrors
+pyproj>=3.6         # UTM reprojection for area-accurate hectare computation
+pymongo>=4.0         # scripts/fetch_real_boundaries.py --apply-db writes directly to the mws collection
+python-dotenv>=1.0  # loads .env for scripts run outside the API process
+
+# Reality Pass R5 — scripts/fetch_real_benchmark_photos.py (Wikimedia Commons
+# API + file download) and scripts/run_real_photo_benchmark.py (reuses the
+# api/services/vision_providers/ollama_provider.py HTTP client).
+requests>=2.31

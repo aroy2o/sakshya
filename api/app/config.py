@@ -45,6 +45,23 @@ class Settings(BaseSettings):
     geospatial_output_dir: str = "../scripts/output"
     thematic_public_base_url: str = "http://localhost:8000/static/geospatial"
 
+    # Reality Pass R3 — scripts/fetch_gt2.py's precomputed WDC-PMKSY registry
+    # output (workcodes_marigaon_wdc1.csv + programme_marigaon.json). Read-only
+    # from the API's perspective, same precompute-first convention as
+    # geospatial_output_dir above — GET /programme/marigaon never fetches the
+    # government site itself. Relative to the process's cwd (run the API from
+    # /api).
+    registry_output_dir: str = "../scripts/output/registry"
+
+    # Reality Pass R5 — scripts/fetch_real_benchmark_photos.py's downloaded
+    # Commons photos + manifest.json, and scripts/run_real_photo_benchmark.py's
+    # benchmark_summary_<model>.json outputs. Read-only from the API's
+    # perspective, same precompute-first convention as registry_output_dir
+    # above — GET /classifier/benchmark never calls Ollama or Wikimedia
+    # Commons itself, it only reads what those two offline scripts already
+    # wrote to disk.
+    real_photos_output_dir: str = "../scripts/real_photos"
+
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     @property

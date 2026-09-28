@@ -13,11 +13,19 @@ project_id: "SAKSHYA-DEMO"
 state: "Assam"
 district: "Morigaon"
 
-# PLACEHOLDER boundary — NOT the real Marigaon MWS polygon. PRD §10 FR1.5
-# explicitly allows a placeholder here to unblock Phase 1; swap
-# scripts/data/marigaon_placeholder.geojson for the real boundary later.
-boundary_path: "scripts/data/marigaon_placeholder.geojson"
-is_synthetic_boundary: true
+# REAL boundary (Reality Pass R1, 2026-09-28) — union of 5 SLUSI micro-
+# watershed polygons in Marigaon district, replacing the old placeholder.
+# scripts/data/marigaon_real_boundary.geojson is a bare-geometry extraction
+# of geospatial-engineer's data/real/treated_boundary.geojson (a GeoJSON
+# Feature; this seed pipeline expects a bare geometry object, same
+# convention as the old marigaon_placeholder.geojson it replaces). Source:
+# SLUSI micro-watersheds, bharatlas.com CC0-1.0 mirror — see
+# docs/DATA_SOURCES.md's "Geospatial boundaries (R1)" section. Still
+# pending human confirmation against the real MARIGAON-WDC-1/2021-22
+# project's actual MWS codes (REAL_DATA_PLAN.md §9 item 2) — the live mws
+# document's `boundary_source` field carries this caveat verbatim.
+boundary_path: "scripts/data/marigaon_real_boundary.geojson"
+is_synthetic_boundary: false
 
 baseline_start: "2023-01-01"
 baseline_end: "2023-03-31"
