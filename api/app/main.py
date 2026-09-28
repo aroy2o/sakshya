@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import get_settings
 from app.db import ensure_indexes
-from app.routers import assets, health, mws, records, thematic
+from app.routers import assets, districts, health, mws, records, thematic
 
 
 def create_app() -> FastAPI:
@@ -41,6 +41,7 @@ def create_app() -> FastAPI:
     app.include_router(records.router)
     app.include_router(assets.router)
     app.include_router(thematic.router)
+    app.include_router(districts.router)
 
     photo_dir = Path(settings.photo_storage_dir)
     photo_dir.mkdir(parents=True, exist_ok=True)
