@@ -33,3 +33,6 @@ scripts/seed/output/
 
 # Claude Code harness-internal state
 .claude/scheduled_tasks.lock
+
+# Real credential files - never commit
+secrets/
