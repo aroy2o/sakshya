@@ -1,0 +1,134 @@
+{
+  "district": "Morigaon",
+  "district_source_spelling": "MARIGAON",
+  "state": "Assam",
+  "district_total_projects": 2,
+  "district_total_work_codes": 309,
+  "district_geotagged_work_codes": 267,
+  "district_non_geotagged_work_codes": 42,
+  "projects": [
+    {
+      "project_id": 90,
+      "project_name": "MARIGAON-WDC - 1 /2021-22",
+      "nrm_total": 73,
+      "epa_total": 11,
+      "livelihood_total": 112,
+      "production_total": 67,
+      "total_work_codes": 263,
+      "geotagged_work_codes": 240,
+      "non_geotagged_work_codes": 23
+    },
+    {
+      "project_id": 1278,
+      "project_name": "MARIGAON-WDC - 2 /2025-26",
+      "nrm_total": 42,
+      "epa_total": 4,
+      "livelihood_total": 0,
+      "production_total": 0,
+      "total_work_codes": 46,
+      "geotagged_work_codes": 27,
+      "non_geotagged_work_codes": 19
+    }
+  ],
+  "focus_project": {
+    "project_id": 90,
+    "project_name": "MARIGAON-WDC - 1 /2021-22",
+    "nrm_total": 73,
+    "epa_total": 11,
+    "livelihood_total": 112,
+    "production_total": 67,
+    "total_work_codes": 263,
+    "geotagged_work_codes": 240,
+    "non_geotagged_work_codes": 23,
+    "note": "The work-code detail drill-down (this script's main target) lists only the 240 GEOTAGGED work codes out of this project's 263 total \u2014 the 23 non-geotagged ones have no photo submitted at any stage, so they carry no Pre/Mid/Post status and are outside this table."
+  },
+  "category_breakdown": [
+    {
+      "category": "BN",
+      "work_code_count": 24,
+      "share_pct_of_geotagged": 10.0
+    },
+    {
+      "category": "LH",
+      "work_code_count": 81,
+      "share_pct_of_geotagged": 33.8
+    },
+    {
+      "category": "LS",
+      "work_code_count": 92,
+      "share_pct_of_geotagged": 38.3
+    },
+    {
+      "category": "NC",
+      "work_code_count": 4,
+      "share_pct_of_geotagged": 1.7
+    },
+    {
+      "category": "OM",
+      "work_code_count": 14,
+      "share_pct_of_geotagged": 5.8
+    },
+    {
+      "category": "PT",
+      "work_code_count": 23,
+      "share_pct_of_geotagged": 9.6
+    },
+    {
+      "category": "SM",
+      "work_code_count": 2,
+      "share_pct_of_geotagged": 0.8
+    }
+  ],
+  "unmapped_activities": [
+    "Borewell and Hand Pump",
+    "Farm implement",
+    "Others",
+    "Rural Infrastructure"
+  ],
+  "moderation_backlog": {
+    "pre": {
+      "accepted": 109,
+      "yet_to_moderate": 123,
+      "rejected": 1,
+      "not_submitted": 6,
+      "mixed": 1,
+      "other": 0,
+      "yet_to_moderate_pct_of_geotagged": 51.2
+    },
+    "mid": {
+      "accepted": 5,
+      "yet_to_moderate": 1,
+      "rejected": 0,
+      "not_submitted": 234,
+      "mixed": 0,
+      "other": 0,
+      "yet_to_moderate_pct_of_geotagged": 0.4
+    },
+    "post": {
+      "accepted": 11,
+      "yet_to_moderate": 0,
+      "rejected": 0,
+      "not_submitted": 229,
+      "mixed": 0,
+      "other": 0,
+      "yet_to_moderate_pct_of_geotagged": 0.0
+    }
+  },
+  "moderation_backlog_denominator": 240,
+  "moderation_backlog_note": "Percentages are of the 240 geotagged work codes in the focus project (MARIGAON-WDC - 1 /2021-22) that actually have a Pre/Mid/Post submission to moderate \u2014 not of the district's full registry. 'not_submitted' means no photo was uploaded for that stage yet (e.g. mid/post-implementation photos for a still-early work), which is a distinct state from 'yet_to_moderate' (a photo was submitted and is awaiting a moderator's Accept/Reject decision) found empirically in this data, not documented anywhere in REAL_DATA_PLAN.md. A 'mixed' bucket also exists for the rare work code with two submissions at the same stage and different outcomes (e.g. one Accepted, one Rejected) \u2014 also found empirically, not force-fit into a single status.",
+  "activity_category_mapping_source": "docs/REAL_DATA_PLAN.md \u00a75",
+  "source_report": "WDC-PMKSY 2.0 MIS, Report GT2 (Work Code Status with Geotagging Details)",
+  "source_urls": {
+    "state": "https://wdcpmksy.dolr.gov.in/getAllAssetGeoData",
+    "district": "https://wdcpmksy.dolr.gov.in/getDistWiseAssetGeoData?stcode=18&stname=ASSAM",
+    "project": "https://wdcpmksy.dolr.gov.in/getProjWiseAssetGeoData?dcode=296&stname=ASSAM&distname=MARIGAON",
+    "work_code_detail": "https://wdcpmksy.dolr.gov.in/getProjDtlAssetGeoData?projid=90&stname=ASSAM&distname=MARIGAON&projname=MARIGAON-WDC+-+1+%2F2021-22"
+  },
+  "retrieved_at": {
+    "state": "2026-09-28T10:24:44.516530+00:00",
+    "district": "2026-09-28T10:25:23.619651+00:00",
+    "project": "2026-09-28T10:25:44.782399+00:00",
+    "work_code_detail": "2026-09-28T10:25:58.625468+00:00"
+  },
+  "is_synthetic": false
+}
