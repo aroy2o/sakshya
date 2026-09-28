@@ -1,0 +1,494 @@
+[
+  {
+    "record_id": "am_01",
+    "declared_category": "AM",
+    "declared_activity": "Contour Bund",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "AM",
+      "predicted_activity": "Contour Bund",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329365Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "am_02",
+    "declared_category": "AM",
+    "declared_activity": "Bench Terracing",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "AM",
+      "predicted_activity": "Bench Terracing",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329486Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "vm_01",
+    "declared_category": "VM",
+    "declared_activity": "Block Plantation",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "VM",
+      "predicted_activity": "Block Plantation",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329537Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "vm_02",
+    "declared_category": "VM",
+    "declared_activity": "Grass Turfing",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "VM",
+      "predicted_activity": "Grass Turfing",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329572Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "sm_01",
+    "declared_category": "SM",
+    "declared_activity": "Check Dam",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "SM",
+      "predicted_activity": "Check Dam",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329603Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "sm_02",
+    "declared_category": "SM",
+    "declared_activity": "Boulder Check Structure",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "SM",
+      "predicted_activity": "Boulder Check Structure",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329633Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "pt_01",
+    "declared_category": "PT",
+    "declared_activity": "Farm Pond",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "PT",
+      "predicted_activity": "Farm Pond",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329663Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "pt_02",
+    "declared_category": "PT",
+    "declared_activity": "Percolation Tank",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "PT",
+      "predicted_activity": "Percolation Tank",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329690Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "nc_01",
+    "declared_category": "NC",
+    "declared_activity": "Nala Deepening",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "NC",
+      "predicted_activity": "Nala Deepening",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329714Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "nc_02",
+    "declared_category": "NC",
+    "declared_activity": "Diversion Channel",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "NC",
+      "predicted_activity": "Diversion Channel",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329739Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "bn_01",
+    "declared_category": "BN",
+    "declared_activity": "Earthen Bund",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "BN",
+      "predicted_activity": "Earthen Bund",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329765Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "bn_02",
+    "declared_category": "BN",
+    "declared_activity": "Boulder Bund",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "BN",
+      "predicted_activity": "Boulder Bund",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329791Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "ls_01",
+    "declared_category": "LS",
+    "declared_activity": "Cattle Shelter",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "LS",
+      "predicted_activity": "Cattle Shelter",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329817Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "ls_02",
+    "declared_category": "LS",
+    "declared_activity": "Livestock Health Camp",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "LS",
+      "predicted_activity": "Livestock Health Camp",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329841Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "lh_01",
+    "declared_category": "LH",
+    "declared_activity": "Horticulture Orchard",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "LH",
+      "predicted_activity": "Horticulture Orchard",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329865Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "lh_02",
+    "declared_category": "LH",
+    "declared_activity": "Fisheries Pond",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "LH",
+      "predicted_activity": "Fisheries Pond",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329889Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "om_01",
+    "declared_category": "OM",
+    "declared_activity": "Jungle Clearance",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "OM",
+      "predicted_activity": "Jungle Clearance",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329913Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "om_02",
+    "declared_category": "OM",
+    "declared_activity": "Agro Service Centre",
+    "is_mismatch_test": false,
+    "ai_result": {
+      "predicted_category": "OM",
+      "predicted_activity": "Agro Service Centre",
+      "construction_stage": "completed",
+      "water_visible": "yes",
+      "vegetation_cover": "medium",
+      "matches_declared": "yes",
+      "confidence": 0.9,
+      "evidence": "Structure and surrounding context are consistent with the declared activity.",
+      "needs_review": false,
+      "flags": [],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329937Z"
+    },
+    "visual_score": 30
+  },
+  {
+    "record_id": "mismatch_01",
+    "declared_category": "SM",
+    "declared_activity": "Check Dam",
+    "is_mismatch_test": true,
+    "ai_result": {
+      "predicted_category": "VM",
+      "predicted_activity": "a different structure than declared",
+      "construction_stage": "completed",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "no",
+      "confidence": 0.85,
+      "evidence": "The structure visible in the photo does not match the declared activity.",
+      "needs_review": false,
+      "flags": [
+        "activity_mismatch"
+      ],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329965Z"
+    },
+    "visual_score": 0
+  },
+  {
+    "record_id": "mismatch_02",
+    "declared_category": "PT",
+    "declared_activity": "Farm Pond",
+    "is_mismatch_test": true,
+    "ai_result": {
+      "predicted_category": "BN",
+      "predicted_activity": "a different structure than declared",
+      "construction_stage": "completed",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "no",
+      "confidence": 0.85,
+      "evidence": "The structure visible in the photo does not match the declared activity.",
+      "needs_review": false,
+      "flags": [
+        "activity_mismatch"
+      ],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.329995Z"
+    },
+    "visual_score": 0
+  },
+  {
+    "record_id": "mismatch_03",
+    "declared_category": "VM",
+    "declared_activity": "Block Plantation",
+    "is_mismatch_test": true,
+    "ai_result": {
+      "predicted_category": "SM",
+      "predicted_activity": "a different structure than declared",
+      "construction_stage": "completed",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "no",
+      "confidence": 0.85,
+      "evidence": "The structure visible in the photo does not match the declared activity.",
+      "needs_review": false,
+      "flags": [
+        "activity_mismatch"
+      ],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.330020Z"
+    },
+    "visual_score": 0
+  },
+  {
+    "record_id": "mismatch_04",
+    "declared_category": "BN",
+    "declared_activity": "Contour Bund",
+    "is_mismatch_test": true,
+    "ai_result": {
+      "predicted_category": "LS",
+      "predicted_activity": "a different structure than declared",
+      "construction_stage": "completed",
+      "water_visible": "unclear",
+      "vegetation_cover": "unclear",
+      "matches_declared": "no",
+      "confidence": 0.85,
+      "evidence": "The structure visible in the photo does not match the declared activity.",
+      "needs_review": false,
+      "flags": [
+        "activity_mismatch"
+      ],
+      "provider": "mock",
+      "model": null,
+      "classified_at": "2026-09-28T02:48:39.330045Z"
+    },
+    "visual_score": 0
+  }
+]

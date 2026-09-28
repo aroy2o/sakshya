@@ -27,5 +27,9 @@ dist/
 .config/earthengine/
 *.gee-credentials.json
 
+# Generated seed data (reproducible via `python scripts/seed_data.py --regenerate`,
+# fixed RANDOM_SEED - not committed as build output)
+scripts/seed/output/
+
 # Claude Code harness-internal state
 .claude/scheduled_tasks.lock

@@ -46,16 +46,111 @@ import requests
 # PRD §15.1 fixed activity categories — do not invent new ones. Two representative
 # activities per category is enough to exercise the classifier across the whole
 # fixed vocabulary without over-spending the free Pollinations endpoint's goodwill.
-CATEGORY_ACTIVITIES: dict[str, list[str]] = {
-    "AM": ["Contour bunding on farmland", "Bench terracing on a hillslope"],
-    "VM": ["Block plantation of native trees", "Grass turfing on a bare slope"],
-    "SM": ["Concrete check dam across a stream", "Boulder check structure in a gully"],
-    "PT": ["Farm pond lined with plastic sheet", "Percolation tank recharge structure"],
-    "NC": ["Nala deepening and widening works", "Stone-lined diversion channel"],
-    "BN": ["Earthen contour bund along a farm boundary", "Boulder bund on a slope"],
-    "LS": ["Cattle shelter shed on a rural farm", "Livestock health camp under a tent"],
-    "LH": ["Horticulture orchard with young fruit saplings", "Small fish pond for a fisheries livelihood"],
-    "OM": ["Village jungle clearance work", "Agro service centre building"],
+#
+# Wording note (found during this script's own sanity-check pass, per the FR2.0
+# instruction to say so rather than ship unusable test data): short generic
+# descriptions like "Contour bunding on farmland" reliably rendered as plain
+# scenic aerial/drone-style landscape shots with no visible engineered structure
+# at all -- useless as classifier test material, since even a correct classifier
+# can't confirm a structure that isn't in the frame. Descriptions below were
+# rewritten to name the concrete material/construction vocabulary of each
+# structure and bias toward a close/medium shot instead of a wide scenic one.
+#
+# AM/BN specifically needed a second round: negating with "not an aerial view" /
+# "not from above" did NOT work (the model still defaulted to aerial crop-pattern
+# shots regardless, and once even drifted off-subject entirely) -- negation
+# phrasing is unreliable here. What did work: putting a person in the frame
+# actively standing at / inspecting the structure, which reliably forces
+# ground-level framing. Re-verified by inspecting output before the full batch ran.
+# Each entry is (short_label, prompt_description). short_label is what actually
+# belongs in a DRISHTI-schema field_record.activity (PRD §8) -- a short human
+# label like "Check Dam", matching the style of the MISMATCH_SET's declared
+# activities below -- not the long descriptive sentence used to drive image
+# generation. Keeping these separate avoids a verbose paragraph ending up as an
+# "activity" value in the seeded data.
+CATEGORY_ACTIVITIES: dict[str, list[tuple[str, str]]] = {
+    "AM": [
+        (
+            "Contour Bund",
+            "a farmer standing beside a small earthen contour bund ridge in a green field, inspecting "
+            "the grass-covered ridge which reaches his knee, ground-level documentary photo, person "
+            "clearly visible in frame",
+        ),
+        (
+            "Bench Terracing",
+            "a farmer standing on one of several stepped bench terraces cut into a hillside farm, "
+            "looking along the earthen risers, ground-level documentary photo, person clearly visible in frame",
+        ),
+    ],
+    "VM": [
+        (
+            "Block Plantation",
+            "rows of newly planted young sapling trees with bamboo tree guards in a cleared plantation "
+            "block, close-medium shot",
+        ),
+        (
+            "Grass Turfing",
+            "strips of grass turf laid on a bare eroded slope for soil stabilization, close view of the turf patches",
+        ),
+    ],
+    "SM": [
+        (
+            "Check Dam",
+            "a small concrete check dam wall with a spillway crossing a narrow stream, water pooling "
+            "behind it, close-medium shot of the dam wall",
+        ),
+        (
+            "Boulder Check Structure",
+            "a boulder check structure made of stacked stones blocking a small gully, close view of the rock structure",
+        ),
+    ],
+    "PT": [
+        ("Farm Pond", "a farm pond lined with a plastic sheet, close-medium shot of the pond edge and lining"),
+        (
+            "Percolation Tank",
+            "a percolation tank, a small excavated water body with an earthen embankment wall, medium shot",
+        ),
+    ],
+    "NC": [
+        (
+            "Nala Deepening",
+            "a freshly excavated and widened nala stream channel with cut earthen banks and visible "
+            "excavator marks, close-medium shot",
+        ),
+        (
+            "Diversion Channel",
+            "a stone-lined diversion channel with stone pitching visible on the channel walls, close view",
+        ),
+    ],
+    "BN": [
+        (
+            "Earthen Bund",
+            "a farmer standing beside a low earthen bund wall about waist-high along a field edge, "
+            "inspecting the packed-soil wall, ground-level documentary photo, person clearly visible in frame",
+        ),
+        (
+            "Boulder Bund",
+            "a farmer standing beside a boulder bund, a low wall of stacked stones along a farm boundary, "
+            "ground-level documentary photo, person clearly visible in frame",
+        ),
+    ],
+    "LS": [
+        ("Cattle Shelter", "a cattle shelter shed on a rural farm"),
+        ("Livestock Health Camp", "a livestock health camp under a tent with cattle nearby"),
+    ],
+    "LH": [
+        ("Horticulture Orchard", "a horticulture orchard with rows of young fruit saplings"),
+        ("Fisheries Pond", "a small fish pond dug for a fisheries livelihood scheme, medium shot"),
+    ],
+    "OM": [
+        (
+            "Jungle Clearance",
+            "a worker clearing jungle undergrowth with a machete, cut branches and felled small trees "
+            "scattered on the ground, freshly cleared patch with visible tree stumps, ground-level "
+            "documentary photo, person clearly visible in frame",
+        ),
+        ("Agro Service Centre", "an agro service centre building in a rural village"),
+    ],
 }
 
 # Declared as one activity, generated as a visibly different one — deliberately
@@ -65,30 +160,34 @@ MISMATCH_SET: list[dict[str, str]] = [
     {
         "declared_category": "SM",
         "declared_activity": "Check Dam",
-        "actual_prompt_activity": "Block plantation of native trees",
+        "actual_prompt_activity": "rows of newly planted young sapling trees with bamboo tree guards in a cleared plantation block, close-medium shot",
         "ground_truth_category": "VM",
     },
     {
         "declared_category": "PT",
         "declared_activity": "Farm Pond",
-        "actual_prompt_activity": "Earthen contour bund along a farm boundary",
+        "actual_prompt_activity": "a farmer standing beside a low earthen bund wall about waist-high along a field edge, inspecting the packed-soil wall, ground-level documentary photo, person clearly visible in frame",
         "ground_truth_category": "BN",
     },
     {
         "declared_category": "VM",
         "declared_activity": "Block Plantation",
-        "actual_prompt_activity": "Concrete check dam across a stream",
+        "actual_prompt_activity": "a small concrete check dam wall with a spillway crossing a narrow stream, water pooling behind it, close-medium shot of the dam wall",
         "ground_truth_category": "SM",
     },
     {
         "declared_category": "BN",
         "declared_activity": "Contour Bund",
-        "actual_prompt_activity": "Cattle shelter shed on a rural farm",
+        "actual_prompt_activity": "a cattle shelter shed on a rural farm",
         "ground_truth_category": "LS",
     },
 ]
 
-PROMPT_SUFFIX = "in rural India, watershed development programme, realistic daylight photo, documentary style"
+PROMPT_SUFFIX = (
+    "in rural India, watershed development programme, eye-level ground photograph "
+    "(not an aerial or drone view), a person's-eye-height shot standing next to the structure, "
+    "realistic daylight photo, documentary style"
+)
 DEFAULT_WIDTH = 768
 DEFAULT_HEIGHT = 512
 POLLINATIONS_BASE = "https://image.pollinations.ai/prompt"
@@ -143,8 +242,8 @@ def generate_good_set(
     records: list[PhotoRecord] = []
     seed = seed_base
     for category, activities in CATEGORY_ACTIVITIES.items():
-        for i, activity in enumerate(activities):
-            prompt = f"{activity}, {PROMPT_SUFFIX}"
+        for i, (label, description) in enumerate(activities):
+            prompt = f"{description}, {PROMPT_SUFFIX}"
             rec_id = f"{category.lower()}_{i + 1:02d}"
             local_path = out_dir / f"{rec_id}.jpg"
             url = build_url(prompt, seed, width, height)
@@ -152,7 +251,7 @@ def generate_good_set(
                 PhotoRecord(
                     id=rec_id,
                     declared_category=category,
-                    declared_activity=activity,
+                    declared_activity=label,
                     actual_prompt=prompt,
                     ground_truth_category=category,
                     is_mismatch_test=False,
@@ -218,15 +317,37 @@ def main() -> None:
 
     all_records = good + mismatches
     print(f"Generating {len(all_records)} image(s) into {out_dir} ...", file=sys.stderr)
+    succeeded: list[PhotoRecord] = []
+    failed: list[tuple[PhotoRecord, str]] = []
     for rec in all_records:
         dest = Path(rec.local_path)
+        if dest.exists():
+            print(f"  [{rec.id}] already downloaded, skipping -> {dest.name}", file=sys.stderr)
+            succeeded.append(rec)
+            continue
         print(f"  [{rec.id}] {rec.actual_prompt!r} -> {dest.name}", file=sys.stderr)
-        download_image(rec.pollinations_url, dest)
+        try:
+            download_image(rec.pollinations_url, dest)
+            succeeded.append(rec)
+        except Exception as exc:  # noqa: BLE001 -- Pollinations is a free/flaky endpoint;
+            # one bad image must not lose an otherwise-successful batch. Failures are
+            # reported and excluded from the manifest rather than silently guessed at
+            # or left referencing a file that doesn't exist.
+            print(f"  [{rec.id}] FAILED: {exc}", file=sys.stderr)
+            failed.append((rec, str(exc)))
         time.sleep(POLITE_DELAY_S)
 
     manifest_path = out_dir / args.manifest_name
-    manifest_path.write_text(json.dumps([asdict(r) for r in all_records], indent=2))
-    print(f"Wrote manifest: {manifest_path} ({len(all_records)} records)", file=sys.stderr)
+    manifest_path.write_text(json.dumps([asdict(r) for r in succeeded], indent=2))
+    print(
+        f"Wrote manifest: {manifest_path} ({len(succeeded)} record(s); {len(failed)} failed)",
+        file=sys.stderr,
+    )
+    if failed:
+        print("Failed records (re-run the script to retry -- already-downloaded images are skipped):", file=sys.stderr)
+        for rec, reason in failed:
+            print(f"  - {rec.id}: {reason}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

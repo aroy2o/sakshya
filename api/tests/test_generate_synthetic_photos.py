@@ -27,6 +27,16 @@ def test_good_set_has_at_least_one_activity_per_category():
     assert all(len(v) >= 1 for v in CATEGORY_ACTIVITIES.values())
 
 
+def test_good_set_labels_are_short_not_full_prompt_sentences():
+    """declared_activity must be a short DRISHTI-style label (PRD §8's
+    field_record.activity, e.g. 'Check Dam'), not the long descriptive sentence
+    used to drive image generation -- those are two different fields on purpose."""
+    for activities in CATEGORY_ACTIVITIES.values():
+        for label, description in activities:
+            assert len(label) <= 40, f"label too long, looks like a prompt sentence: {label!r}"
+            assert len(description) > len(label), "description should be more detailed than the label"
+
+
 def test_mismatch_set_declared_and_ground_truth_categories_are_valid_and_differ():
     for spec in MISMATCH_SET:
         assert spec["declared_category"] in VALID_CATEGORIES
