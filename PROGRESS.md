@@ -141,11 +141,19 @@ This means either the Earth Engine API isn't enabled on the `green-dukan` GCP pr
 
 Not blocking anything else — continuing with Ollama/MongoDB/Sync Point 1 work in the meantime, per the standing instruction not to stall the whole session over one credential.
 
+### MongoDB migration — landed and committed (`fd08ab6`, `51d0288` reconciliation fix)
+
+Verified independently: 108/108 pytest, live-curled `GET /assets/1` and `GET /mws/4120883730` against a fresh Mongo-backed seed run — API contract confirmed byte-for-byte identical to the pre-migration Postgres behavior (same stats field names, same geo_flags rule slugs, same response shape). Found and fixed a real circular-import bug (backend's own fix, `services.vision_classifier` ↔ `services.vision_providers.ollama_provider`) that was silently breaking the entire API's startup. Folded backend-engineer's proposed `docs/PRD.md` §8 rewrite in after reviewing it — the schema is now MongoDB collections, explicitly noted as a persistence-only swap with identical field semantics.
+
+Same record-id reconciliation needed again as after Round 1 (Mongo's fresh counter starts at 1, not Postgres's already-advanced 18): re-exported live assets, re-ran `precompute_gee.py`, re-ingested all 17 satellite results — all succeeded.
+
+Local MongoDB (`docker-compose`, port 27018) replaces the Postgres setup — still fully free/local, no cloud DB account needed.
+
 ## Needs your attention
 
 **Current as of the MongoDB/Ollama pivot — superseding earlier entries above:**
 - **GEE: credential provided but not yet usable** — see the dedicated section above. Needs your action in GCP Console (grant `serviceusage.serviceUsageConsumer` on the `green-dukan` project, or confirm Earth Engine API is enabled there), or a different project/credential. Real satellite numbers stay placeholder-flagged until resolved.
-- **Vision API key: no longer needed** — switched to a free local Ollama model per your instruction, in progress with vision-ai-engineer. Once landed, classification will be real (locally computed), not mocked, at zero cost.
-- **Database: no longer needs Supabase** — switching to MongoDB per your instruction (in progress with backend-engineer), which will also run locally/free via Docker, same as the Postgres setup did. No cloud DB credentials needed for the demo.
+- **Vision API key: no longer needed.** Switched to a free local Ollama model (`moondream`) — vision-ai-engineer has it running and producing real (non-mocked) classifications; full report on model choice/quality still pending from that agent.
+- **Database: no longer needs Supabase — done.** Fully migrated to MongoDB, running locally/free via Docker. No cloud DB credentials needed for the demo.
 - **Final demo watershed boundary is still a placeholder polygon**, not the real Marigaon MWS boundary (PRD §14 marks this "pending: visual coherence check + MIS list confirmation"). Swapping in the real one later is a config/file change only, per how every agent built against it — but the visual layers, buffer zones, etc. in this run are all against a synthetic stand-in shape.
 - **`GET /districts/geotag-coverage` (FR5.5, backend-owned per PRD §9) isn't implemented yet** — frontend-engineer's Coverage tab correctly shows a real error state rather than fake numbers, but this endpoint still needs building. Will fold into backend-engineer's next round of work.
