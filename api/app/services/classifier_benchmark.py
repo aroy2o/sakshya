@@ -40,6 +40,33 @@ def load_manifest() -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+# Below this share of responses failing structured-output validation
+# (degraded to UNKNOWN/0.0-confidence rather than a real answer), the
+# resulting accuracy number is dominated by refusals, not genuine
+# right/wrong signal - reported as "not_established", not a real measurement.
+# Provisional threshold (no external standard for this), same treatment as
+# the DiD score thresholds elsewhere in this project: named, documented,
+# flagged for calibration rather than buried as a bare number in an if.
+_SCHEMA_FAILURE_RATE_FOR_UNESTABLISHED = 0.5
+
+
+def _accuracy_status(summary: dict) -> str:
+    """"measured" | "not_established" — computed fresh on every response
+    build, never persisted, so the underlying benchmark_summary_<model>.json
+    files stay exactly what the offline script wrote (CLAUDE.md
+    precompute-first: this is presentation logic, not a second source of
+    truth for the numbers)."""
+    n_photos = summary.get("n_photos") or 0
+    if n_photos == 0:
+        return "not_established"
+    if not summary.get("is_full_dataset", True):
+        return "not_established"  # a partial/stratified sample, not a real read
+    n_invalid = summary.get("n_schema_invalid_responses") or 0
+    if (n_invalid / n_photos) >= _SCHEMA_FAILURE_RATE_FOR_UNESTABLISHED:
+        return "not_established"
+    return "measured"
+
+
 def load_model_summaries() -> list[dict]:
     """Every benchmark_summary_<model>.json present (0, 1, or 2+ — however
     many models run_real_photo_benchmark.py has been run against so far).
@@ -47,7 +74,9 @@ def load_model_summaries() -> list[dict]:
     documented before a model has finished classifying it."""
     summaries = []
     for path in sorted(real_photos_output_dir().glob("benchmark_summary_*.json")):
-        summaries.append(json.loads(path.read_text(encoding="utf-8")))
+        summary = json.loads(path.read_text(encoding="utf-8"))
+        summary["accuracy_status"] = _accuracy_status(summary)
+        summaries.append(summary)
     return summaries
 
 
