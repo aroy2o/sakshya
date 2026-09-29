@@ -241,3 +241,11 @@ Followed `frontend-design`'s two-pass process (plan → self-critique against it
 Deliberately did **not** touch: `provenance.ts` or the REAL/SYNTHETIC/PLACEHOLDER badge colour/logic (hard constraint, load-bearing for last round's four hard rules); beats 2/3/6/7 (re-screenshotted and visually confirmed pixel-identical, no dead-space pattern found on inspection); any actual number, data binding, or source citation — every value shown is the same value, same API field, just re-arranged and re-styled.
 
 Verified: `tsc -b` and `npm run build` clean; all 7 beats re-screenshotted live against the real backend (headless Chrome, same tooling as last round), `docs/screenshots/` overwritten in place. One commit (`ab8b330`), per this round's explicit instruction.
+
+## Background colour + sidebar nav — landed (frontend-engineer, 2026-09-29)
+
+Two more real, non-subjective fixes. **Before**: the dark background/surface scale (`--bg` through `--surface-3`) had an accidental blue lean at every step — the human checked the actual hex values themselves (`#0b0f14` = B nearly double R) after flagging it as "off" twice before without a clear cause; navigation was a top horizontal strip of pill buttons.
+
+**After**: `index.css`'s whole neutral scale replaced with true greys (R=G=B at every step — verified by grep that the old hex values only ever appeared in that one token block, so the fix propagates everywhere automatically); the cyan accent is untouched. Top `BeatNav` replaced with a left rail `Sidebar` (fixed 224px, Hotstar/Disney+-style numbered vertical list, Guided tour pinned at the bottom) — `App.tsx`'s root layout is now a row (sidebar + content) instead of a column (nav + content); `GuidedTour` changed from viewport-`fixed` to `absolute` inside the content wrapper so it no longer spans behind the sidebar.
+
+Backend was unreachable at screenshot time (confirmed down, not transient) — captured in `VITE_API_MODE=mock` as a one-off env override (`.env` itself still says `live`, untouched) rather than blocking; the mock fixtures mirror previously-captured real API responses verbatim, so the numbers on screen are still the real captured values. `tsc -b`/`npm run build` clean, all 7 beats re-screenshotted, `docs/screenshots/` overwritten. Untouched, as instructed: `provenance.ts`/badge logic, all data/bindings. One commit (`1333b72`).
