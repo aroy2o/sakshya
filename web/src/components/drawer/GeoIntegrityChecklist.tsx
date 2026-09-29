@@ -13,25 +13,25 @@ export function GeoIntegrityChecklist({ flags, geoScore }: { flags: GeoFlag[] | 
   return (
     <section>
       <div className="mb-1.5 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-700">Geo-integrity checklist</h3>
-        <span className="text-xs font-medium text-slate-500">
+        <h3 className="text-sm font-semibold text-(--text)">Geo-integrity checklist</h3>
+        <span className="text-xs font-medium text-(--text-muted)">
           {geoScore === null ? 'Pending' : `${geoScore}/30`}
         </span>
       </div>
       {flags === null ? (
-        <p className="text-sm text-slate-400">Not yet checked.</p>
+        <p className="text-sm text-(--text-faint)">Not yet checked.</p>
       ) : (
         <ul className="space-y-1">
           {flags.map((flag) => (
             <li key={flag.rule} className="flex items-start gap-2 text-sm">
               <span aria-hidden="true">{flag.passed ? '✅' : '❌'}</span>
               <span className="flex-1">
-                <span className="text-slate-700">{RULE_LABELS[flag.rule]}</span>{' '}
-                <span className="text-slate-400">
+                <span className="text-(--text)">{RULE_LABELS[flag.rule]}</span>{' '}
+                <span className="text-(--text-faint)">
                   ({flag.points}/{flag.max})
                 </span>
                 <br />
-                <span className="text-xs text-slate-400">{flag.detail}</span>
+                <span className="text-xs text-(--text-faint)">{flag.detail}</span>
               </span>
             </li>
           ))}

@@ -1,5 +1,7 @@
 import { NO_SATELLITE_SIGNAL_CATEGORIES } from '@/schemas/domain'
 import { SatelliteIndexChart } from './SatelliteIndexChart'
+import { ProvenanceChip } from '@/components/shared/ProvenanceChip'
+import { provenanceFromPlaceholderFlag } from '@/utils/provenance'
 import type { AssetDetail } from '@/types/domain'
 
 const INTERPRETATION_LABELS: Record<string, string> = {
@@ -33,42 +35,43 @@ export function SatelliteChips({ asset }: { asset: AssetDetail }) {
   return (
     <section>
       <div className="mb-1.5 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-700">Satellite response — did the landscape change?</h3>
-        <span className="text-xs font-medium text-slate-500">
+        <h3 className="text-sm font-semibold text-(--text)">Satellite response — did the landscape change?</h3>
+        <span className="text-xs font-medium text-(--text-muted)">
           {satelliteScore === null ? 'Pending' : `${satelliteScore}/30`}
         </span>
       </div>
 
       {sat === null ? (
-        <p className="text-sm text-slate-400">Satellite response not yet attached.</p>
+        <p className="text-sm text-(--text-faint)">Satellite response not yet attached.</p>
       ) : (
         <div className="space-y-2">
+          <ProvenanceChip kind={provenanceFromPlaceholderFlag(sat.placeholder)} detail={sat.placeholder ? sat.source : undefined} />
           {sat.placeholder && (
-            <p className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600">
+            <p className="rounded bg-(--surface-2) px-2 py-1 text-xs text-(--text-muted)">
               Placeholder satellite data ({sat.source}) — not yet a real GEE-derived reading. Treat the numbers
               below as demo scaffolding, not evidence.
             </p>
           )}
           {isNoSignalCategory && (
-            <p className="rounded bg-slate-50 px-2 py-1 text-xs text-slate-500">
+            <p className="rounded bg-(--surface-2) px-2 py-1 text-xs text-(--text-muted)">
               This activity category has no reliable satellite signal — the score above is a neutral default,
               not a real satellite verdict.
             </p>
           )}
           {sat.low_confidence && (
-            <p className="rounded bg-amber-50 px-2 py-1 text-xs text-amber-700">
+            <p className="rounded bg-(--placeholder)/10 px-2 py-1 text-xs text-amber-300">
               Low-confidence read (thin cloud cover / limited valid pixels) — treat this result cautiously.
             </p>
           )}
           {sat.notes.map((note) => (
-            <p key={note} className="rounded bg-amber-50 px-2 py-1 text-xs text-amber-700">
+            <p key={note} className="rounded bg-(--placeholder)/10 px-2 py-1 text-xs text-amber-300">
               {note}
             </p>
           ))}
 
-          <p className="text-sm text-slate-600">{INTERPRETATION_LABELS[sat.did_classification]}</p>
+          <p className="text-sm text-(--text-muted)">{INTERPRETATION_LABELS[sat.did_classification]}</p>
 
-          <dl className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs text-slate-500">
+          <dl className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs text-(--text-muted)">
             <dt>Primary index for this category</dt>
             <dd className="text-right font-mono">{sat.primary_index_for_category}</dd>
             <dt>DiD ({sat.primary_index_for_category})</dt>

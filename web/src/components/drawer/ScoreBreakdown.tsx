@@ -27,10 +27,10 @@ export function ScoreBreakdown({ asset }: { asset: AssetDetail }) {
   return (
     <section>
       <div className="mb-1.5 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-700">Evidence score</h3>
-        <span className="text-lg font-bold text-slate-800">
+        <h3 className="text-sm font-semibold text-(--text)">Evidence score</h3>
+        <span className="text-lg font-bold text-(--text)">
           {asset.evidence_score === null ? '—' : asset.evidence_score}
-          <span className="text-xs font-normal text-slate-400">/100</span>
+          <span className="text-xs font-normal text-(--text-faint)">/100</span>
         </span>
       </div>
       <BandBadge band={asset.band} className="mb-2" />
@@ -38,11 +38,11 @@ export function ScoreBreakdown({ asset }: { asset: AssetDetail }) {
       <div className="space-y-1.5">
         {rows.map((row) => (
           <div key={row.label}>
-            <div className="flex justify-between text-xs text-slate-500">
+            <div className="flex justify-between text-xs text-(--text-muted)">
               <span>{row.label}</span>
               <span>{row.value === null ? 'pending' : `${row.value}/${row.max}`}</span>
             </div>
-            <div className="h-1.5 w-full rounded-full bg-slate-100">
+            <div className="h-1.5 w-full rounded-full bg-(--surface-2)">
               <div
                 className="h-1.5 rounded-full"
                 style={{

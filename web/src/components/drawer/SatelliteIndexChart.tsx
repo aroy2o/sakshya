@@ -47,7 +47,7 @@ export function SatelliteIndexChart({ indices, rainfall, defaultIndex }: { indic
             type="button"
             onClick={() => setIndex(opt)}
             className={`rounded px-2 py-0.5 text-xs font-medium ${
-              index === opt ? 'bg-sky-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              index === opt ? 'bg-(--accent) text-(--bg)' : 'bg-(--surface-2) text-(--text-muted) hover:bg-(--surface-3)'
             }`}
           >
             {INDEX_LABELS[opt]}
@@ -76,7 +76,7 @@ export function SatelliteIndexChart({ indices, rainfall, defaultIndex }: { indic
           <Bar yAxisId="index" dataKey="control" name={`${INDEX_LABELS[index]} control`} fill="#94a3b8" barSize={18} />
         </ComposedChart>
       </ResponsiveContainer>
-      {!hasRainfall && <p className="text-center text-xs text-slate-400">Rainfall context not available for this asset.</p>}
+      {!hasRainfall && <p className="text-center text-xs text-(--text-faint)">Rainfall context not available for this asset.</p>}
     </div>
   )
 }

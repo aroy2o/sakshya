@@ -1,9 +1,4 @@
-import { AiClassifierCard } from './AiClassifierCard'
-import { GeoIntegrityChecklist } from './GeoIntegrityChecklist'
-import { PhotoPanel } from './PhotoPanel'
-import { SatelliteChips } from './SatelliteChips'
-import { ScoreBreakdown } from './ScoreBreakdown'
-import { ScoreReasonText } from './ScoreReasonText'
+import { EvidenceContent } from './EvidenceContent'
 import { ErrorState } from '@/components/layout/ErrorState'
 import { LoadingState } from '@/components/layout/LoadingState'
 import { useAssetDetail } from '@/hooks/useAssetDetail'
@@ -22,15 +17,15 @@ export function AssetDrawer({ assetId, onClose }: { assetId: number; onClose: ()
   return (
     <>
       <div className="fixed inset-0 z-30 bg-black/20" onClick={onClose} aria-hidden="true" />
-      <aside className="fixed right-0 top-0 z-40 h-full w-full max-w-md overflow-y-auto border-l border-slate-200 bg-white p-4 shadow-xl">
+      <aside className="fixed right-0 top-0 z-40 h-full w-full max-w-md overflow-y-auto border-l border-(--border) bg-(--surface) p-4 shadow-xl">
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-base font-semibold text-slate-800">
+          <h2 className="text-base font-semibold text-(--text)">
             {asset ? `${asset.activity} (${asset.category})` : `Asset #${assetId}`}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+            className="rounded p-1 text-(--text-faint) hover:bg-(--surface-2) hover:text-(--text-muted)"
             aria-label="Close asset details"
           >
             <svg viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5" aria-hidden="true">
@@ -42,17 +37,7 @@ export function AssetDrawer({ assetId, onClose }: { assetId: number; onClose: ()
         {isLoading && <LoadingState label="Loading asset details…" />}
         {isError && <ErrorState message={(error as Error).message} onRetry={() => refetch()} />}
 
-        {asset && (
-          <div className="space-y-5">
-            {asset.work_code && <p className="text-xs text-slate-400">Work code: {asset.work_code}</p>}
-            <PhotoPanel asset={asset} />
-            <GeoIntegrityChecklist flags={asset.geo_flags} geoScore={asset.geo_score} />
-            <AiClassifierCard result={asset.ai_result} visualScore={asset.visual_score} />
-            <SatelliteChips asset={asset} />
-            <ScoreBreakdown asset={asset} />
-            <ScoreReasonText asset={asset} />
-          </div>
-        )}
+        {asset && <EvidenceContent asset={asset} />}
       </aside>
     </>
   )
