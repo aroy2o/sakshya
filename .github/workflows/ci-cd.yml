@@ -89,21 +89,40 @@ jobs:
 
   deploy:
     needs: [api-tests, web-build]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && secrets.DEPLOY_HOST != ''
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     concurrency: deploy-production
     steps:
+      # `secrets` isn't a valid context in a job-level `if:` (github rejects
+      # the whole workflow file, 0 jobs run, if you try) — only steps can
+      # read it, hence this indirection: every later step gates on this
+      # step's output instead, so the job exists (and needs/api-tests +
+      # web-build still block it) but does nothing until a server does.
+      - name: Check deploy secrets are configured
+        id: check
+        run: |
+          if [ -n "${{ secrets.DEPLOY_HOST }}" ] && [ -n "${{ secrets.DEPLOY_USER }}" ] && [ -n "${{ secrets.DEPLOY_SSH_KEY }}" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping deploy — add DEPLOY_HOST/DEPLOY_USER/DEPLOY_SSH_KEY in Settings > Secrets and variables > Actions to enable it."
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.check.outputs.ready == 'true'
 
       - uses: docker/setup-buildx-action@v3
+        if: steps.check.outputs.ready == 'true'
 
       - uses: docker/login-action@v3
+        if: steps.check.outputs.ready == 'true'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build + push deploy/Dockerfile
+        if: steps.check.outputs.ready == 'true'
         # deploy/Dockerfile's own ARG defaults (VITE_API_MODE=live,
         # VITE_API_BASE_URL=/api) already match this single-container shape
         # (nginx reverse-proxies /api/* to the api process inside the same
@@ -120,6 +139,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Deploy over SSH
+        if: steps.check.outputs.ready == 'true'
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
