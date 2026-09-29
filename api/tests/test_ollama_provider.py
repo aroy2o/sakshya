@@ -101,11 +101,6 @@ def test_provider_sends_expected_payload_shape(tmp_path):
 
     assert result == VALID_RESULT
     call_kwargs = mock_post.call_args
-    url = (
-        call_kwargs.args[0]
-        if call_kwargs.args
-        else call_kwargs.kwargs["url"] if "url" in call_kwargs.kwargs else None
-    )
     assert call_kwargs.kwargs["json"]["model"] == "moondream"
     assert call_kwargs.kwargs["json"]["stream"] is False
     assert call_kwargs.kwargs["json"]["format"] == "json"

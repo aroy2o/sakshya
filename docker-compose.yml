@@ -1,0 +1,74 @@
+# Single-server deploy bundle: mongo + api + web (nginx), one exposed port.
+# This is separate from api/docker-compose.yml, which stays a local-dev-only
+# helper (mongo only, hot-reload uvicorn on the host) per CLAUDE.md's
+# "How to run" section — that flow is unchanged by this file.
+#
+# Usage:
+#   cp .env.example .env   # then fill in the real values, see that file
+#   docker compose up -d --build
+#   ./scripts/restore_demo_data.sh   # one-off: load the curated demo dataset
+#
+# Ollama/vision-AI is deliberately NOT wired into this prod compose yet
+# (human decision, 2026-09-29) — no real hosted vision provider is live, so
+# POST /assets/{id}/classify will fail per-request (the app itself still
+# starts fine) until a real provider is wired in a later round.
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - sakshya_mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # Always the in-network mongo service, regardless of what MONGO_URI in
+      # .env says (that file's default is the local-dev port 27018) — this
+      # is the one var this compose deploy can't leave to .env.
+      MONGO_URI: mongodb://mongo:27017/sakshya
+    volumes:
+      - sakshya_photos:/app/api/app/static/photos
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)",
+        ]
+      interval: 10s
+      timeout: 3s
+      start_period: 15s
+      retries: 5
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        VITE_API_MODE: live
+        VITE_API_BASE_URL: /api
+        VITE_DEMO_MWS_ID: ${VITE_DEMO_MWS_ID:-}
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  sakshya_mongo_data:
+  sakshya_photos:

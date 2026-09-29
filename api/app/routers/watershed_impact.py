@@ -35,6 +35,8 @@ def get_watershed_impact(mws_id: str, db: Database = Depends(get_db)) -> Watersh
     try:
         timeseries = geospatial_output.load_watershed_timeseries(mws_id)
     except FileNotFoundError:
-        raise HTTPException(404, f"no precomputed watershed-impact timeseries for mws {mws_id!r} yet") from None
+        raise HTTPException(
+            404, f"no precomputed watershed-impact timeseries for mws {mws_id!r} yet"
+        ) from None
 
     return WatershedImpactOut(mws_id=mws_id, summary=summary, timeseries=timeseries)

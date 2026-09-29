@@ -1,0 +1,45 @@
+# Build context for the api image (docker-compose.yml's api service uses
+# context: . so it can reach ../scripts relative to api/ — see
+# api/Dockerfile's header comment). web/ has its own .dockerignore.
+
+.git/
+.gitignore
+
+# Python
+**/__pycache__/
+**/*.pyc
+.venv/
+api/.venv/
+.pytest_cache/
+api/.pytest_cache/
+.ruff_cache/
+api/.ruff_cache/
+api/tests/
+
+# Never bake secrets or local env files into an image
+api/.env
+.env
+.env.local
+secrets/
+
+# Frontend — web/Dockerfile builds its own context (./web)
+web/node_modules/
+web/dist/
+node_modules/
+
+# Offline-only / dev-only content the API doesn't read at runtime
+# (api/Dockerfile COPYs only scripts/output/ and scripts/real_photos/
+# explicitly — everything else under scripts/ is irrelevant to the image)
+scripts/cache/
+scripts/generated_photos/
+scripts/seed/
+scripts/tests/
+scripts/__pycache__/
+scripts/data/
+data/
+
+# Local Mongo export backups — restored via scripts/restore_demo_data.sh,
+# never baked into an image
+*.jsonl
+
+docs/screenshots/

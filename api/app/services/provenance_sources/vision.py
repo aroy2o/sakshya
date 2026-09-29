@@ -123,7 +123,10 @@ ENTRIES: list[ProvenanceEntry] = [
         licence="CC BY-SA 4.0",
         retrieved_at="2026-09-28",
         is_synthetic=False,
-        used_for="Tests whether the classifier over-predicts a PRD §15.1 category on an unrelated real scene (3 photos)",
+        used_for=(
+            "Tests whether the classifier over-predicts a PRD §15.1 category on an "
+            "unrelated real scene (3 photos)"
+        ),
         notes=_MANIFEST_NOTE,
         owner="R5 vision-ai-engineer",
     ),

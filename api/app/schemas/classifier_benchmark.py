@@ -31,7 +31,9 @@ class ClassifierBenchmarkDataset(BaseModel):
 
 
 class ClassifierBenchmarkModelResult(BaseModel):
-    model_config = ConfigDict(extra="allow")  # confusion_matrix keys vary by which ground-truth codes were seen
+    model_config = ConfigDict(
+        extra="allow"
+    )  # confusion_matrix keys vary by which ground-truth codes were seen
 
     model: str
     provider: str

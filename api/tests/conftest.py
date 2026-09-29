@@ -155,7 +155,9 @@ def geospatial_fixture():
             )
 
         if watershed_timeseries is not None:
-            (mws_dir / "watershed_timeseries.json").write_text(json.dumps(watershed_timeseries), encoding="utf-8")
+            (mws_dir / "watershed_timeseries.json").write_text(
+                json.dumps(watershed_timeseries), encoding="utf-8"
+            )
 
         return mws_dir
 

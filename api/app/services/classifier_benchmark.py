@@ -51,7 +51,7 @@ _SCHEMA_FAILURE_RATE_FOR_UNESTABLISHED = 0.5
 
 
 def _accuracy_status(summary: dict) -> str:
-    """"measured" | "not_established" — computed fresh on every response
+    """ "measured" | "not_established" — computed fresh on every response
     build, never persisted, so the underlying benchmark_summary_<model>.json
     files stay exactly what the offline script wrote (CLAUDE.md
     precompute-first: this is presentation logic, not a second source of
