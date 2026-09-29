@@ -24,7 +24,7 @@ export function EvidenceBeat({ mwsId }: { mwsId: string }) {
   const assetQuery = useAssetDetail(selectedId ?? undefined)
 
   return (
-    <div className="mx-auto max-w-3xl p-4 sm:p-6">
+    <div className="mx-auto max-w-5xl p-4 sm:p-6">
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <h2 className="text-lg font-semibold text-(--text)">Evidence drawer</h2>
         <label className="ml-auto flex items-center gap-2 text-xs text-(--text-muted)">
