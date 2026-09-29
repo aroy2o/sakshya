@@ -148,15 +148,27 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           IMAGE: ghcr.io/${{ github.repository_owner }}/sakshya:latest
+          GHCR_ACTOR: ${{ github.actor }}
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
+          # An UNQUOTED heredoc delimiter (<<REMOTE, not <<'REMOTE') is
+          # deliberate: it expands $IMAGE/$GHCR_TOKEN/etc. locally, on the
+          # runner, before the script text is piped over SSH — so the
+          # remote side never re-expands anything, and the token never
+          # becomes a CLI arg (ps-visible) on either end, only piped stdin.
+          # GITHUB_TOKEN packages default to private on ghcr.io, so without
+          # this login the server's docker pull would 401 on the very first
+          # deploy — logging out again after means nothing long-lived is
+          # left in the server's docker config.
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes \
-            "$DEPLOY_USER@$DEPLOY_HOST" "IMAGE='$IMAGE' bash -s" <<'REMOTE'
+            "$DEPLOY_USER@$DEPLOY_HOST" bash -s <<REMOTE
             set -euo pipefail
+            echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_ACTOR" --password-stdin
             docker pull "$IMAGE"
             docker stop sakshya 2>/dev/null || true
             docker rm sakshya 2>/dev/null || true
@@ -174,4 +186,5 @@ jobs:
               -v sakshya_photos:/app/api/app/static/photos \
               "$IMAGE"
             docker image prune -f
+            docker logout ghcr.io
           REMOTE
