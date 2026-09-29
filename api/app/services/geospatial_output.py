@@ -65,3 +65,24 @@ def load_satellite_results(mws_id: str) -> list[dict]:
     if not path.exists():
         raise FileNotFoundError(path)
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_watershed_did_summary(mws_id: str) -> dict:
+    """Reality Pass R2 output (docs/REAL_DATA_PLAN.md §4) - watershed-level
+    matched-control bootstrap DiD, written by
+    scripts/precompute_watershed_timeseries.py. Raises FileNotFoundError if
+    not precomputed yet."""
+    path = mws_dir(mws_id) / "watershed_did_summary.json"
+    if not path.exists():
+        raise FileNotFoundError(path)
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_watershed_timeseries(mws_id: str) -> dict:
+    """Companion annual NDVI/MNDWI + rainfall series to
+    load_watershed_did_summary(). Raises FileNotFoundError if not
+    precomputed yet."""
+    path = mws_dir(mws_id) / "watershed_timeseries.json"
+    if not path.exists():
+        raise FileNotFoundError(path)
+    return json.loads(path.read_text(encoding="utf-8"))

@@ -100,7 +100,13 @@ def geospatial_fixture():
 
     from PIL import Image
 
-    def _write(mws_id: str, *, satellite_results: list[dict] | None = None) -> Path:
+    def _write(
+        mws_id: str,
+        *,
+        satellite_results: list[dict] | None = None,
+        watershed_did_summary: dict | None = None,
+        watershed_timeseries: dict | None = None,
+    ) -> Path:
         mws_dir = TEST_GEOSPATIAL_DIR / mws_id
         thematic_dir = mws_dir / "thematic"
         thematic_dir.mkdir(parents=True, exist_ok=True)
@@ -142,6 +148,14 @@ def geospatial_fixture():
 
         if satellite_results is not None:
             (mws_dir / "satellite_results.json").write_text(json.dumps(satellite_results), encoding="utf-8")
+
+        if watershed_did_summary is not None:
+            (mws_dir / "watershed_did_summary.json").write_text(
+                json.dumps(watershed_did_summary), encoding="utf-8"
+            )
+
+        if watershed_timeseries is not None:
+            (mws_dir / "watershed_timeseries.json").write_text(json.dumps(watershed_timeseries), encoding="utf-8")
 
         return mws_dir
 

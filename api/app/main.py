@@ -18,6 +18,7 @@ from app.routers import (
     provenance,
     records,
     thematic,
+    watershed_impact,
 )
 
 
@@ -55,6 +56,7 @@ def create_app() -> FastAPI:
     app.include_router(programme.router)
     app.include_router(provenance.router)
     app.include_router(classifier_benchmark.router)
+    app.include_router(watershed_impact.router)
 
     photo_dir = Path(settings.photo_storage_dir)
     photo_dir.mkdir(parents=True, exist_ok=True)
