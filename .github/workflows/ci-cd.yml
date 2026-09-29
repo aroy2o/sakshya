@@ -10,6 +10,10 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  # Lets someone trigger a deploy from the Actions tab without an empty
+  # commit — useful for the very first deploy right after adding the
+  # DEPLOY_* secrets, when there's no new code change to push yet.
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -89,7 +93,7 @@ jobs:
 
   deploy:
     needs: [api-tests, web-build]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     concurrency: deploy-production
     steps:
