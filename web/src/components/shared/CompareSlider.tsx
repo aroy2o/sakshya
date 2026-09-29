@@ -91,9 +91,9 @@ export function CompareSlider({
           if (e.key === 'ArrowRight') onPositionChange(Math.min(100, position + 2))
         }}
       >
-        <div className="h-full w-0.5 bg-white shadow" />
-        <div className="absolute flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 bg-white shadow">
-          <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 text-slate-600" aria-hidden="true">
+        <div className="h-full w-0.5 bg-(--surface) shadow" />
+        <div className="absolute flex h-7 w-7 items-center justify-center rounded-full border border-(--border-strong) bg-(--surface) shadow">
+          <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 text-(--text-muted)" aria-hidden="true">
             <path d="M7 4.5 3 10l4 5.5V4.5Zm6 0v11L17 10l-4-5.5Z" />
           </svg>
         </div>

@@ -13,12 +13,12 @@ export function ThematicLayerControl() {
     useMapUi()
 
   return (
-    <div className="absolute left-3 top-3 z-10 w-56 rounded-lg border border-slate-200 bg-white/95 p-3 shadow-sm backdrop-blur">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Thematic layers</p>
+    <div className="absolute left-3 top-3 z-10 w-56 rounded-lg border border-(--border) bg-(--surface)/95 p-3 shadow-sm backdrop-blur">
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-(--text-muted)">Thematic layers</p>
 
       <div className="space-y-1.5">
         {(['drainage', 'lulc', 'water'] as const).map((key) => (
-          <label key={key} className="flex items-center gap-2 text-sm capitalize text-slate-700">
+          <label key={key} className="flex items-center gap-2 text-sm capitalize text-(--text)">
             <input
               type="checkbox"
               checked={independentLayers[key]}
@@ -30,7 +30,7 @@ export function ThematicLayerControl() {
         ))}
       </div>
 
-      <p className="mt-3 mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">NDVI</p>
+      <p className="mt-3 mb-1 text-xs font-semibold uppercase tracking-wide text-(--text-muted)">NDVI</p>
       <div className="grid grid-cols-4 gap-1">
         {NDVI_OPTIONS.map((opt) => (
           <button
@@ -39,7 +39,7 @@ export function ThematicLayerControl() {
             onClick={() => setNdviVariant(opt.value)}
             disabled={swipeActive}
             className={`rounded px-1.5 py-1 text-xs font-medium ${
-              ndviVariant === opt.value ? 'bg-sky-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              ndviVariant === opt.value ? 'bg-(--accent) text-(--bg)' : 'bg-(--surface-2) text-(--text-muted) hover:bg-(--surface-3)'
             } disabled:cursor-not-allowed disabled:opacity-40`}
           >
             {opt.label}
@@ -51,7 +51,7 @@ export function ThematicLayerControl() {
         type="button"
         onClick={() => setSwipeActive(!swipeActive)}
         className={`mt-3 w-full rounded px-2 py-1.5 text-xs font-semibold ${
-          swipeActive ? 'bg-sky-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+          swipeActive ? 'bg-(--accent) text-(--bg)' : 'bg-(--surface-2) text-(--text) hover:bg-(--surface-3)'
         }`}
       >
         {swipeActive ? 'Exit before/after swipe' : 'Before/after swipe (FR5.4)'}

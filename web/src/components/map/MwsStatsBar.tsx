@@ -1,3 +1,4 @@
+import { ProvenanceChip } from '@/components/shared/ProvenanceChip'
 import { computeMwsStats } from '@/utils/mwsStats'
 import { BAND_COLORS, UNSCORED_COLOR } from '@/utils/band'
 import type { AssetPinFeatureCollection, Mws } from '@/types/domain'
@@ -7,10 +8,11 @@ export function MwsStatsBar({ mws, assets }: { mws: Mws; assets: AssetPinFeature
   const stats = mws.stats ?? computeMwsStats(assets)
 
   return (
-    <div className="absolute left-1/2 top-3 z-10 flex -translate-x-1/2 items-center gap-3 rounded-full border border-slate-200 bg-white/95 px-4 py-1.5 text-xs shadow-sm backdrop-blur">
-      <span className="font-semibold text-slate-700">{mws.name ?? mws.id}</span>
-      <span className="text-slate-400">|</span>
-      <span className="text-slate-500">{stats.total_assets} assets</span>
+    <div className="absolute left-1/2 top-3 z-10 flex -translate-x-1/2 items-center gap-3 rounded-full border border-(--border) bg-(--surface)/95 px-4 py-1.5 text-xs shadow-sm backdrop-blur">
+      <span className="font-semibold text-(--text)">{mws.name ?? mws.id}</span>
+      <ProvenanceChip kind={mws.is_synthetic_boundary ? 'synthetic' : 'real'} detail="boundary" />
+      <span className="text-(--text-faint)">|</span>
+      <span className="text-(--text-muted)">{stats.total_assets} assets</span>
       <span className="flex items-center gap-1" style={{ color: BAND_COLORS.verified }}>
         <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: BAND_COLORS.verified }} />
         {stats.verified}

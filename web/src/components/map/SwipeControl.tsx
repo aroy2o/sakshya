@@ -109,7 +109,7 @@ export function SwipeControl({ mwsId }: { mwsId: string }) {
   }, [afterLayer])
 
   return (
-    <div className="absolute inset-0 z-20 bg-white">
+    <div className="absolute inset-0 z-20 bg-(--surface)">
       <CompareSlider
         position={swipePosition}
         onPositionChange={setSwipePosition}
@@ -125,7 +125,7 @@ export function SwipeControl({ mwsId }: { mwsId: string }) {
         </div>
       )}
       {(beforeError || afterError) && (
-        <p className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded bg-red-50 px-2 py-1 text-xs text-red-700">
+        <p className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded bg-(--flag)/10 px-2 py-1 text-xs text-red-300">
           Couldn&apos;t load one of the NDVI layers for comparison.
         </p>
       )}

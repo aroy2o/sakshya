@@ -1,6 +1,8 @@
 import { useMapUi } from '@/state/mapUiStore'
 import { useThematicLayer } from '@/hooks/useThematicLayer'
+import { ProvenanceChip } from '@/components/shared/ProvenanceChip'
 import { BAND_COLORS, BAND_LABELS, UNSCORED_COLOR, UNSCORED_LABEL } from '@/utils/band'
+import { provenanceFromPlaceholderFlag } from '@/utils/provenance'
 import type { ThematicLayer } from '@/types/domain'
 
 /**
@@ -15,12 +17,12 @@ function ActiveLayerLegend({ mwsId, layer }: { mwsId: string; layer: ThematicLay
   if (!data) return null
   return (
     <div className="mt-2">
-      <p className="text-xs font-medium capitalize text-slate-600">
-        {layer.replace(/_/g, ' ')}
-        {data.placeholder && <span className="ml-1 font-normal text-amber-600">(placeholder imagery)</span>}
-      </p>
+      <div className="mb-0.5 flex items-center gap-1.5">
+        <p className="text-xs font-medium capitalize text-(--text-muted)">{layer.replace(/_/g, ' ')}</p>
+        <ProvenanceChip kind={provenanceFromPlaceholderFlag(data.placeholder)} />
+      </div>
       {data.legend.map((entry) => (
-        <div key={entry.label} className="flex items-center gap-1.5 text-xs text-slate-500">
+        <div key={entry.label} className="flex items-center gap-1.5 text-xs text-(--text-muted)">
           <span className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: entry.color }} />
           {entry.label}
         </div>
@@ -39,15 +41,15 @@ export function MapLegend({ mwsId }: { mwsId: string }) {
   ]
 
   return (
-    <div className="absolute bottom-3 left-3 z-10 rounded-lg border border-slate-200 bg-white/95 p-3 text-xs shadow-sm backdrop-blur">
-      <p className="mb-1.5 font-semibold uppercase tracking-wide text-slate-500">Evidence band</p>
+    <div className="absolute bottom-3 left-3 z-10 rounded-lg border border-(--border) bg-(--surface)/95 p-3 text-xs shadow-sm backdrop-blur">
+      <p className="mb-1.5 font-semibold uppercase tracking-wide text-(--text-muted)">Evidence band</p>
       {(['verified', 'review', 'flag'] as const).map((band) => (
-        <div key={band} className="flex items-center gap-1.5 text-slate-600">
+        <div key={band} className="flex items-center gap-1.5 text-(--text-muted)">
           <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: BAND_COLORS[band] }} />
           {BAND_LABELS[band]}
         </div>
       ))}
-      <div className="flex items-center gap-1.5 text-slate-600">
+      <div className="flex items-center gap-1.5 text-(--text-muted)">
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: UNSCORED_COLOR }} />
         {UNSCORED_LABEL}
       </div>

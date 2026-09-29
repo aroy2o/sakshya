@@ -14,6 +14,7 @@ import { LoadingState } from '@/components/layout/LoadingState'
 import { useMws } from '@/hooks/useMws'
 import { useMwsAssets } from '@/hooks/useMwsAssets'
 import { useMapUi } from '@/state/mapUiStore'
+import { isBoundaryPendingConfirmation } from '@/utils/boundarySource'
 import { multiPolygonBounds } from '@/utils/geo'
 
 /**
@@ -74,6 +75,11 @@ export function WatershedMap({ mwsId }: { mwsId: string }) {
       {swipeActive && <SwipeControl mwsId={mwsId} />}
 
       {mwsQuery.data && assetsQuery.data && <MwsStatsBar mws={mwsQuery.data} assets={assetsQuery.data} />}
+      {mwsQuery.data && isBoundaryPendingConfirmation(mwsQuery.data.boundary_source) && (
+        <div className="absolute inset-x-0 bottom-14 z-10 mx-auto w-fit rounded-full border border-(--placeholder)/50 bg-(--surface)/95 px-3 py-1 text-xs font-medium text-amber-300 shadow-sm backdrop-blur">
+          Candidate watershed — project area unconfirmed
+        </div>
+      )}
       <ThematicLayerControl />
       <MapLegend mwsId={mwsId} />
 

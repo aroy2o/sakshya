@@ -33,7 +33,7 @@ export function SyntheticBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full border border-amber-400 bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-900 ${className ?? ''}`}
+      className={`inline-flex items-center gap-1 rounded-full border border-(--placeholder)/60 bg-(--placeholder)/20 px-2 py-0.5 text-xs font-semibold text-amber-200 ${className ?? ''}`}
       title="This is synthetic/demo data, not a real field submission."
     >
       <svg
