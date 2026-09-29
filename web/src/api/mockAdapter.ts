@@ -14,16 +14,24 @@ import type { Api } from './types'
 import {
   zAssetDetail,
   zAssetPinFeatureCollection,
+  zClassifierBenchmark,
   zDistrictCoverageList,
   zMws,
   zMwsList,
+  zProgrammeMarigaon,
+  zProvenanceList,
   zThematicLayerResponse,
+  zWatershedImpact,
 } from '@/schemas/domain'
 import { assetDetailsById } from '@/mocks/fixtures/assetDetails'
 import { assetsFeatureCollection } from '@/mocks/fixtures/assetsFeatureCollection'
+import { classifierBenchmark } from '@/mocks/fixtures/classifierBenchmark'
 import { districtCoverage } from '@/mocks/fixtures/districtCoverage'
 import { mwsDetail, mwsList } from '@/mocks/fixtures/mws'
+import { programmeMarigaon } from '@/mocks/fixtures/programmeMarigaon'
+import { provenance } from '@/mocks/fixtures/provenance'
 import { thematicLayerFixtures } from '@/mocks/fixtures/thematicLayers'
+import { watershedImpact } from '@/mocks/fixtures/watershedImpact'
 
 const MOCK_LATENCY_MS = 250
 
@@ -61,5 +69,17 @@ export const mockApi: Api = {
   },
   async getDistrictCoverage() {
     return delay(zDistrictCoverageList.parse(districtCoverage))
+  },
+  async getWatershedImpact(_mwsId) {
+    return delay(zWatershedImpact.parse(watershedImpact))
+  },
+  async getClassifierBenchmark() {
+    return delay(zClassifierBenchmark.parse(classifierBenchmark))
+  },
+  async getProgrammeMarigaon() {
+    return delay(zProgrammeMarigaon.parse(programmeMarigaon))
+  },
+  async getProvenance() {
+    return delay(zProvenanceList.parse(provenance))
   },
 }

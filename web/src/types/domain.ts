@@ -7,6 +7,7 @@
  */
 import type { z } from 'zod'
 import type {
+  zAccuracyStatus,
   zAiResult,
   zAssetDetail,
   zAssetPinFeature,
@@ -14,6 +15,8 @@ import type {
   zAssetPinProperties,
   zBand,
   zCategoryCode,
+  zClassifierBenchmark,
+  zClassifierBenchmarkModel,
   zDistrictCoverage,
   zGeoFlag,
   zGeoFlagRule,
@@ -23,11 +26,16 @@ import type {
   zMwsListItem,
   zMwsStats,
   zPhotoSource,
+  zProgrammeMarigaon,
+  zProvenanceEntry,
   zSatIndex,
   zSatInterpretation,
   zSatResult,
   zThematicLayer,
   zThematicLayerResponse,
+  zWatershedImpact,
+  zWatershedImpactSummary,
+  zWatershedImpactTimeseries,
   zZoneIndices,
 } from '@/schemas/domain'
 
@@ -53,5 +61,13 @@ export type ThematicLayer = z.infer<typeof zThematicLayer>
 export type ThematicLayerResponse = z.infer<typeof zThematicLayerResponse>
 export type LegendEntry = z.infer<typeof zLegendEntry>
 export type DistrictCoverage = z.infer<typeof zDistrictCoverage>
+export type WatershedImpactSummary = z.infer<typeof zWatershedImpactSummary>
+export type WatershedImpactTimeseries = z.infer<typeof zWatershedImpactTimeseries>
+export type WatershedImpact = z.infer<typeof zWatershedImpact>
+export type AccuracyStatus = z.infer<typeof zAccuracyStatus>
+export type ClassifierBenchmarkModel = z.infer<typeof zClassifierBenchmarkModel>
+export type ClassifierBenchmark = z.infer<typeof zClassifierBenchmark>
+export type ProgrammeMarigaon = z.infer<typeof zProgrammeMarigaon>
+export type ProvenanceEntry = z.infer<typeof zProvenanceEntry>
 
 export { CATEGORY_CODES, NO_SATELLITE_SIGNAL_CATEGORIES, THEMATIC_LAYERS } from '@/schemas/domain'

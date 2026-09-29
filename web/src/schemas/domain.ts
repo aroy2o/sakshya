@@ -324,6 +324,17 @@ export const zMws = z.object({
   created_at: z.string().nullable().optional(),
   boundary: zMwsBoundary,
   stats: zMwsStats.optional(),
+  /**
+   * Reality Pass R6 (2026-09-28): free-text provenance string, e.g. "REAL
+   * boundary — union of 5 SLUSI micro-watershed polygon(s)...
+   * (pick_method=automated_ranking_pending_human_confirmation)...". Drive
+   * the "candidate watershed (project area unconfirmed)" caveat label off
+   * the substring `pending_human_confirmation` in this string — see
+   * utils/boundarySource.ts. Never hardcode the caveat as always-on; once a
+   * human confirms the MWS codes and this substring disappears, the label
+   * must disappear too, automatically.
+   */
+  boundary_source: z.string().nullable().optional(),
 })
 
 export const zMwsListItem = zMws.omit({ boundary: true, stats: true }).extend({
@@ -377,13 +388,11 @@ export const zThematicLayerResponse = z.discriminatedUnion('kind', [
 ])
 
 // ---------------------------------------------------------------------------
-// PRD §9 — GET /districts/geotag-coverage (static real MIS numbers). Not
-// yet implemented server-side as of the 2026-09-28 sync (404) — this is
-// Phase 5's one backend-owned endpoint per §9's table, still pending on
-// backend-engineer's side. Schema kept as originally planned/confirmed;
-// live mode will show a real ErrorState on the Coverage tab until it ships,
-// which is correct per CLAUDE.md ("never fabricate") rather than quietly
-// falling back to mock numbers under a "live" label.
+// GET /districts/geotag-coverage — now live and real (Reality Pass R3/R4,
+// 2026-09-28): 51 districts across Assam/Meghalaya/Tripura, real WDC-PMKSY
+// MIS GT2 numbers. `source_report`/`as_of` added here 2026-09-28 (were
+// present live but unmodelled before — same "silently stripped" risk class
+// as the earlier ai_result bug); beat 1/2's "as on" stamp reads `as_of`.
 // ---------------------------------------------------------------------------
 export const zDistrictCoverage = z.object({
   district: z.string(),
@@ -391,6 +400,218 @@ export const zDistrictCoverage = z.object({
   total_works: z.number().int().min(0),
   geotagged_works: z.number().int().min(0),
   geotag_coverage_pct: z.number().min(0).max(100),
+  source_report: z.string().nullable().optional(),
+  as_of: z.string().nullable().optional(),
 })
 
 export const zDistrictCoverageList = z.array(zDistrictCoverage)
+
+// ---------------------------------------------------------------------------
+// Reality Pass R6 (2026-09-28) — GET /mws/{id}/watershed-impact. Beat 4's
+// data source: matched-control DiD effect + annual NDVI/MNDWI/rainfall
+// time series. Shape confirmed live against a real response (summary +
+// timeseries, both independently `placeholder`-flagged — REAL_DATA_PLAN.md
+// §4.2's bootstrap-over-control-polygons DiD is real code, running on
+// synthetic numbers only because GEE credentials aren't wired up yet).
+// `.strict()` on the per-index effect block since it's the number the
+// impact-curve headline reads directly.
+// ---------------------------------------------------------------------------
+const zImpactEffect = z
+  .object({
+    effect: z.number(),
+    ci_low: z.number(),
+    ci_high: z.number(),
+    n_bootstrap: z.number().int(),
+    ci: z.number(),
+    n_control_polygons: z.number().int(),
+    pre_mean_gap: z.number(),
+    post_mean_gap: z.number(),
+    pre_years: z.array(z.number().int()),
+    post_years: z.array(z.number().int()),
+  })
+  .strict()
+
+export const zWatershedImpactSummary = z.object({
+  mws_id: z.string(),
+  generated_at: z.string(),
+  placeholder: z.boolean(),
+  source: z.string(),
+  method_params: z.object({
+    project_start_year: z.number().int(),
+    n_bootstrap: z.number().int(),
+    ci: z.number(),
+    bootstrap_unit: z.string(),
+    n_control_polygons: z.number().int(),
+  }),
+  NDVI: zImpactEffect,
+  MNDWI: zImpactEffect,
+  caveats: z.array(z.string()),
+})
+
+const zYearlyValues = z.record(z.string(), z.number())
+
+const zControlPolygon = z.object({
+  mws_code: z.string(),
+  district: z.string(),
+  NDVI: zYearlyValues,
+  MNDWI: zYearlyValues,
+})
+
+export const zWatershedImpactTimeseries = z.object({
+  mws_id: z.string(),
+  generated_at: z.string(),
+  placeholder: z.boolean(),
+  source: z.string(),
+  method: z.object({
+    season_window: z.string(),
+    years: z.array(z.number().int()),
+    project_start_year: z.number().int(),
+    rainfall_window: z.string(),
+    n_control_polygons: z.number().int(),
+    control_selection: z.string(),
+  }),
+  treated: z.object({
+    polygon_source: z.string(),
+    NDVI: zYearlyValues,
+    MNDWI: zYearlyValues,
+  }),
+  control_mean: z.object({
+    NDVI: zYearlyValues,
+    MNDWI: zYearlyValues,
+  }),
+  // Individual control polygons exist for methodology transparency (§4.1's
+  // matched-control set) but beat 4's chart only plots treated vs
+  // control_mean — this app doesn't render all ~53 individually.
+  control_polygons: z.record(z.string(), zControlPolygon),
+  rainfall_mm_jun_sep: zYearlyValues,
+})
+
+export const zWatershedImpact = z.object({
+  mws_id: z.string(),
+  summary: zWatershedImpactSummary,
+  timeseries: zWatershedImpactTimeseries,
+})
+
+// ---------------------------------------------------------------------------
+// Reality Pass R6 (2026-09-28) — GET /classifier/benchmark. Measured
+// accuracy on real (not AI-generated) photos, per model. `accuracy_status`
+// ('measured' | 'not_established') is computed server-side from real
+// signal (schema-validation failure rate, sample completeness) — displayed
+// verbatim in AiClassifierCard's model-reliability note, never
+// re-judged/re-labelled client-side.
+// ---------------------------------------------------------------------------
+export const zAccuracyStatus = z.enum(['measured', 'not_established'])
+
+export const zClassifierBenchmarkModel = z.object({
+  model: z.string(),
+  provider: z.string(),
+  n_photos: z.number().int(),
+  n_correct: z.number().int(),
+  n_errors: z.number().int(),
+  accuracy: z.number(),
+  axis_labels: z.array(z.string()),
+  confusion_matrix: z.record(z.string(), z.record(z.string(), z.number())),
+  generated_at: z.string(),
+  note: z.string(),
+  n_schema_invalid_responses: z.number().int(),
+  is_full_dataset: z.boolean(),
+  max_per_category: z.number().int().nullable(),
+  neutral_declared_category: z.string(),
+  neutral_declared_activity: z.string(),
+  accuracy_status: zAccuracyStatus,
+})
+
+export const zClassifierBenchmark = z.object({
+  dataset: z.object({
+    n_photos: z.number().int(),
+    source: z.string(),
+    categories_covered: z.array(z.string()),
+    categories_not_covered: z.array(z.string()),
+    includes_none_distractors: z.boolean(),
+    is_synthetic: z.boolean(),
+    methodology_doc: z.string(),
+    manifest_fields: z.array(z.string()),
+  }),
+  models: z.array(zClassifierBenchmarkModel),
+  note: z.string(),
+})
+
+// ---------------------------------------------------------------------------
+// Reality Pass R6 (2026-09-28) — GET /programme/marigaon. Real WDC-PMKSY
+// registry aggregates for beat 6's moderation queue: exact Pre/Mid/Post
+// backlog counts (not estimated), `moderation_backlog_note`'s
+// not_submitted-vs-yet_to_moderate distinction (found empirically), and
+// `moderation_backlog_denominator` (240) the percentages are of.
+// ---------------------------------------------------------------------------
+const zModerationStage = z.object({
+  accepted: z.number().int(),
+  yet_to_moderate: z.number().int(),
+  rejected: z.number().int(),
+  not_submitted: z.number().int(),
+  mixed: z.number().int(),
+  other: z.number().int(),
+  yet_to_moderate_pct_of_geotagged: z.number(),
+})
+
+const zProgrammeProject = z.object({
+  project_id: z.number().int(),
+  project_name: z.string(),
+  nrm_total: z.number().int(),
+  epa_total: z.number().int(),
+  livelihood_total: z.number().int(),
+  production_total: z.number().int(),
+  total_work_codes: z.number().int(),
+  geotagged_work_codes: z.number().int(),
+  non_geotagged_work_codes: z.number().int(),
+})
+
+export const zProgrammeMarigaon = z.object({
+  district: z.string(),
+  district_source_spelling: z.string(),
+  state: z.string(),
+  district_total_projects: z.number().int(),
+  district_total_work_codes: z.number().int(),
+  district_geotagged_work_codes: z.number().int(),
+  district_non_geotagged_work_codes: z.number().int(),
+  projects: z.array(zProgrammeProject),
+  focus_project: zProgrammeProject.extend({ note: z.string() }),
+  category_breakdown: z.array(
+    z.object({
+      category: zCategoryCode,
+      work_code_count: z.number().int(),
+      share_pct_of_geotagged: z.number(),
+    }),
+  ),
+  unmapped_activities: z.array(z.string()),
+  moderation_backlog: z.object({
+    pre: zModerationStage,
+    mid: zModerationStage,
+    post: zModerationStage,
+  }),
+  moderation_backlog_denominator: z.number().int(),
+  moderation_backlog_note: z.string(),
+  activity_category_mapping_source: z.string(),
+  source_report: z.string(),
+  source_urls: z.record(z.string(), z.string()),
+  retrieved_at: z.record(z.string(), z.string()),
+  is_synthetic: z.boolean(),
+})
+
+// ---------------------------------------------------------------------------
+// Reality Pass R6 (2026-09-28) — GET /provenance. Every real dataset used,
+// for the "provenance panel" REAL_DATA_PLAN.md §7 calls "a credibility
+// feature, not clutter."
+// ---------------------------------------------------------------------------
+export const zProvenanceEntry = z.object({
+  name: z.string(),
+  source_url: z.string().nullable(),
+  licence: z.string(),
+  retrieved_at: z.string().nullable(),
+  is_synthetic: z.boolean(),
+  photo_source: z.string().nullable(),
+  used_for: z.string(),
+  notes: z.string(),
+  owner: z.string(),
+})
+
+export const zProvenanceList = z.array(zProvenanceEntry)

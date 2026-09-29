@@ -1,8 +1,41 @@
 @import 'tailwindcss';
 @import 'maplibre-gl/dist/maplibre-gl.css';
 
+/**
+ * Reality Pass R6 dark theme — map-first dashboard, one accent colour.
+ * Design tokens as CSS custom properties (not Tailwind theme.extend, to
+ * keep the v4 config untouched) so every component reads the same
+ * palette instead of re-declaring hex values.
+ */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+
+  --bg: #0b0f14;
+  --surface: #12181f;
+  --surface-2: #1a222b;
+  --surface-3: #212b36;
+  --border: #2a3542;
+  --border-strong: #3a4756;
+
+  --text: #e6edf3;
+  --text-muted: #93a3b4;
+  --text-faint: #5b6b7c;
+
+  /* The one accent colour, per REAL_DATA_PLAN.md §7's design brief. */
+  --accent: #22d3ee;
+  --accent-dim: #0e7490;
+  --accent-bg: rgba(34, 211, 238, 0.12);
+
+  /* Evidence bands (PRD §12.5) — kept distinct from the accent on purpose. */
+  --verified: #22c55e;
+  --review: #f59e0b;
+  --flag: #ef4444;
+  --unscored: #64748b;
+
+  /* Reality-ladder provenance (REAL_DATA_PLAN.md §3) */
+  --real: var(--accent);
+  --synthetic: #a78bfa;
+  --placeholder: #f59e0b;
 }
 
 html,
@@ -13,6 +46,8 @@ body,
 
 body {
   margin: 0;
+  background: var(--bg);
+  color: var(--text);
   font-family:
     system-ui,
     -apple-system,
@@ -26,4 +61,32 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+/* MapLibre's default light popup/control chrome fought the dark theme */
+.maplibregl-popup-content {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.maplibregl-popup-tip {
+  border-top-color: var(--surface-2) !important;
+  border-bottom-color: var(--surface-2) !important;
+}
+.maplibregl-ctrl-group {
+  background: var(--surface-2) !important;
+  border: 1px solid var(--border);
+}
+.maplibregl-ctrl-group button {
+  filter: invert(0.85);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
 }

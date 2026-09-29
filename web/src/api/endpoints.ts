@@ -9,10 +9,14 @@ import type { Api } from './types'
 import {
   zAssetDetail,
   zAssetPinFeatureCollection,
+  zClassifierBenchmark,
   zDistrictCoverageList,
   zMws,
   zMwsList,
+  zProgrammeMarigaon,
+  zProvenanceList,
   zThematicLayerResponse,
+  zWatershedImpact,
 } from '@/schemas/domain'
 
 export const liveApi: Api = {
@@ -33,5 +37,17 @@ export const liveApi: Api = {
   },
   async getDistrictCoverage() {
     return zDistrictCoverageList.parse(await apiGet('/districts/geotag-coverage'))
+  },
+  async getWatershedImpact(mwsId) {
+    return zWatershedImpact.parse(await apiGet(`/mws/${mwsId}/watershed-impact`))
+  },
+  async getClassifierBenchmark() {
+    return zClassifierBenchmark.parse(await apiGet('/classifier/benchmark'))
+  },
+  async getProgrammeMarigaon() {
+    return zProgrammeMarigaon.parse(await apiGet('/programme/marigaon'))
+  },
+  async getProvenance() {
+    return zProvenanceList.parse(await apiGet('/provenance'))
   },
 }
