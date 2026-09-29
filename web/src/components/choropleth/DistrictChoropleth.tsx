@@ -6,6 +6,7 @@ import { DistrictTable } from './DistrictTable'
 import { basemapStyle } from '@/components/map/basemapStyle'
 import { ErrorState } from '@/components/layout/ErrorState'
 import { LoadingState } from '@/components/layout/LoadingState'
+import { ProvenanceChip } from '@/components/shared/ProvenanceChip'
 import { useDistrictBoundaries } from '@/hooks/useDistrictBoundaries'
 import { useDistrictCoverage } from '@/hooks/useDistrictCoverage'
 import { joinDistrictCoverage, type DistrictBoundaryProperties } from '@/utils/districtJoin'
@@ -123,6 +124,13 @@ export function DistrictChoropleth() {
 
   return (
     <div className="flex h-full flex-col">
+      <div className="flex flex-wrap items-center gap-2 border-b border-(--border) bg-(--surface) px-4 py-2">
+        <h2 className="text-sm font-semibold text-(--text)">Assam → Marigaon drill-down: geotag coverage</h2>
+        <ProvenanceChip kind="real" detail="WDC-PMKSY MIS, live" />
+        {coverageQuery.data?.[0]?.as_of && (
+          <span className="text-xs text-(--text-faint)">as on {coverageQuery.data[0].as_of}</span>
+        )}
+      </div>
       <div className="relative flex-1">
         <div ref={containerRef} className="maplibre-map-container" />
         <ChoroplethLegend />
@@ -138,7 +146,7 @@ export function DistrictChoropleth() {
         )}
       </div>
       {coverageQuery.data && (
-        <div className="max-h-64 overflow-y-auto border-t border-slate-200 px-4 py-2">
+        <div className="max-h-64 overflow-y-auto border-t border-(--border) px-4 py-2">
           <DistrictTable rows={coverageQuery.data} unmatchedDistricts={unmatched.map((d) => d.district)} />
         </div>
       )}
