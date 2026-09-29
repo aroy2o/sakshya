@@ -8,8 +8,8 @@ import { DistrictChoropleth } from '@/components/choropleth/DistrictChoropleth'
 import { ErrorState } from '@/components/layout/ErrorState'
 import { LoadingState } from '@/components/layout/LoadingState'
 import { WatershedMap } from '@/components/map/WatershedMap'
-import { BeatNav } from '@/components/shell/BeatNav'
 import { GuidedTour } from '@/components/shell/GuidedTour'
+import { Sidebar } from '@/components/shell/Sidebar'
 import { CONFIGURED_MWS_ID } from '@/config'
 import { useMwsList } from '@/hooks/useMwsList'
 import { MapUiProvider } from '@/state/mapUiStore'
@@ -71,16 +71,18 @@ function App() {
   const isMapBeat = activeBeat === 2 || activeBeat === 3
 
   return (
-    <div className="flex h-screen flex-col bg-(--bg) text-(--text)">
-      <BeatNav active={activeBeat} onSelect={setActiveBeat} onStartTour={() => setTourOpen(true)} />
-      <main className={`min-h-0 flex-1 ${isMapBeat ? '' : 'overflow-y-auto'}`}>{body}</main>
-      {tourOpen && (
-        <GuidedTour
-          activeBeat={activeBeat}
-          onGoTo={(id) => setActiveBeat(id)}
-          onExit={() => setTourOpen(false)}
-        />
-      )}
+    <div className="flex h-screen bg-(--bg) text-(--text)">
+      <Sidebar active={activeBeat} onSelect={setActiveBeat} onStartTour={() => setTourOpen(true)} />
+      <div className="relative min-w-0 flex-1">
+        <main className={`h-full ${isMapBeat ? '' : 'overflow-y-auto'}`}>{body}</main>
+        {tourOpen && (
+          <GuidedTour
+            activeBeat={activeBeat}
+            onGoTo={(id) => setActiveBeat(id)}
+            onExit={() => setTourOpen(false)}
+          />
+        )}
+      </div>
     </div>
   )
 }

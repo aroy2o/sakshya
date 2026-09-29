@@ -7,6 +7,11 @@ import { BEATS } from './beats'
  * controls pacing during the 3-minute story; Esc/Skip exits and returns to
  * whichever beat the tour was on, cleanly closing the overlay without
  * leaving any tour-only state behind.
+ *
+ * `absolute`, not `fixed`: it's rendered inside App.tsx's `relative`
+ * main-content wrapper (next to, not overlapping, the sidebar) — since the
+ * sidebar restructure, `fixed inset-x-0` would have centred this across
+ * the *whole* viewport including the sidebar column.
  */
 export function GuidedTour({
   activeBeat,
@@ -38,7 +43,7 @@ export function GuidedTour({
       role="dialog"
       aria-label="Guided tour"
       aria-live="polite"
-      className="no-print fixed inset-x-0 bottom-4 z-50 mx-auto w-[calc(100%-2rem)] max-w-lg rounded-xl border border-(--accent)/40 bg-(--surface-2) p-4 shadow-2xl shadow-black/50"
+      className="no-print absolute inset-x-0 bottom-4 z-50 mx-auto w-[calc(100%-2rem)] max-w-lg rounded-xl border border-(--accent)/40 bg-(--surface-2) p-4 shadow-2xl shadow-black/50"
     >
       <div className="flex items-start justify-between gap-3">
         <div>

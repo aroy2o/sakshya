@@ -10,16 +10,24 @@
 :root {
   color-scheme: dark;
 
-  --bg: #0b0f14;
-  --surface: #12181f;
-  --surface-2: #1a222b;
-  --surface-3: #212b36;
-  --border: #2a3542;
-  --border-strong: #3a4756;
+  /*
+   * Genuinely neutral dark scale — every step here is R=G=B (a true grey),
+   * not derived from a hue. The previous scale (#0b0f14 etc.) had B nearly
+   * double R at every step, an accidental blue lean nobody chose on
+   * purpose; flagged three times by the human before being fixed here.
+   * The cyan accent below stays the one deliberate colour — these are
+   * neutral scaffolding behind it, not a second competing hue.
+   */
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1c1c1c;
+  --surface-3: #262626;
+  --border: #333333;
+  --border-strong: #474747;
 
-  --text: #e6edf3;
-  --text-muted: #93a3b4;
-  --text-faint: #5b6b7c;
+  --text: #f2f2f2;
+  --text-muted: #a3a3a3;
+  --text-faint: #6b6b6b;
 
   /* The one accent colour, per REAL_DATA_PLAN.md §7's design brief. */
   --accent: #22d3ee;
