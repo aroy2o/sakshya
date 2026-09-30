@@ -180,7 +180,7 @@ jobs:
             docker run -d \
               --name sakshya \
               --restart unless-stopped \
-              -p 80:80 \
+              -p 127.0.0.1:8080:80 \
               --env-file /opt/sakshya/.env \
               -v sakshya_mongo_data:/data/db \
               -v sakshya_photos:/app/api/app/static/photos \
