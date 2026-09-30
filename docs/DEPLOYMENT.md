@@ -6,6 +6,18 @@ redeploys from GitHub. If you're reading this to do the deploy, you don't
 need to have been part of any prior conversation about how this was built —
 everything you need is here or linked from here.
 
+> **Current production setup (supersedes Parts B–D where they differ).**
+> Host nginx terminates TLS on 80/443 (certbot, `sakshya.aroy2o.xyz`) and
+> proxies to the container, which is bound to `127.0.0.1:8080` only. Deploys
+> are **pull-based**: CI (`publish` job) only builds and pushes
+> `ghcr.io/aroy2o/sakshya:latest` (public image); a systemd timer on the
+> server (`sakshya-update.timer`, every 5 min, script
+> `/usr/local/bin/sakshya-update`) recreates the container when the image
+> changes. No `DEPLOY_*` secrets and no inbound SSH from GitHub are needed;
+> keep port 22 restricted to admin IPs. Force an update now with
+> `sudo systemctl start sakshya-update.service`. Manual first-time data
+> load is still Part F, with `curl` against `http://127.0.0.1:8080`.
+
 ## What you're deploying
 
 One Docker image (built from [`deploy/Dockerfile`](../deploy/Dockerfile))

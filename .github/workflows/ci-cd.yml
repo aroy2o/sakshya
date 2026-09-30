@@ -91,42 +91,28 @@ jobs:
         working-directory: web
         run: npm run build
 
-  deploy:
+  # Publishes the image only. The server pulls it itself: a systemd timer
+  # (sakshya-update.timer, checks every 5 min) runs /usr/local/bin/sakshya-update,
+  # which recreates the container when the image changed. No inbound SSH from
+  # GitHub runners is needed, so port 22 stays locked to admin IPs.
+  # See docs/DEPLOYMENT.md.
+  publish:
     needs: [api-tests, web-build]
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
-    concurrency: deploy-production
+    concurrency: publish-image
     steps:
-      # `secrets` isn't a valid context in a job-level `if:` (github rejects
-      # the whole workflow file, 0 jobs run, if you try) — only steps can
-      # read it, hence this indirection: every later step gates on this
-      # step's output instead, so the job exists (and needs/api-tests +
-      # web-build still block it) but does nothing until a server does.
-      - name: Check deploy secrets are configured
-        id: check
-        run: |
-          if [ -n "${{ secrets.DEPLOY_HOST }}" ] && [ -n "${{ secrets.DEPLOY_USER }}" ] && [ -n "${{ secrets.DEPLOY_SSH_KEY }}" ]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Skipping deploy — add DEPLOY_HOST/DEPLOY_USER/DEPLOY_SSH_KEY in Settings > Secrets and variables > Actions to enable it."
-          fi
-
       - uses: actions/checkout@v4
-        if: steps.check.outputs.ready == 'true'
 
       - uses: docker/setup-buildx-action@v3
-        if: steps.check.outputs.ready == 'true'
 
       - uses: docker/login-action@v3
-        if: steps.check.outputs.ready == 'true'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build + push deploy/Dockerfile
-        if: steps.check.outputs.ready == 'true'
         # deploy/Dockerfile's own ARG defaults (VITE_API_MODE=live,
         # VITE_API_BASE_URL=/api) already match this single-container shape
         # (nginx reverse-proxies /api/* to the api process inside the same
@@ -141,50 +127,3 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/sakshya:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Deploy over SSH
-        if: steps.check.outputs.ready == 'true'
-        env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          IMAGE: ghcr.io/${{ github.repository_owner }}/sakshya:latest
-          GHCR_ACTOR: ${{ github.actor }}
-          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
-
-          # An UNQUOTED heredoc delimiter (<<REMOTE, not <<'REMOTE') is
-          # deliberate: it expands $IMAGE/$GHCR_TOKEN/etc. locally, on the
-          # runner, before the script text is piped over SSH — so the
-          # remote side never re-expands anything, and the token never
-          # becomes a CLI arg (ps-visible) on either end, only piped stdin.
-          # GITHUB_TOKEN packages default to private on ghcr.io, so without
-          # this login the server's docker pull would 401 on the very first
-          # deploy — logging out again after means nothing long-lived is
-          # left in the server's docker config.
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes \
-            "$DEPLOY_USER@$DEPLOY_HOST" bash -s <<REMOTE
-            set -euo pipefail
-            echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_ACTOR" --password-stdin
-            docker pull "$IMAGE"
-            docker stop sakshya 2>/dev/null || true
-            docker rm sakshya 2>/dev/null || true
-            # /opt/sakshya/.env is a one-time manual setup on the server
-            # (real PHOTO_PUBLIC_BASE_URL/THEMATIC_PUBLIC_BASE_URL/
-            # CORS_ORIGINS for that host) — CD only ever ships the image,
-            # never that file, so redeploys can't clobber server-specific
-            # config with values baked at some other time.
-            docker run -d \
-              --name sakshya \
-              --restart unless-stopped \
-              -p 127.0.0.1:8080:80 \
-              --env-file /opt/sakshya/.env \
-              -v sakshya_mongo_data:/data/db \
-              -v sakshya_photos:/app/api/app/static/photos \
-              "$IMAGE"
-            docker image prune -f
-            docker logout ghcr.io
-          REMOTE
